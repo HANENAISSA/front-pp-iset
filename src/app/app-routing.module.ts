@@ -6,7 +6,7 @@ import { SimplePageComponent } from "./pages/simple-page/simple-page.component";
 import { ProfileComponent } from "./pages/user/profile/profile.component";
 
 const routes: Routes = [
-  { path: "", component: HomePageComponent },
+  { path: "", component: DashboardDefaultComponent },
   {
     path: "dashboard",
     component: HomePageComponent,
