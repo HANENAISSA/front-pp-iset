@@ -13,6 +13,19 @@ import { PopupComponent } from './popup/popup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
+//club-components
+import { AccueilGeneralComponent } from './teams/club/general/accueil-general/accueil-general.component';
+import { ListeClubsComponent } from './teams/club/general/liste-clubs/liste-clubs.component';
+import { DashboardAccueilComponent } from './teams/club/general/dashboard-accueil/dashboard-accueil.component';
+import { DashboardClubComponent } from './teams/club/platform_club/dashboard-club/dashboard-club.component';
+import { AccueilClubComponent } from './teams/club/platform_club/accueil-club/accueil-club.component';
+import { MembresComponent } from './teams/club/platform_club/membres/membres.component';
+import { ListeDemandesComponent } from './teams/club/platform_club/liste-demandes/liste-demandes.component';
+import { SigninComponent } from './teams/club/general/signin/signin.component';
+import { EnvoyerDemandeComponent } from './teams/club/general/envoyer-demande/envoyer-demande.component';
+import { ProfileMembreComponent } from './teams/club/platform_club/profile-membre/profile-membre.component';
+//
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +34,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SimplePageComponent,
     HomePageComponent,
     ProfileComponent,
-    PopupComponent
+    PopupComponent,
+
+    //club-components
+    AccueilGeneralComponent,
+    ListeClubsComponent,
+    DashboardAccueilComponent,
+    DashboardClubComponent,
+    AccueilClubComponent,
+    MembresComponent,
+    ListeDemandesComponent,
+    SigninComponent,
+    EnvoyerDemandeComponent,
+    ProfileMembreComponent
   ],
   imports: [
     BrowserModule,
