@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './layout/admin/admin.component';
@@ -12,7 +12,6 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
 import { PopupComponent } from './popup/popup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 
 //club-components
 import { AccueilGeneralComponent } from './teams/club/general/accueil-general/accueil-general.component';
@@ -56,9 +55,10 @@ import { ProfileMembreComponent } from './teams/club/platform_club/profile-membr
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+
   ],
   entryComponents: [PopupComponent],
-  schemas: [ NO_ERRORS_SCHEMA ],
+  schemas: [ NO_ERRORS_SCHEMA , CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })
