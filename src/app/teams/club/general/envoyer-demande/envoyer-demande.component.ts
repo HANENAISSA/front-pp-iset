@@ -10,7 +10,7 @@ import { RequestService } from '../../services/request.service';
 export class EnvoyerDemandeComponent implements OnInit {
   cin?:String;
   equipe?: String;
-   email?: String;
+  email?: String;
   motivation?: String;
   club?:any;
   equipes: any =[];
@@ -19,10 +19,7 @@ export class EnvoyerDemandeComponent implements OnInit {
   }
   ngOnInit(): void {
  this.getteams();
-//console.log(this.equipes);
-/*this.route.paramMap.subscribe((params: ParamMap) => {
-  this.club = +params.get('id')
-})*/
+
 this.club = this.route.snapshot.paramMap.get('id');
   }
 
@@ -35,7 +32,7 @@ sendRequest(){
         console.log(data["token"])
         localStorage.setItem("token",data["token"])
         localStorage.setItem('dataSource', data.length);
-        this.router.navigate(['/club']);
+        this.router.navigate(['dashboard_accueil/clubs']);
       }else{
         alert(data['message'])
       }
@@ -52,7 +49,7 @@ sendRequest(){
       .subscribe(
         club => {
           this.equipes= club['data'];
-
+          console.log(this.equipes)
         },
         error => {
           console.log(error);

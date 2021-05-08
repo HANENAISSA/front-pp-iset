@@ -47,7 +47,7 @@ const routes: Routes = [
       component: ListeClubsComponent,
     },
     {
-      path: "demande",
+      path: "demande/:id",
       component: EnvoyerDemandeComponent,
     },
 

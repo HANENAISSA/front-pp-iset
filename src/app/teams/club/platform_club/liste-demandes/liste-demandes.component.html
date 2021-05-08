@@ -41,6 +41,7 @@
                                                         <th>email</th>
                                                         <th>motivation</th>
                                                         <th>date</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -55,12 +56,16 @@
                                                         <td>{{request.email}}</td>
                                                         <td>{{request.motivation}}</td>
                                                         <td>{{request.date}}</td>
-              <td><button class="btn btn-out btn-primary btn-square"
-                (click)=Accepter(request.id_demande,request.email)>Accepter</button></td>
-              <td><button class="btn btn-out btn-danger btn-square"
-                (click)=Delete(request.id_demande,request.email)>Refuser</button></td>
-                                                    </tr>
-              
+                                                        <td>
+                                                        <button class="btn btn-success" (click)=Accepter(request.id_demande,request.email)>
+                                                          <i class="icofont icofont-check-circled"></i>
+                                                        </button>
+                                                        <button class="btn btn-warning" (click)=Delete(request.id_demande,request.email)>
+                                                          <i class="icofont icofont-not-allowed"></i>
+                                                        </button>
+                                                      </td>
+                                                      </tr>
+
                                                 </tbody>
                                             </table>
                                           </div>

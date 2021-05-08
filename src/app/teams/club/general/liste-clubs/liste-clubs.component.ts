@@ -27,7 +27,7 @@ export class ListeClubsComponent implements OnInit {
           console.log(error);
         });
   }
-  inscrire(id:any){
-    this.router.navigate(['/demande/'+id]);
+  inscrire(e:any){
+    this.router.navigate(['dashboard_accueil/demande/'+e]);
   }
 }
