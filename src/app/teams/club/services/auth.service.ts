@@ -14,7 +14,27 @@ export class AuthService {
       }
     );
   }
+
   logout() {
 
   }
+
+  SendEmailForgetPassword(email: any) {
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/forgetpassword/sendEmailForgetPassword",
+      {
+        email: email
+      }
+    );
+  }
+
+  restartPassword(password:any) {
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/forgetpassword/restartPassword",
+      {
+        password:password
+      }
+    );
+  }
+
 }

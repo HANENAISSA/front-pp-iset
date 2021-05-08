@@ -11,14 +11,12 @@ export class RequestService {
 sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any) {
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/demande_event/sendRequest",
-      { cin: cin,
-        //nom: nom,
-        //prenom: prenom,
-        //classe:classe,
+      {  cin: cin,
+
         equipe: equipe,
         club:club,
         motivation:motivation,
-        //ntel:ntel,
+
         email:email
 
       }

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,46 @@ import { Injectable } from '@angular/core';
 })
 export class PostService {
 
-  constructor() { }
+  constructor(private _http:HttpClient) { }
+
+  getposts(idclub:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/post/getposts",   {
+
+         idclub:idclub
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+
+  }
+  addpost(idclub:any,description:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/post/addpost",   {
+
+         idclub:idclub,
+         description:description,
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+  }
+  addComment(idclub:any,description:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/post/addComment",   {
+
+
+        idclub:idclub,
+        description:description,
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+  }
+  getComments(idpublication:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/post/getComments",   {
+
+         idpublication:idpublication
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+  }
 }

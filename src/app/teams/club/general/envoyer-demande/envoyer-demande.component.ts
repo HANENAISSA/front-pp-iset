@@ -31,7 +31,7 @@ export class EnvoyerDemandeComponent implements OnInit {
 this.club = this.route.snapshot.paramMap.get('id');
   }
 
- sendRequest(){
+sendRequest(){
     this._http.sendRequest(this.cin,this.equipe,this.club,this.motivation,
        this.email
       ).subscribe(data => {
@@ -50,14 +50,14 @@ this.club = this.route.snapshot.paramMap.get('id');
     console.log(err);
       }
     );
-   // this.router.navigate(['']);
-  }
+  //this.router.navigate(['']);
+}
   getteams() {
     this._http.getTeams()
       .subscribe(
         club => {
           this.equipes= club['data'];
-          //console.log(club);
+
         },
         error => {
           console.log(error);
