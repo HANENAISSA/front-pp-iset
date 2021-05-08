@@ -9,13 +9,8 @@ import { RequestService } from '../../services/request.service';
 })
 export class EnvoyerDemandeComponent implements OnInit {
   cin?:String;
-  nom?:String;
-  prenom?: String;
-  classe?: String;
   equipe?: String;
-
-  email?: String;
-  ntel?: String;
+   email?: String;
   motivation?: String;
   club?:any;
   equipes: any =[];
