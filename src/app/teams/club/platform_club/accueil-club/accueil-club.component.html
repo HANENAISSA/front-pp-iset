@@ -6,12 +6,12 @@
           <div class="card widget-card-1">
               <div class="card-block-small">
                 <i class="icofont icofont-ui-home bg-c-blue card1-icon"></i>
-                <span class="text-c-blue f-w-600">date</span>
-                  <h6>nom/prenom membre</h6>
+
+                  <h6>{{nom}} {{prenom}}</h6>
                   <div class="form-group row">
                      <div class="col-sm-11">
-                        <textarea class="form-control" [(ngModel)]="post"
-                        placeholder="votre post"></textarea>
+                        <input type="text" class="form-control" [(ngModel)]="post"
+                        placeholder="votre post">
 
                     </div>
                 </div>
@@ -24,8 +24,28 @@
           </div>
       </div>
       <!-- card1 end -->
+       <!-- calendar-->
+
+<div class="col-md-12 col-xl-4">
+  <div class="card fb-card">
+    <div class="card-header">
+      <i class="ti-calendar"></i>
+      <div class="d-inline-block">
+        <h5>Calendrier</h5>
+
       </div>
+    </div>
+    <div class="card-block text-center">
+      <div class="row">
+
       </div>
+    </div>
+  </div>
+</div>
+
+  <!-- calendar -->
+    </div>
+    </div>
 <!--add post-->
 
 <!--display post-->
@@ -33,82 +53,83 @@
   <div class="row">
       <!-- card1 start -->
       <div class="col-sm-12 col-xl-8">
-          <div class="card widget-card-1 ">
+
+          <div class="card widget-card-1 "  *ngFor="let post of posts" >
               <div class="card-block-small">
                 <i class="icofont icofont-ui-home bg-c-blue card1-icon"></i>
-                <span class="text-c-blue f-w-600">date</span>
-                  <h6>nom/prenom membre</h6>
+                <span class="text-c-blue f-w-600">{{post.date}}{{post.heure}}</span>
+                  <h6>{{post.nom}}{{post.prenom}}</h6>
                   <div>
                       <span class="f-left m-t-10 ">
-                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                        <p> {{post.description}}</p>
                       </span>
                   </div>
 
               </div>
+            <!-- commantaire -->
               <div class="col-sm-12 ">
-                <app-card [title]="'Recent Comments'" [blockClass]="'p-0'">
-
-              <div class="card-comment ">
+                <app-card [title]="'Commentaires récents'" [blockClass]="'p-0'">
+              <!-- add commantaire -->
+                <div class="card-comment ">
                 <div class="card-block-small">
                   <img class="img-radius img-50" src="assets/images/avatar-1.jpg" alt="user-1">
                   <div class="comment-desc">
-                    <h6>nom prenom</h6>
-                    <p class="text-muted ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                    <h6>{{nom }} {{prenom}}</h6>
+                    <input type="text" class="form-control" [(ngModel)]="cmtre"
+                    placeholder="ecrire votre commantaire">
+                    <button class="btn btn-mat btn-primary " (click)=addcmtre(post.id_publication)>Publier</button>
 
-                    <div class="date">
-                      <i>04 October 2015</i>
-                    </div>
                   </div>
                 </div>
-              </div>
+               </div>
+               <!-- add commantaire -->
+<!-- display commantaire -->
+<div class="card-comment " *ngFor="let cmtre of cmtres">
+  <div class="card-block-small">
+    <img class="img-radius img-50" src="assets/images/avatar-1.jpg" alt="user-1">
+    <div class="comment-desc">
+      <h6>{{cmtre.nom}} {{cmtre.prenom}}</h6>
+      <p class="text-muted ">{{cmtre.description}}</p>
+
+      <div class="date">
+        <i>{{cmtre.date}} {{cmtre.heure}}</i>
+      </div>
+    </div>
+  </div>
+ </div>
+ <!-- display commantaire -->
               </app-card>
-              </div>
+            </div>
+            <!-- commantaire -->
           </div>
       </div>
       <!-- card1 end -->
-      <div class="col-md-12 col-xl-4">
-        <div class="card fb-card">
+      <!-- vote -->
+      <div class="col-sm-12 col-xl-4">
+        <div class="card widget-statstic-card">
           <div class="card-header">
-            <i class="ti-calendar"></i>
-            <div class="d-inline-block">
-              <h5>Calendrier</h5>
-
+            <div class="card-header-left">
+              <h4>Vote</h4>
+              <h6>Vote title</h6>
+              <p class="p-t-10 m-b-0 text-c-blue">date</p>
             </div>
           </div>
-          <div class="card-block text-center">
-            <div class="row">
+          <div class="card-block">
+            <i  class="ti-plus st-icon bg-c-blue txt-lite-color"></i>
 
+            <div class="text-left">
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="1">Oui</mat-radio-button>
+                    <div style="margin-top: 5px;"></div>
+                    <mat-radio-button value="0">Non</mat-radio-button>
+                  </mat-radio-group>
             </div>
           </div>
         </div>
       </div>
+      <!-- vote -->
     </div>
 
   </div>
 <!--display post-->
 
-  <!-- vote -->
-  <div class="col-sm-12 col-xl-8">
-    <div class="card widget-statstic-card">
-      <div class="card-header">
-        <div class="card-header-left">
-          <h4>Vote</h4>
-          <h6>Vote title</h6>
-          <p class="p-t-10 m-b-0 text-c-blue">date</p>
-        </div>
-      </div>
-      <div class="card-block">
-        <i class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
-
-        <div class="text-left">
-            <mat-radio-group aria-label="Select an option">
-                <mat-radio-button value="1">Oui</mat-radio-button>
-                <div style="margin-top: 5px;"></div>
-                <mat-radio-button value="0">Non</mat-radio-button>
-              </mat-radio-group>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- vote -->

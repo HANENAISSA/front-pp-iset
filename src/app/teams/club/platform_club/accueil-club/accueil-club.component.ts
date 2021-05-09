@@ -13,16 +13,19 @@ import { VoteService } from '../../services/vote.service';
 }]
 })
 export class AccueilClubComponent implements OnInit {
-post!:any;
+post:any;
+cmtre: any;
+
 posts:any=[];
 cmtrs:any=[];
 sondages:any=[];
 votes:any=[];
-idclub:any;
-  cmtre: any;
+
+  idclub:any;
   title: any;
   nom:any;
   prenom:any;
+  idpub: void;
 
   constructor(private v_http:VoteService,private p_http:PostService) { }
 
@@ -30,7 +33,8 @@ idclub:any;
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
     this.idclub=localStorage.getItem('id_club');
-   // this.getposts();
+   this.getposts();
+
     //this.getcmtre();
     //this.getsondage();
     //this.getvote();
@@ -52,8 +56,8 @@ idclub:any;
   addpost(){
     this.p_http.addpost(this.idclub,this.post).subscribe(data => {
       if(data['error']!=true){
-        console.log(data["token"])
-        localStorage.setItem("token",data["token"])
+        console.log(data["posts"])
+        localStorage.setItem("posts",data["posts"])
          }else{
         alert(data['message'])
       }
@@ -81,8 +85,8 @@ idclub:any;
   addcmtre(idpublication:any){
     this.p_http.addComment(idpublication,this.cmtre).subscribe(data => {
       if(data['error']!=true){
-        console.log(data["token"])
-        localStorage.setItem("token",data["token"])
+        console.log(data["cmtre"])
+        localStorage.setItem("cmtre",data["cmtre"])
          }else{
         alert(data['message'])
       }

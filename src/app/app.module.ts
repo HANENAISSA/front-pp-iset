@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { MatRadioModule } from '@angular/material';
-
+import {MatDialogModule} from '@angular/material/dialog';
 //club-components
 import { AccueilGeneralComponent } from './teams/club/general/accueil-general/accueil-general.component';
 import { ListeClubsComponent } from './teams/club/general/liste-clubs/liste-clubs.component';
@@ -60,7 +60,8 @@ import { ResetPasswordComponent } from './teams/club/general/reset-password/rese
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
 
   ],
   entryComponents: [PopupComponent],

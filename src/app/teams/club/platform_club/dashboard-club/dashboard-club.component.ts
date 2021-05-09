@@ -59,6 +59,9 @@ import { Router } from '@angular/router';
   ]
 })
 export class DashboardClubComponent implements OnInit {
+  nom:any;
+  prenom:any;
+
   navType: string; /* st1, st2(default), st3, st4 */
   themeLayout: string; /* vertical(default) */
   layoutType: string; /* dark, light */
@@ -103,6 +106,8 @@ export class DashboardClubComponent implements OnInit {
   @ViewChild('searchFriends', /* TODO: add static flag */ {static: false}) search_friends: ElementRef;
 
   public config: any;
+  idclub: string;
+  role: string;
 
   constructor(private  router: Router,public menuItems: MenuItems, private modalService: NgbModal) {
     this.navType = 'st5';
@@ -172,6 +177,10 @@ export class DashboardClubComponent implements OnInit {
   }
   ngOnInit() {
     this.setBackgroundPattern('pattern2');
+    this.nom=localStorage.getItem('nom');
+    this.prenom=localStorage.getItem('prenom');
+    this.idclub=localStorage.getItem('id_club');
+    this.role=localStorage.getItem('role');
   }
 
   onResize(event) {
