@@ -1,1 +1,79 @@
-<p>accueil-club works!</p>
+<!--add post-->
+<div class="page-body">
+  <div class="row">
+      <!-- card1 start -->
+      <div class="col-sm-12">
+          <div class="card widget-card-1">
+              <div class="card-block-small">
+                <i class="icofont icofont-ui-home bg-c-blue card1-icon"></i>
+                <span class="text-c-blue f-w-600">date</span>
+                  <h6>nom/prenom membre</h6>
+                  <div class="form-group row">
+                     <div class="col-sm-11">
+                        <input type="text" class="form-control" [(ngModel)]="post"
+                        placeholder="Type your title in Placeholder">
+
+                    </div>
+                </div>
+                  <div>
+                      <span class="f-left m-t-10 text-muted">
+                        <button class="btn btn-primary btn-round">Partager</button>
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- card1 end -->
+      </div>
+      </div>
+<!--add post-->
+
+<!--display post-->
+<div class="page-body">
+  <div class="row">
+      <!-- card1 start -->
+      <div class="col-sm-12 ">
+          <div class="card widget-card-1 ">
+              <div class="card-block-small">
+                <i class="icofont icofont-ui-home bg-c-blue card1-icon"></i>
+                <span class="text-c-blue f-w-600">date</span>
+                  <h6>nom/prenom membre</h6>
+                  <div>
+                      <span class="f-left m-t-10 ">
+                        <p> poste</p>
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- card1 end -->
+      </div>
+      </div>
+<!--display post-->
+
+
+  <!-- vote -->
+  <div class="col-sm-12">
+    <div class="card widget-statstic-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <h4>Vote</h4>
+          <h6>Vote title</h6>
+          <p class="p-t-10 m-b-0 text-c-blue">date</p>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
+
+        <div class="text-left">
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">Oui</mat-radio-button>
+                <div style="margin-top: 5px;"></div>
+                <mat-radio-button value="0">Non</mat-radio-button>
+              </mat-radio-group>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- vote -->

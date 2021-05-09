@@ -12,6 +12,8 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
 import { PopupComponent } from './popup/popup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import { MatRadioModule } from '@angular/material';
 
 //club-components
 import { AccueilGeneralComponent } from './teams/club/general/accueil-general/accueil-general.component';
@@ -24,6 +26,7 @@ import { ListeDemandesComponent } from './teams/club/platform_club/liste-demande
 import { SigninComponent } from './teams/club/general/signin/signin.component';
 import { EnvoyerDemandeComponent } from './teams/club/general/envoyer-demande/envoyer-demande.component';
 import { ProfileMembreComponent } from './teams/club/platform_club/profile-membre/profile-membre.component';
+import { ResetPasswordComponent } from './teams/club/general/reset-password/reset-password.component';
 //
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { ProfileMembreComponent } from './teams/club/platform_club/profile-membr
     ListeDemandesComponent,
     SigninComponent,
     EnvoyerDemandeComponent,
-    ProfileMembreComponent
+    ProfileMembreComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,8 @@ import { ProfileMembreComponent } from './teams/club/platform_club/profile-membr
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCardModule,
+    MatRadioModule
 
   ],
   entryComponents: [PopupComponent],

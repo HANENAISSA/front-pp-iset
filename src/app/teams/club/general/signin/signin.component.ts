@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-signin',
@@ -7,9 +10,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  email?: String;
+  password?: String;
 
-  ngOnInit() {
+
+
+  constructor(private _http:AuthService,private  router: Router) {
+
   }
+  ngOnInit(): void {
+
+  }
+  signin(){
+    this._http.login(this.email, this.password).subscribe(data => {
+      console.log(data)
+      if(data['error']!=true){
+        console.log(data["token"]);
+        localStorage.setItem("token",data["token"]);
+        localStorage.setItem("nom",data['data']['nom']);
+        //localStorage.setItem("prenom",data['data']['prenom']);
+       // localStorage.setItem("club",data['data']['id_club']);
+        this.router.navigate(['/dashboard_accueil/accueil']);
+
+      }else{
+        alert(data['message'])
+      }
+    },
+      err => {
+    //show error toast when the server went wrong
+      }
+    );
+
+  }
+
 
 }

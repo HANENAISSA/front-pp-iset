@@ -12,6 +12,7 @@ import { AccueilGeneralComponent } from "./teams/club/general/accueil-general/ac
 import { DashboardAccueilComponent } from "./teams/club/general/dashboard-accueil/dashboard-accueil.component";
 import { EnvoyerDemandeComponent } from "./teams/club/general/envoyer-demande/envoyer-demande.component";
 import { ListeClubsComponent } from "./teams/club/general/liste-clubs/liste-clubs.component";
+import { ResetPasswordComponent } from "./teams/club/general/reset-password/reset-password.component";
 import { SigninComponent } from "./teams/club/general/signin/signin.component";
 import { AccueilClubComponent } from "./teams/club/platform_club/accueil-club/accueil-club.component";
 import { DashboardClubComponent } from "./teams/club/platform_club/dashboard-club/dashboard-club.component";
@@ -34,6 +35,7 @@ const routes: Routes = [
 
 //club-routes
 { path: "club/signin", component: SigninComponent },
+{ path: "club/reset_password", component: ResetPasswordComponent },
 {
   path: "dashboard_accueil",
   component: DashboardAccueilComponent,
