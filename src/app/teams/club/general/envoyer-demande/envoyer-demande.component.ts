@@ -31,7 +31,7 @@ sendRequest(){
       if(data['error']!=true){
         console.log(data["token"])
         localStorage.setItem("token",data["token"])
-        localStorage.setItem('dataSource', data.length);
+        localStorage.setItem("id_club",data['data']['id_club']);
         this.router.navigate(['dashboard_accueil/clubs']);
       }else{
         alert(data['message'])

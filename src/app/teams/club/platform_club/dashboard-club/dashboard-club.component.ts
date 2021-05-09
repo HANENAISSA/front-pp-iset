@@ -4,6 +4,7 @@ import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/a
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { PopupComponent } from '../../../../popup/popup.component';
 import { MenuItems } from '../../../../shared/menu-items/menu-items';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard-club',
   templateUrl: './dashboard-club.component.html',
@@ -103,7 +104,7 @@ export class DashboardClubComponent implements OnInit {
 
   public config: any;
 
-  constructor(public menuItems: MenuItems, private modalService: NgbModal) {
+  constructor(private  router: Router,public menuItems: MenuItems, private modalService: NgbModal) {
     this.navType = 'st5';
     this.themeLayout = 'vertical';
     this.vNavigationView = 'view1';
@@ -160,7 +161,15 @@ export class DashboardClubComponent implements OnInit {
     // this.navType = 'st3';
 
   }
+  logout(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("nom");
+    localStorage.removeItem("prenom");
+    localStorage.removeItem("id_club");
+    this.router.navigate(['/dashboard_accueil/accueil']);
 
+  }
   ngOnInit() {
     this.setBackgroundPattern('pattern2');
   }

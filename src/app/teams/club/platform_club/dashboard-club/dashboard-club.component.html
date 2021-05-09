@@ -145,7 +145,7 @@
                     </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/authentication/login/with-bg-image']">
+                    <a (click)=logout()>
                       <i class="ti-layout-sidebar-left"></i> Logout
                     </a>
                   </li>
@@ -317,7 +317,7 @@
                       ><i class="ti-user"></i>View Profile</a
                     >
                     <a [routerLink]="['/crm-contact']"><i class="ti-settings"></i>Settings</a>
-                    <a [routerLink]="['/authentication/login/with-bg-image']"
+                    <a (click)=logout()
                       ><i class="ti-layout-sidebar-left"></i>Logout</a
                     >
                   </li>

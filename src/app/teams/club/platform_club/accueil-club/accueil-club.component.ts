@@ -21,9 +21,15 @@ votes:any=[];
 idclub:any;
   cmtre: any;
   title: any;
+  nom:any;
+  prenom:any;
+
   constructor(private v_http:VoteService,private p_http:PostService) { }
 
   ngOnInit() {
+    this.nom=localStorage.getItem('nom');
+    this.prenom=localStorage.getItem('prenom');
+    this.idclub=localStorage.getItem('id_club');
    // this.getposts();
     //this.getcmtre();
     //this.getsondage();
@@ -31,8 +37,8 @@ idclub:any;
   }
 
 //post
-  getposts(idclub:any) {
-    this.p_http.getposts(idclub).subscribe(club => {
+  getposts() {
+    this.p_http.getposts(this.idclub).subscribe(club => {
         this.posts= club['data'];
         console.log(club);
       },
@@ -90,8 +96,8 @@ idclub:any;
 
 
   //sondage
-  getsondage(idclub:any){
-    this.v_http.getsondage(idclub).subscribe(club => {
+  getsondage(){
+    this.v_http.getsondage(this.idclub).subscribe(club => {
       this.sondages= club['data'];
       console.log(club);
     },
@@ -143,6 +149,8 @@ idclub:any;
       }
     );
   }
+
+
 
 
 }
