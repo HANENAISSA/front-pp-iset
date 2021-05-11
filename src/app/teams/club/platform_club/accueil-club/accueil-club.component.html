@@ -67,16 +67,16 @@
 
               </div>
             <!-- commantaire -->
-              <div class="col-sm-12 ">
+              <div class="col-sm-12 text-left ">
                 <app-card [title]="'Commentaires récents'" [blockClass]="'p-0'">
               <!-- add commantaire -->
                 <div class="card-comment ">
                 <div class="card-block-small">
                   <img class="img-radius img-50" src="assets/images/avatar-1.jpg" alt="user-1">
-                  <div class="comment-desc">
+                  <div class="comment-desc text-left">
                     <h6>{{nom }} {{prenom}}</h6>
                     <input type="text" class="form-control" [(ngModel)]="cmtre"
-                    placeholder="ecrire votre commantaire">
+                    placeholder="ecrire votre commantaire"><br>
                     <button class="btn btn-mat btn-primary " (click)=addcmtre(post.id_publication)>Publier</button>
 
                   </div>
@@ -84,7 +84,7 @@
                </div>
                <!-- add commantaire -->
 <!-- display commantaire -->
-<div class="card-comment " *ngFor="let cmtre of cmtres">
+<div class="card-comment " *ngFor="let cmtre of cmtrs">
   <div class="card-block-small">
     <img class="img-radius img-50" src="assets/images/avatar-1.jpg" alt="user-1">
     <div class="comment-desc">
@@ -104,30 +104,48 @@
           </div>
       </div>
       <!-- card1 end -->
-      <!-- vote -->
+      <!-- sondage -->
       <div class="col-sm-12 col-xl-4">
+        <!-- add sondage -->
         <div class="card widget-statstic-card">
           <div class="card-header">
             <div class="card-header-left">
-              <h4>Vote</h4>
-              <h6>Vote title</h6>
-              <p class="p-t-10 m-b-0 text-c-blue">date</p>
+              <h4>Ajouter Sondage</h4>
+              <input type="text" class="form-control" [(ngModel)]="title"
+              placeholder="ecrire description"> <br>
+              <button class="btn btn-mat btn-primary " (click)=addsondage()>Publier</button>
+            </div>
+          </div>
+
+        </div>
+
+      <!-- add sondage -->
+      <!-- display sondage -->
+
+        <div class="card widget-statstic-card" *ngFor="let sondage of sondages">
+          <div class="card-header">
+            <div class="card-header-left">
+              <h4>Sondage</h4>
+              <h6>{{sondage.titre}}</h6>
+              <p class="p-t-10 m-b-0 text-c-blue">{{sondage.date}} {{sondage.heure}}</p>
             </div>
           </div>
           <div class="card-block">
-            <i  class="ti-plus st-icon bg-c-blue txt-lite-color"></i>
+            <i  class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
 
             <div class="text-left">
-                <mat-radio-group aria-label="Select an option">
-                    <mat-radio-button value="1">Oui</mat-radio-button>
+                <mat-radio-group aria-label="Select an option"   >
+                    <mat-radio-button value=true >Oui</mat-radio-button>
                     <div style="margin-top: 5px;"></div>
-                    <mat-radio-button value="0">Non</mat-radio-button>
-                  </mat-radio-group>
+                    <mat-radio-button value=false >Non</mat-radio-button>
+                </mat-radio-group><br>
+                <button class="btn btn-mat btn-primary " (click)=voter(value,sondage.id_sondage)>Confirmer</button>
             </div>
           </div>
         </div>
       </div>
-      <!-- vote -->
+      <!-- display vote -->
+<!--  sondage -->
     </div>
 
   </div>

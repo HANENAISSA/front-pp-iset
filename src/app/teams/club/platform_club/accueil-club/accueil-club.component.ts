@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
+import { ClubService } from '../../services/club.service';
 import { PostService } from '../../services/post.service';
 import { VoteService } from '../../services/vote.service';
 
@@ -26,8 +27,9 @@ votes:any=[];
   nom:any;
   prenom:any;
   idpub: void;
+  clubs: any;
 
-  constructor(private v_http:VoteService,private p_http:PostService) { }
+  constructor(private v_http:VoteService,private p_http:PostService,private _http:ClubService) { }
 
   ngOnInit() {
     this.nom=localStorage.getItem('nom');
@@ -36,8 +38,10 @@ votes:any=[];
    this.getposts();
 
     //this.getcmtre();
-    //this.getsondage();
+   this.getsondage();
     //this.getvote();
+    this.getuserClubs();
+
   }
 
 //post
@@ -74,7 +78,7 @@ votes:any=[];
   getcmtre(idpublication:any) {
     this.p_http.getComments(idpublication).subscribe(club => {
         this.cmtrs= club['data'];
-        console.log(club);
+       // console.log(club);
       },
       error => {
         console.log(error);
@@ -103,7 +107,7 @@ votes:any=[];
   getsondage(){
     this.v_http.getsondage(this.idclub).subscribe(club => {
       this.sondages= club['data'];
-      console.log(club);
+      //console.log(this.sondages);
     },
     error => {
       console.log(error);
@@ -111,10 +115,10 @@ votes:any=[];
   }
 
   addsondage(){
-    this.p_http.addComment(this.title,this.idclub).subscribe(data => {
+    this.v_http.addsondage(this.title,this.idclub).subscribe(data => {
       if(data['error']!=true){
-        console.log(data["token"])
-        localStorage.setItem("token",data["token"])
+        console.log(data["sondages"])
+        localStorage.setItem("sondages",data["sondages"])
          }else{
         alert(data['message'])
       }
@@ -128,21 +132,22 @@ votes:any=[];
 
 
   //vote
-  getvote(idsondage:any){
+  getvotes(idsondage:any){
     this.v_http.getVotes(idsondage).subscribe(club => {
       this.votes= club['data'];
-      console.log(club);
+     // console.log(club);
     },
     error => {
       console.log(error);
     });
   }
 
-  addvote(satut:any,idsondage:any){
-    this.p_http.addComment(satut,idsondage).subscribe(data => {
+  voter(satut:any,idsondage:any){
+    this.v_http.addVote(satut,idsondage).subscribe(data => {
+      //console.log(idsondage)
       if(data['error']!=true){
-        console.log(data["token"])
-        localStorage.setItem("token",data["token"])
+        console.log(idsondage)
+        localStorage.setItem("votes",data["votes"])
          }else{
         alert(data['message'])
       }
@@ -154,7 +159,15 @@ votes:any=[];
     );
   }
 
-
+  getuserClubs() {
+    this._http.getuserClubs().subscribe(club => {
+      this.clubs= club['data'];
+      console.log(club);
+    },
+    error => {
+      console.log(error);
+    });
+  }
 
 
 }

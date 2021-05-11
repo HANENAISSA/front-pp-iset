@@ -9,14 +9,18 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ResetPasswordComponent implements OnInit {
 email:String;
+  element: HTMLElement;
   constructor(private _http:AuthService,private  router: Router) { }
   ngOnInit() {
   }
+
 sendemail(){
+ // this.element = document.getElementById('email')as HTMLElement;
+  console.log(this.email)
   this._http.SendEmailForgetPassword(this.email).subscribe(data => {
-    console.log(data)
+
     if(data['error']!=true){
-      console.log(data["token"]);
+      console.log(data);
       localStorage.setItem("token",data["token"]);
       this.router.navigate(['/dashboard_accueil/signin']);
 

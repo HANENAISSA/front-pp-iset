@@ -19,8 +19,12 @@ import { DashboardClubComponent } from "./teams/club/platform_club/dashboard-clu
 import { ListeDemandesComponent } from "./teams/club/platform_club/liste-demandes/liste-demandes.component";
 import { MembresComponent } from "./teams/club/platform_club/membres/membres.component";
 import { ProfileMembreComponent } from "./teams/club/platform_club/profile-membre/profile-membre.component";
-
+//administration-components
+//communication-components
+//scolarite-components
+//stagepfe-components
 const routes: Routes = [
+ //main-routes
   {
     path: "",
     component: HomePageComponent,
@@ -32,7 +36,57 @@ const routes: Routes = [
     ],
   },
 
+  {
+    path: "dashboard",
+    component: HomePageComponent,
+    children: [
+      {
+        path: "",
+        component: DashboardDefaultComponent,
+      },
 
+      {
+        path: "profil",
+        component: ProfileComponent,
+      },
+      { path: "simple", component: SimplePageComponent },
+
+
+      // {
+      //   path: "stage", component : ,
+      //   children: [
+      //     {
+
+      //     }
+      //   ]
+      // },
+
+      // {
+      //   path: "communication", component: ,
+      //   children: [
+      //     {
+
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: "scolarite", component: ,
+      //   children: [
+      //     {
+
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: "selection", component: ,
+      //   children: [
+      //     {
+
+      //     }
+      //   ]
+      // },
+    ],
+  },
 //club-routes
 { path: "club/signin", component: SigninComponent },
 { path: "club/reset_password", component: ResetPasswordComponent },
@@ -79,62 +133,6 @@ const routes: Routes = [
   ],
 },
 
-
-
-  {
-    path: "dashboard",
-    component: HomePageComponent,
-    children: [
-      {
-        path: "",
-        component: DashboardDefaultComponent,
-      },
-
-      {
-        path: "profil",
-        component: ProfileComponent,
-      },
-      { path: "simple", component: SimplePageComponent },
-
-
-
-
-
-      // {
-      //   path: "stage", component : ,
-      //   children: [
-      //     {
-
-      //     }
-      //   ]
-      // },
-
-      // {
-      //   path: "communication", component: ,
-      //   children: [
-      //     {
-
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: "scolarite", component: ,
-      //   children: [
-      //     {
-
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: "selection", component: ,
-      //   children: [
-      //     {
-
-      //     }
-      //   ]
-      // },
-    ],
-  },
 ];
 
 @NgModule({

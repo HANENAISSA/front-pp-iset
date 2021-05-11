@@ -27,6 +27,7 @@
               "node_modules/ti-icons/css/themify-icons.css",
               "src/assets/icon/icofont/css/icofont.scss",
               "src/styles.scss"
+
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"

@@ -5,6 +5,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { PopupComponent } from '../../../../popup/popup.component';
 import { MenuItems } from '../../../../shared/menu-items/menu-items';
 import { Router } from '@angular/router';
+import { ClubService } from '../../services/club.service';
 @Component({
   selector: 'app-dashboard-club',
   templateUrl: './dashboard-club.component.html',
@@ -108,8 +109,9 @@ export class DashboardClubComponent implements OnInit {
   public config: any;
   idclub: string;
   role: string;
+  clubs:any=[];
 
-  constructor(private  router: Router,public menuItems: MenuItems, private modalService: NgbModal) {
+  constructor(private _http:ClubService,private  router: Router,public menuItems: MenuItems, private modalService: NgbModal) {
     this.navType = 'st5';
     this.themeLayout = 'vertical';
     this.vNavigationView = 'view1';
@@ -175,7 +177,17 @@ export class DashboardClubComponent implements OnInit {
     this.router.navigate(['/dashboard_accueil/accueil']);
 
   }
+  getuserClubs() {
+    this._http.getuserClubs().subscribe(club => {
+      this.clubs= club['data'];
+      console.log(club);
+    },
+    error => {
+      console.log(error);
+    });
+  }
   ngOnInit() {
+//this.getuserClubs();
     this.setBackgroundPattern('pattern2');
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');

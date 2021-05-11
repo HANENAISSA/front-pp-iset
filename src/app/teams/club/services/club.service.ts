@@ -21,4 +21,10 @@ export class ClubService {
       }
     );
   }
+
+  getuserClubs() {
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/club/getuserClubs", ""
+    );
+  }
 }
