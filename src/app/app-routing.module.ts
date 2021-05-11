@@ -87,6 +87,7 @@ const routes: Routes = [
       // },
     ],
   },
+
 //club-routes
 { path: "club/signin", component: SigninComponent },
 { path: "club/reset_password", component: ResetPasswordComponent },

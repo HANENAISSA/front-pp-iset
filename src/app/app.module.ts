@@ -61,6 +61,7 @@ import { ResetPasswordComponent } from './teams/club/general/reset-password/rese
     //communication-components
     //scolarite-components
     //stagepfe-components
+
   ],
   imports: [
     BrowserModule,
