@@ -4,6 +4,7 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { DashboardDefaultComponent } from "./pages/dashboard/dashboard-default/dashboard-default.component";
 import { SimplePageComponent } from "./pages/simple-page/simple-page.component";
 import { ProfileComponent } from "./pages/user/profile/profile.component";
+import { NewDocumentComponent } from "./teams/scolarite/Student-dashboard/new-document/new-document.component";
 
 const routes: Routes = [
   {
@@ -28,7 +29,11 @@ const routes: Routes = [
         path: "profil",
         component: ProfileComponent,
       },
-      { path: "simple", component: SimplePageComponent },
+      {
+        path: "new-document",
+        component: NewDocumentComponent
+      },
+
       // {
       //   path: "stage", component : ,
       //   children: [
@@ -47,14 +52,6 @@ const routes: Routes = [
       // },
       // {
       //   path: "communication", component: ,
-      //   children: [
-      //     {
-
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: "scolarite", component: ,
       //   children: [
       //     {
 

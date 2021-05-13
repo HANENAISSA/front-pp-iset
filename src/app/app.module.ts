@@ -12,6 +12,8 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
 import { PopupComponent } from './popup/popup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewDocumentComponent } from './teams/scolarite/Student-dashboard/new-document/new-document.component';
+import { ScolariteComponent } from './teams/scolarite/scolarite/scolarite.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SimplePageComponent,
     HomePageComponent,
     ProfileComponent,
-    PopupComponent
+    PopupComponent,
+    NewDocumentComponent,
+    ScolariteComponent
   ],
   imports: [
     BrowserModule,

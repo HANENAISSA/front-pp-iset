@@ -492,9 +492,9 @@
                     </a>
                   </li>
                   <li appAccordionLink>
-                    <a [routerLink]="['/dashboard/profil']" target="_self" appAccordionToggle>
+                    <a [routerLink]="['/dashboard/new-document']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-home"></i></span>
-                      <span class="pcoded-mtext">Test 1</span>
+                      <span class="pcoded-mtext">New</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
@@ -539,19 +539,30 @@
                       <span class="pcoded-micon"
                         ><i class="ti-home"></i><b>d</b></span
                       >
-                      <span class="pcoded-mtext">Menu levels</span>
+                      <span class="pcoded-mtext">Document Administratif</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                     <ul class="pcoded-submenu">
                       <li appAccordionLink>
                         <a
-                          [routerLink]="['/dashboard/profil']"
+                          [routerLink]="['/dashboard/new-document']"
                           appAccordionToggle
                         >
                           <span class="pcoded-micon">
                             <i class="ti-angle-right"></i>
                           </span>
-                          <span class="pcoded-mtext">Menu level 2</span>
+                          <span class="pcoded-mtext">Nouvelle Document</span>
+                        </a>
+                      </li>
+                      <li appAccordionLink>
+                        <a
+                          [routerLink]="['']"
+                          appAccordionToggle
+                        >
+                          <span class="pcoded-micon">
+                            <i class="ti-angle-right"></i>
+                          </span>
+                          <span class="pcoded-mtext">Consulter Mes Demandes</span>
                         </a>
                       </li>
                     </ul>

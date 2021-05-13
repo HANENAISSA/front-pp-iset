@@ -1,0 +1,192 @@
+<!-- Page-header start -->
+<div class="">
+  <div class="page-header card">
+    <div class="row align-items-end">
+      <div class="col-lg-8">
+        <div class="page-header-title">
+          <span><i class="icofont icofont-file-document bg-c-blue"></i></span>
+          <div class="d-inline">
+            <span class="d-block"
+              ><h4>Demander un document administratif</h4></span
+            >
+            <span
+              >Remplissez ce formulaire pour avoir un document
+              administratif</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="page-header-breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/'">
+                <i class="icofont icofont-home"></i>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a>scolarité</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page-header end -->
+
+<!-- Formulaire d'ajout start -->
+<div class="row">
+  <div class="col-sm-12">
+    <app-card>
+      <form [formGroup]="addDocForm" (ngSubmit)="addDocument()">
+        <div class="row">
+          <div class="col">
+            <!-- Form Title  -->
+            <h3 class="mb-0">
+              <i class="icofont icofont-plus-circle"></i>Nouveau Document
+            </h3>
+          </div>
+          <div class="float-right mr-3">
+            <!-- Submit Form Button  -->
+            <button
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="addDocForm.invalid"
+            >
+            <i class="icofont icofont-ui-add"></i>Enregistrer
+            </button>
+          </div>
+        </div>
+        <div class="form-group">
+          <!-- First Name Input  -->
+          <label for="first-name">Nom</label>
+          <input
+            type="text"
+            id="first-name"
+            class="form-control"
+            formControlName="firstName"
+            [ngClass]="{
+              'is-invalid':
+                addDocForm.get('firstName').touched &&
+                addDocForm.get('firstName').invalid
+            }"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <!-- Last Name Input  -->
+          <label for="last-name">Prénom</label>
+          <input
+            type="text"
+            id="last-name"
+            class="form-control"
+            formControlName="lastName"
+            [ngClass]="{
+              'is-invalid':
+                addDocForm.get('lastName').touched &&
+                addDocForm.get('lastName').invalid
+            }"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <!-- CIN Input  -->
+          <label for="cin">N° CIN (Carte d'identité nationale)</label>
+          <input
+            type="number"
+            min="00000000"
+            maxlength="99999999"
+            id="cin"
+            class="form-control"
+            formControlName="cin"
+            [ngClass]="{
+              'is-invalid':
+                addDocForm.get('cin').touched && addDocForm.get('cin').invalid
+            }"
+            required
+          />
+          <div class="invalid-feedback">Veuillez tapez votre CIN.</div>
+        </div>
+        <div class="form-group">
+          <!-- Class Input  -->
+          <label for="class">Classe</label>
+          <select
+            class="form-control"
+            id="class"
+            formControlName="class"
+            [ngClass]="{
+              'is-invalid':
+                addDocForm.get('class').touched &&
+                addDocForm.get('class').invalid
+            }"
+            required
+          >
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+          <div class="invalid-feedback">
+            Veuillez sélectionner votre classe.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <!-- Paper Type Input  -->
+          <label for="paperType">Type de Papier</label>
+          <select
+            class="form-control"
+            id="paperType"
+            formControlName="paperType"
+            [ngClass]="{
+              'is-invalid':
+                addDocForm.get('paperType').touched &&
+                addDocForm.get('paperType').invalid
+            }"
+            required
+          >
+            <option value=""></option>
+            <option value="Attestation de présence">
+              Attestation de présence
+            </option>
+            <option value="Certificat de départ">Certificat de départ</option>
+            <option value="Extraire un fichier sain">
+              Extraire un fichier sain
+            </option>
+            <option value="Un pair d'une carte d'étudiant">
+              Un pair d'une carte d'étudiant
+            </option>
+            <option value="Certificat en cursus universitaire">
+              Certificat en cursus universitaire
+            </option>
+            <option value="Retrait de la démarcation">
+              Retrait de la démarcation
+            </option>
+          </select>
+          <div class="invalid-feedback">
+            Veuillez sélectionner le type de papier.
+          </div>
+        </div>
+        <div class="form-group">
+          <!-- Paper Raison Input  -->
+          <label for="paperRaison">La raison de la demande</label>
+          <textarea
+            class="form-control"
+            id="paperRaison"
+            rows="3"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <div [hidden]="hidden">
+          <p>
+            <ngb-alert type="danger" [dismissible]="false">
+              Veuillez saisir les informations necessaires
+            </ngb-alert>
+          </p>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>
