@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewDocumentComponent } from './teams/scolarite/Student-dashboard/new-document/new-document.component';
 import { ScolariteComponent } from './teams/scolarite/scolarite/scolarite.component';
+import { StudentDocumentsListComponent } from './teams/scolarite/Student-dashboard/student-documents-list/student-documents-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ScolariteComponent } from './teams/scolarite/scolarite/scolarite.compon
     ProfileComponent,
     PopupComponent,
     NewDocumentComponent,
-    ScolariteComponent
+    ScolariteComponent,
+    StudentDocumentsListComponent
   ],
   imports: [
     BrowserModule,

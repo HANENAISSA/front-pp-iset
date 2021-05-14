@@ -1,0 +1,184 @@
+<!-- Page-header start -->
+<div class="">
+  <div class="page-header card">
+    <div class="row align-items-end">
+      <div class="col-lg-8">
+        <div class="page-header-title">
+          <span><i class="icofont icofont-file-document bg-c-blue"></i></span>
+          <div class="d-inline">
+            <span class="d-block">
+              <h4>Mes Demandes des papiers administratifs</h4></span
+            >
+            <span
+              >Consulter la liste de mes demandes des papiers
+              administratifs</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="page-header-breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/'">
+                <i class="icofont icofont-home"></i>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a>scolarité</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page-header end -->
+<!-- Status Tabs start -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="md-tabs">
+      <ngb-tabset>
+        <!-- Les Demandes en Attente  -->
+        <ngb-tab title="En Attente">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text">Les demandes en attente</h5>
+                  <button type="button" class="btn btn-outline-primary float-right" [routerLink]="['/dashboard/new-document']" >
+                    <i class="icofont icofont-ui-add"></i>Ajouter
+                  </button>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 mx-auto">
+                      <div class="md-form">
+                        <input type="text" [(ngModel)]="searchText" class="form-control" id="search" placeholder="Rechercher" mdbInput />
+                      </div>
+                    </div>
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Type de demande</th>
+                        <th scope="col">Date</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let document of filterItemsByType('En attente'); index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ document.paperType }}</td>
+                        <td>{{ document.date | date: "dd-MM-yyyy" }}</td>
+                        <td>
+                          <button type="button" class="btn btn-warning" (click)="deleteDocument(i)">
+                            <i class="icofont icofont-ui-delete"></i>Supprimer
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <!-- Les Demandes Acceptée -->
+        <ngb-tab title="Accepté">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text">Les demandes Accepté</h5>
+                  <button type="button" class="btn btn-outline-primary float-right" [routerLink]="['/dashboard/new-document']" >
+                    <i class="icofont icofont-ui-add"></i>Ajouter
+                  </button>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 mx-auto">
+                      <div class="md-form">
+                        <input type="text" [(ngModel)]="searchText" class="form-control" id="search" placeholder="Rechercher" mdbInput />
+                      </div>
+                    </div>
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Type de demande</th>
+                        <th scope="col">Date</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let document of filterItemsByType('acceptée'); index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ document.paperType }}</td>
+                        <td>{{ document.date | date: "dd-MM-yyyy" }}</td>
+                        <td>
+                          <button type="button" class="btn btn-warning" (click)="deleteDocument(i)">
+                            <i class="icofont icofont-ui-delete"></i>Supprimer
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <!-- Les Demandes Refuser -->
+        <ngb-tab title="Refuser">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text">Les demandes Refuser</h5>
+                  <button type="button" class="btn btn-outline-primary float-right" [routerLink]="['/dashboard/new-document']" >
+                    <i class="icofont icofont-ui-add"></i>Ajouter
+                  </button>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 mx-auto">
+                      <div class="md-form">
+                        <input type="text" [(ngModel)]="searchText" class="form-control" id="search" placeholder="Rechercher" mdbInput />
+                      </div>
+                    </div>
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Type de demande</th>
+                        <th scope="col">Date</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let document of filterItemsByType('Refuser'); index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ document.paperType }}</td>
+                        <td>{{ document.date | date: "dd-MM-yyyy" }}</td>
+                        <td>
+                          <button type="button" class="btn btn-warning" (click)="deleteDocument(i)">
+                            <i class="icofont icofont-ui-delete"></i>Supprimer
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>
+</div>
+<!-- Status Tabs end -->
