@@ -31,5 +31,6 @@ export class ClubsComponent implements OnInit {
   }
 inscrire(e:any){
   this.router.navigate(['/clubs/envoyer_demande/'+e]);
+  localStorage.setItem("id_club",e);
 }
 }

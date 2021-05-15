@@ -1,0 +1,15 @@
+<!-- display commantaire -->
+<div class="card-comment " *ngFor="let cmtre of cmtrs">
+  <div class="card-block-small">
+    <img class="img-radius img-50" src="assets/images/avatar-1.jpg" alt="user-1">
+    <div class="comment-desc">
+      <h6>{{cmtre.nom}} {{cmtre.prenom}}</h6>
+      <p class="text-muted ">{{cmtre.description}}</p>
+
+      <div class="date">
+        <i>{{cmtre.date}} {{cmtre.heure}}</i>
+      </div>
+    </div>
+  </div>
+ </div>
+ <!-- display commantaire -->

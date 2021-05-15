@@ -40,7 +40,7 @@ votes:any=[];
     //this.getcmtre();
    this.getsondage();
     //this.getvote();
-    this.getuserClubs();
+    //this.getuserClubs();
 
   }
 
@@ -75,7 +75,7 @@ votes:any=[];
 
 
   //commantaire
-  getcmtre(idpublication:any) {
+  /*getcmtre(idpublication:any) {
     this.p_http.getComments(idpublication).subscribe(club => {
         this.cmtrs= club['data'];
        // console.log(club);
@@ -84,13 +84,14 @@ votes:any=[];
         console.log(error);
       });
 
-  }
+  }*/
 
   addcmtre(idpublication:any){
     this.p_http.addComment(idpublication,this.cmtre).subscribe(data => {
       if(data['error']!=true){
-        console.log(data["cmtre"])
-        localStorage.setItem("cmtre",data["cmtre"])
+
+        localStorage.setItem("cmtres",data["cmtres"])
+        console.log(data["cmtres"])
          }else{
         alert(data['message'])
       }
@@ -150,6 +151,7 @@ votes:any=[];
         localStorage.setItem("votes",data["votes"])
          }else{
         alert(data['message'])
+        window.alert('votre vote a été enregistré avec succès');
       }
     },
       err => {
@@ -159,7 +161,7 @@ votes:any=[];
     );
   }
 
-  getuserClubs() {
+  /*getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubs= club['data'];
       console.log(club);
@@ -167,7 +169,7 @@ votes:any=[];
     error => {
       console.log(error);
     });
-  }
+  }*/
 
 
 }

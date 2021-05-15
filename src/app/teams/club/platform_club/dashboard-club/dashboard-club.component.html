@@ -369,11 +369,11 @@
                     appAccordionLink
                     group="dashboard"
                   >
-                    <a href="javascript:;" appAccordionToggle  >
+                    <a href="javascript:;" appAccordionToggle *ngFor="let club of clubs" >
                       <span class="pcoded-micon"
                         ><i class="ti-home"></i><b>d</b></span
                       >
-                      <span class="pcoded-mtext">club.nom_club</span>
+                      <span class="pcoded-mtext">{{club.nom_club}}</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                    <!--menu clubs-->

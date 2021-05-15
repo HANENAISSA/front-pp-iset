@@ -32,6 +32,8 @@ import { ProfileMembreComponent } from './teams/club/platform_club/profile-membr
 import { ResetPasswordComponent } from './teams/club/general/reset-password/reset-password.component';
 import { ClubsComponent } from './teams/club/general/clubs/clubs.component';
 import { SendRequestComponent } from './teams/club/general/send-request/send-request.component';
+import { CommentaireComponent } from './teams/club/platform_club/commentaire/commentaire.component';
+import { VotesComponent } from './teams/club/platform_club/votes/votes.component';
 //administration-components
 //communication-components
 //scolarite-components
@@ -62,6 +64,8 @@ import { SendRequestComponent } from './teams/club/general/send-request/send-req
     ResetPasswordComponent,
     ClubsComponent,
     SendRequestComponent,
+    CommentaireComponent,
+    VotesComponent,
     //administration-components
     //communication-components
     //scolarite-components

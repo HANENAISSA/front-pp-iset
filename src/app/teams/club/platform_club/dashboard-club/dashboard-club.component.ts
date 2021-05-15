@@ -180,6 +180,7 @@ export class DashboardClubComponent implements OnInit {
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubs= club['data'];
+     // localStorage.setItem("id_club",club['data']['id_club']);
       console.log(club);
     },
     error => {
@@ -187,11 +188,11 @@ export class DashboardClubComponent implements OnInit {
     });
   }
   ngOnInit() {
-//this.getuserClubs();
+    this.getuserClubs();
     this.setBackgroundPattern('pattern2');
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
-    this.idclub=localStorage.getItem('id_club');
+    //this.idclub=localStorage.getItem('id_club');
     this.role=localStorage.getItem('role');
   }
 
