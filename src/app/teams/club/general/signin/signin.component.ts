@@ -29,7 +29,11 @@ export class SigninComponent implements OnInit {
         localStorage.setItem("token",data["token"]);
         localStorage.setItem("nom",data['data']['nom']);
         localStorage.setItem("prenom",data['data']['prenom']);
-        localStorage.setItem("id_club",data['data']['id_club']);
+        localStorage.setItem("id_membre",data['data']['id_membre']);
+
+        localStorage.setItem("role",data['data']['role']);
+
+        //localStorage.setItem("id_club",data['data']['id_club']);
         this.router.navigate(['/dashboard_club/accueil']);
 
       }else{

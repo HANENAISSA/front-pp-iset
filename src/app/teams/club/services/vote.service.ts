@@ -27,12 +27,12 @@ export class VoteService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
-  addVote(idsondage:any, statut:any){
+  addVote( statut:any,idsondage:any){
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/sondage/addVote",   {
+        statut:statut,
+         idsondage:idsondage
 
-         idsondage:idsondage,
-         statut:statut
       },
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );

@@ -37,7 +37,7 @@ export class ListeDemandesComponent implements OnInit {
       if(data['error']!=true){
 
         this.getrequests();
-
+        window.alert('le demande a été accepté')
       }else{
         alert(data['message'])
       }
@@ -54,7 +54,7 @@ export class ListeDemandesComponent implements OnInit {
      console.log(data)
      if(data['error']!=true){
       this.getrequests();
-
+      window.alert('le demande a été supprimer')
      }else{
        alert(data['message'])
      }

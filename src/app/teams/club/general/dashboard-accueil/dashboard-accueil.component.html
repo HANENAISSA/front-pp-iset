@@ -18,6 +18,7 @@
       [attr.pcoded-header-position]="pcodedHeaderPosition"
       [attr.header-theme]="headerTheme"
     >
+<<<<<<< HEAD
     <div class="navbar-wrapper">
       <div class="navbar-logo"  style="background-color: #294a70;" [attr.logo-theme]="logoTheme">
         <a
@@ -37,6 +38,30 @@
             alt="Theme-Logo"
             style="width: 50px;height: 50px;"
           />          
+=======
+      <div class="navbar-wrapper">
+        <div class="navbar-logo" style="background-color: #49688e;" [attr.logo-theme]="logoTheme">
+          <a
+            class="mobile-menu"
+            id="mobile-collapse"
+            href="javascript:;"
+            (click)="toggleOpened()"
+            [exclude]="'#main_navbar'"
+            (clickOutside)="onClickedOutside($event)"
+          >
+            <i class="ti-menu"></i>
+          </a>
+          <a [routerLink]="['/']">
+            <img
+              class="img-fluid"
+              src="assets/images/logo.png"
+              alt="Theme-Logo"
+            />
+          </a>
+          <a (click)="onMobileMenu()" class="mobile-options">
+            <i class="ti-more"></i>
+          </a>
+>>>>>>> 03246a84de0610a627b72906af8eeba1aa5f925b
         </div>
         <h4 style="color:aliceblue; margin: 5px;">CELVA</h4>
         <a (click)="onMobileMenu()" class="mobile-options">
