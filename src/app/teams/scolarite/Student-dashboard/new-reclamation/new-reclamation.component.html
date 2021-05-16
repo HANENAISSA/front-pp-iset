@@ -4,7 +4,7 @@
     <div class="row align-items-end">
       <div class="col-lg-8">
         <div class="page-header-title">
-          <span><i class="icofont icofont-file-document bg-c-blue"></i></span>
+          <span><i class="icofont icofont-exclamation-square bg-c-blue"></i></span>
           <div class="d-inline">
             <span class="d-block">
               <h4>Contacter l'administration</h4>
@@ -87,25 +87,6 @@
             }"
             required
           />
-        </div>
-        <div class="form-group">
-          <!-- CIN Input  -->
-          <label for="cin">N° CIN (Carte d'identité nationale)</label>
-          <input
-            type="number"
-            min="00000000"
-            maxlength="99999999"
-            id="cin"
-            class="form-control"
-            formControlName="cin"
-            [ngClass]="{
-              'is-invalid':
-                addReclamationForm.get('cin').touched &&
-                addReclamationForm.get('cin').invalid
-            }"
-            required
-          />
-          <div class="invalid-feedback">Veuillez tapez votre CIN.</div>
         </div>
         <div class="form-group">
           <!-- Class Input  -->

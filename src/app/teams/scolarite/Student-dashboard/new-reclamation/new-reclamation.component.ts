@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Reclamation } from "../../models/reclamation.model";
+import { ReclamationService } from "../../services/reclamation.service";
 
 @Component({
   selector: "app-new-reclamation",
@@ -8,20 +11,19 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class NewReclamationComponent implements OnInit {
   hidden;
-  // d : Document;
+  r : Reclamation;
   currentDate = new Date();
 
   addReclamationForm = new FormGroup({
     firstName: new FormControl("", Validators.required),
     lastName: new FormControl("", Validators.required),
-    cin: new FormControl("", [Validators.required, Validators.minLength(8)]),
     class: new FormControl("", Validators.required),
     reclamationType: new FormControl("", Validators.required),
     reclamationContent: new FormControl("", Validators.required),
     date: new FormControl(this.currentDate),
     status: new FormControl("En attente"),
   });
-  constructor() {}
+  constructor(private service: ReclamationService, private router: Router) {}
 
   ngOnInit() {
     this.hidden = true;
@@ -31,7 +33,18 @@ export class NewReclamationComponent implements OnInit {
     if (this.addReclamationForm.invalid) {
       this.hidden = false;
     } else {
-      alert(JSON.stringify(this.addReclamationForm.value));
+      const formValues = this.addReclamationForm.value;
+      this.r = new Reclamation(
+        formValues.firstName,
+        formValues.lastName,
+        formValues.class,
+        formValues.reclamationType,
+        formValues.reclamationContent,
+        formValues.date,
+        formValues.status
+      );
+      this.service.addReclamation(this.r);
+      alert("added succesfully!");
     }
   }
 }
