@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewDocumentComponent } from './teams/scolarite/Student-dashboard/new-document/new-document.component';
 import { ScolariteComponent } from './teams/scolarite/scolarite/scolarite.component';
 import { StudentDocumentsListComponent } from './teams/scolarite/Student-dashboard/student-documents-list/student-documents-list.component';
+import { DocumentsListComponent } from './teams/scolarite/admin-dashboard/documents-list/documents-list.component';
+import { SearchPipe } from './teams/scolarite/admin-dashboard/documents-list/search.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { StudentDocumentsListComponent } from './teams/scolarite/Student-dashboa
     PopupComponent,
     NewDocumentComponent,
     ScolariteComponent,
-    StudentDocumentsListComponent
+    StudentDocumentsListComponent,
+    DocumentsListComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

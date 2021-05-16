@@ -4,6 +4,7 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { DashboardDefaultComponent } from "./pages/dashboard/dashboard-default/dashboard-default.component";
 import { SimplePageComponent } from "./pages/simple-page/simple-page.component";
 import { ProfileComponent } from "./pages/user/profile/profile.component";
+import { DocumentsListComponent } from "./teams/scolarite/admin-dashboard/documents-list/documents-list.component";
 import { NewDocumentComponent } from "./teams/scolarite/Student-dashboard/new-document/new-document.component";
 import { StudentDocumentsListComponent } from "./teams/scolarite/Student-dashboard/student-documents-list/student-documents-list.component";
 
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: "documents-list",
         component: StudentDocumentsListComponent
+      },
+      {
+        path: "admin-documents-list",
+        component: DocumentsListComponent
       },
 
       // {

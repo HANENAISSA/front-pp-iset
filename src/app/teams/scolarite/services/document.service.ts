@@ -30,10 +30,16 @@ export class DocumentService {
     this.saveDocuments();
   }
 
-  changeStatus(i : number){
+  acceptDocumet(i: number){
     let data = JSON.parse(window.localStorage.getItem("documents"));
     data[i].status = "Accepté - En train de Préparation";
-    localStorage.setItem('documents', JSON.stringify(data));
+    localStorage.setItem("documents", JSON.stringify(data));
+  }
+
+  refuseDocument(i: number){
+    let data = JSON.parse(window.localStorage.getItem("documents"));
+    data[i].status = "Refuser";
+    localStorage.setItem("documents", JSON.stringify(data));
   }
 
   deleteDocument(indice : number){
