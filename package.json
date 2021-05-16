@@ -13,7 +13,7 @@
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.2",
-    "@angular/animations": "^8.2.3",
+    "@angular/animations": "^8.2.14",
     "@angular/cdk": "~8.2.3",
     "@angular/common": "^8.2.3",
     "@angular/compiler": "^8.2.3",
@@ -23,6 +23,8 @@
     "@angular/platform-browser": "^8.2.3",
     "@angular/platform-browser-dynamic": "^8.2.3",
     "@angular/router": "^8.2.3",
+    "@fortawesome/angular-fontawesome": "^0.8.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@ng-bootstrap/ng-bootstrap": "^5.1.0",
     "@nicky-lenaers/ngx-scroll-to": "^3.0.1",
     "angular2-chartjs": "^0.5.1",

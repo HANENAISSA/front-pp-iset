@@ -18,63 +18,145 @@
       [attr.pcoded-header-position]="pcodedHeaderPosition"
       [attr.header-theme]="headerTheme"
     >
-      <div class="navbar-wrapper">
-        <div class="navbar-logo" [attr.logo-theme]="logoTheme">
-          <a
-            class="mobile-menu"
-            id="mobile-collapse"
-            href="javascript:;"
-            (click)="toggleOpened()"
-            [exclude]="'#main_navbar'"
-            (clickOutside)="onClickedOutside($event)"
-          >
-            <i class="ti-menu"></i>
-          </a>
-          <a [routerLink]="['/']">
-            <img
-              class="img-fluid"
-              src="assets/images/logo.png"
-              alt="Theme-Logo"
-            />
-          </a>
-          <a (click)="onMobileMenu()" class="mobile-options">
-            <i class="ti-more"></i>
-          </a>
+    <div class="navbar-wrapper">
+      <div class="navbar-logo"  style="background-color: #294a70;" [attr.logo-theme]="logoTheme">
+        <a
+          class="mobile-menu"
+          id="mobile-collapse"
+          href="javascript:;"
+          (click)="toggleOpened()"
+          [exclude]="'#main_navbar'"
+          (clickOutside)="onClickedOutside($event)"
+        >
+          <i class="ti-menu"></i>
+        </a>
+        <div>          
+          <img
+            class="img-fluid"
+            src="../../../../../assets/iset.png"
+            alt="Theme-Logo"
+            style="width: 50px;height: 50px;"
+          />          
         </div>
+        <h4 style="color:aliceblue; margin: 5px;">CELVA</h4>
+        <a (click)="onMobileMenu()" class="mobile-options">
+          <i class="ti-more"></i>
+        </a>
+      </div>
 
-        <div class="navbar-container">
-          <div>
-            <ul class="nav-left">
-              <li>
-                <div class="sidebar_toggle">
-                  <a href="javascript:;" (click)="toggleOpened()"
-                    ><i class="ti-menu f-18"></i
-                  ></a>
-                </div>
-              </li>
-              <li>
-                <a href="javascript:;" appToggleFullScreen>
-                  <i class="ti-fullscreen"></i>
-                </a>
-              </li>
+      <div class="navbar-container">
+        <div>
+          <ul class="nav-left">
+            <li>
+              <div class="sidebar_toggle">
+                <a href="javascript:;" (click)="toggleOpened()"
+                  ><i class="ti-menu f-18"></i
+                ></a>
+              </div>
+            </li>
+            <li>
+              <a href="javascript:;" appToggleFullScreen>
+                <i class="ti-fullscreen"></i>
+              </a>
+            </li>
 
-            </ul>
-            <ul
-              [@mobileMenuTop]="isCollapsedMobile"
-              class="nav-right"
-              [ngClass]="isCollapsedMobile"
-            >
+          </ul>
+          <ul
+            [@mobileMenuTop]="isCollapsedMobile"
+            class="nav-right"
+            [ngClass]="isCollapsedMobile"
+          >
 
-
-              <li class="user-profile header-notification">
-
-                <button [routerLink]="['/club/signin']" class="btn btn-out btn-primary btn-square">Sign in</button>
-
-              </li>
-            </ul>
-          </div>
+          <li class="header-notification">
+              <a href="javascript:;">
+                <i class="ti-bell"></i>
+                <span class="badge bg-c-pink"></span>
+              </a>
+              <ul class="show-notification">
+                <li>
+                  <h6>Notifications</h6>
+                  <label class="label label-danger">New</label>
+                </li>
+                <li>
+                  <div class="media">
+                    <img class="d-flex align-self-center img-radius" src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
+                    <div class="media-body">
+                      <h5 class="notification-user">John Doe</h5>
+                      <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                      <span class="notification-time">30 minutes ago</span>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="media">
+                    <img class="d-flex align-self-center img-radius" src="assets/images/avatar-3.jpg" alt="Generic placeholder image">
+                    <div class="media-body">
+                      <h5 class="notification-user">Joseph William</h5>
+                      <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                      <span class="notification-time">30 minutes ago</span>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="media">
+                    <img class="d-flex align-self-center img-radius" src="assets/images/avatar-5.jpg" alt="Generic placeholder image">
+                    <div class="media-body">
+                      <h5 class="notification-user">Sara Soudein</h5>
+                      <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                      <span class="notification-time">30 minutes ago</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="header-notification">
+              <a href="javascript:;" (click)="toggleChat()" class="displayChatbox">
+                <i class="ti-comments"></i>
+                <span class="badge bg-c-green"></span>
+              </a>
+            </li>
+            <li class="user-profile header-notification">
+              <a [routerLink]="['/']">
+                <img
+                  src="assets/images/avatar-4.jpg"
+                  class="img-radius"
+                  alt="User-Profile-Image"
+                />
+                <span>Username</span>
+                <i class="ti-angle-down"></i>
+              </a>
+              <ul class="show-notification profile-notification">
+                <li>
+                  <a [routerLink]="['/crm-contact']">
+                    <i class="ti-settings"></i> Settings
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/dashboard/profil']">
+                    <i class="ti-user"></i> Profile
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/advance/notifications']">
+                    <i class="ti-email"></i> My Messages
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/authentication/lock-screen']" target="_blank">
+                    <i class="ti-lock"></i> Lock Screen
+                  </a>
+                </li>
+                <li>
+                  <a (click)=logout()>
+                    <i class="ti-layout-sidebar-left"></i> Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
+    </div>
     </nav>
     <!-- rightbar chat start -->
     <div [@slideInOut]="verticalPlacement === 'right' ? chatToggleInverse : chatToggle" id="sidebar" class="users p-chat-user">
@@ -222,7 +304,7 @@
                 <div class="user-details">
                   <span>John Doe</span>
                   <span id="more-details" (click)="toggleOpenedSidebar()"
-                    >UX Designer<i class="ti-angle-down"></i
+                    >Role<i class="ti-angle-down"></i
                   ></span>
                 </div>
               </div>
@@ -273,14 +355,16 @@
                   <!--menu-->
                   <li appAccordionLink>
                     <a [routerLink]="['/dashboard_accueil/accueil']" target="_self" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="ti-home"></i></span>
+                      <span class="pcoded-micon" ><i class="ti-home" style="color: #294a70;"></i></span>
                       <span class="pcoded-mtext">Accueil</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
+
+                 
                   <li appAccordionLink>
                     <a [routerLink]="['/dashboard_accueil/clubs']" target="_self" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="ti-home"></i></span>
+                      <span class="pcoded-micon"><i class="fa fa-users"   style="color: #294a70;"></i></span>  
                       <span class="pcoded-mtext">Clubs</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
