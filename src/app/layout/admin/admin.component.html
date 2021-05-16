@@ -491,35 +491,19 @@
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
+                  <!-- Document Administratif Link -->
                   <li appAccordionLink>
                     <a [routerLink]="['/dashboard/admin-documents-list']" target="_self" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="ti-home"></i></span>
+                      <span class="pcoded-micon"><i class="icofont icofont-file-document"></i></span>
                       <span class="pcoded-mtext">Documents Administratifs</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
+                  <!-- Réclamations Link -->
                   <li appAccordionLink>
                     <a [routerLink]="['/dashboard/new-document']" target="_self" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="ti-home"></i></span>
-                      <span class="pcoded-mtext">New</span>
-                      <span class="pcoded-mcaret"></span>
-                    </a>
-                  </li>
-                  <li appAccordionLink>
-                    <a [routerLink]="['/dashboard/simple']" target="_self" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="ti-home"></i></span>
-                      <span class="pcoded-mtext">Test 2</span>
-                      <span class="pcoded-mcaret"></span>
-                    </a>
-                  </li>
-                  <li appAccordionLink>
-                    <a
-                      [routerLink]="['/dashboard']"
-                      target="_self"
-                      appAccordionToggle
-                    >
-                      <span class="pcoded-micon"><i class="ti-home"></i></span>
-                      <span class="pcoded-mtext">Test 3</span>
+                      <span class="pcoded-micon"><i class="icofont icofont-exclamation-square"></i></span>
+                      <span class="pcoded-mtext">Réclamations</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
@@ -535,6 +519,7 @@
                   appAccordionLink
                   group="dashboard"
                 >
+                <!-- Document administratif start -->
                   <li
                     class="pcoded-hasmenu"
                     [attr.dropdown-icon]="dropDownIcon"
@@ -543,9 +528,8 @@
                     group="dashboard"
                   >
                     <a href="javascript:;" appAccordionToggle>
-                      <span class="pcoded-micon"
-                        ><i class="ti-home"></i><b>d</b></span
-                      >
+                      <span class="pcoded-micon">
+                        <i class="icofont icofont-file-document"></i><b>d</b></span>
                       <span class="pcoded-mtext">Document Administratif</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
@@ -574,6 +558,47 @@
                       </li>
                     </ul>
                   </li>
+                <!-- Document administratif end -->
+                <!-- réclamation start -->
+                  <li
+                    class="pcoded-hasmenu"
+                    [attr.dropdown-icon]="dropDownIcon"
+                    [attr.subitem-icon]="subItemIcon"
+                    appAccordionLink
+                    group="dashboard"
+                  >
+                    <a href="javascript:;" appAccordionToggle>
+                      <span class="pcoded-micon">
+                        <i class="icofont icofont-exclamation-square"></i><b>d</b></span>
+                      <span class="pcoded-mtext">Réclamations</span>
+                      <span class="pcoded-mcaret"></span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                      <li appAccordionLink>
+                        <a
+                          [routerLink]="['/dashboard/new-reclamation']"
+                          appAccordionToggle
+                        >
+                          <span class="pcoded-micon">
+                            <i class="ti-angle-right"></i>
+                          </span>
+                          <span class="pcoded-mtext">Nouvelle réclamation</span>
+                        </a>
+                      </li>
+                      <li appAccordionLink>
+                        <a
+                          [routerLink]="['/dashboard/reclamations-list']"
+                          appAccordionToggle
+                        >
+                          <span class="pcoded-micon">
+                            <i class="ti-angle-right"></i>
+                          </span>
+                          <span class="pcoded-mtext">Consulter Mes Réclamations</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                <!-- réclamation end -->
                 </ul>
               </div>
             </perfect-scrollbar>
