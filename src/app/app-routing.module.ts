@@ -8,6 +8,7 @@ import { DocumentsListComponent } from "./teams/scolarite/admin-dashboard/docume
 import { NewDocumentComponent } from "./teams/scolarite/Student-dashboard/new-document/new-document.component";
 import { NewReclamationComponent } from "./teams/scolarite/Student-dashboard/new-reclamation/new-reclamation.component";
 import { StudentDocumentsListComponent } from "./teams/scolarite/Student-dashboard/student-documents-list/student-documents-list.component";
+import { StudentReclamationsListComponent } from "./teams/scolarite/Student-dashboard/student-reclamations-list/student-reclamations-list.component";
 
 const routes: Routes = [
   {
@@ -50,7 +51,7 @@ const routes: Routes = [
       },
       {
         path: "reclamations-list",
-        component: StudentDocumentsListComponent
+        component: StudentReclamationsListComponent
       },
       {
         path: "admin-reclamations-list",
