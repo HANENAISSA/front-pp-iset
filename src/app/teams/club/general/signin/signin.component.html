@@ -1,4 +1,4 @@
-<section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+<div  style="background-image:url(../../../../../assets/imageBackground.jpeg);background-repeat: no-repeat;background-size: cover; height: 656px;">
   <!-- Container-fluid starts -->
   <div class="container">
       <div class="row">
@@ -17,11 +17,11 @@
                           </div>
                           <hr/>
                           <div class="input-group">
-                              <input type="email"  [(ngModel)]="email" class="form-control" placeholder="Your Email Address">
+                              <input type="text"  [(ngModel)]="email" class="form-control" value=""  name="email" placeholder="Your Email Address">
                               <span class="md-line"></span>
                           </div>
                           <div class="input-group">
-                              <input type="password" [(ngModel)]="password" class="form-control" placeholder="Password">
+                              <input type="password" [(ngModel)]="password" class="form-control"  value=""  name="password" placeholder="Password">
                               <span class="md-line"></span>
                           </div>
                           <div class="row m-t-25 text-left">
@@ -58,5 +58,5 @@
       <!-- end of row -->
   </div>
   <!-- end of container-fluid -->
-</section>
+</div>
 

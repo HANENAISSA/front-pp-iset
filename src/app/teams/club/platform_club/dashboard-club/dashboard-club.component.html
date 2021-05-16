@@ -19,7 +19,7 @@
       [attr.header-theme]="headerTheme"
     >
       <div class="navbar-wrapper">
-        <div class="navbar-logo" [attr.logo-theme]="logoTheme">
+        <div class="navbar-logo"  style="background-color: #294a70;" [attr.logo-theme]="logoTheme">
           <a
             class="mobile-menu"
             id="mobile-collapse"
@@ -30,13 +30,15 @@
           >
             <i class="ti-menu"></i>
           </a>
-          <a [routerLink]="['/']">
+          <div>          
             <img
               class="img-fluid"
-              src="assets/images/logo.png"
+              src="../../../../../assets/iset.png"
               alt="Theme-Logo"
-            />
-          </a>
+              style="width: 50px;height: 50px;"
+            />          
+          </div>
+          <h4 style="color:aliceblue; margin: 5px;">ISET Rades</h4>
           <a (click)="onMobileMenu()" class="mobile-options">
             <i class="ti-more"></i>
           </a>
@@ -145,7 +147,7 @@
                     </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/authentication/login/with-bg-image']">
+                    <a (click)=logout()>
                       <i class="ti-layout-sidebar-left"></i> Logout
                     </a>
                   </li>
@@ -317,7 +319,7 @@
                       ><i class="ti-user"></i>View Profile</a
                     >
                     <a [routerLink]="['/crm-contact']"><i class="ti-settings"></i>Settings</a>
-                    <a [routerLink]="['/authentication/login/with-bg-image']"
+                    <a (click)=logout()
                       ><i class="ti-layout-sidebar-left"></i>Logout</a
                     >
                   </li>
@@ -352,15 +354,15 @@
                 >
                   <!--menu-->
                   <li appAccordionLink>
-                    <a [routerLink]="['/dashboard_accueil/accueil']" target="_self" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="ti-home"></i></span>
+                    <a [routerLink]="['/dashboard_club/accueil']" target="_self" appAccordionToggle>
+                      <span class="pcoded-micon" ><i class="ti-home" style="color: #294a70;"></i></span>
                       <span class="pcoded-mtext">Accueil</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li appAccordionLink>
                     <a [routerLink]="['/dashboard_accueil/clubs']" target="_self" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="ti-home"></i></span>
+                      <span class="pcoded-micon"><i class="fa fa-users"   style="color: #294a70;"></i></span>  
                       <span class="pcoded-mtext">Clubs</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
@@ -394,7 +396,7 @@
                   >
                     <a href="javascript:;" appAccordionToggle>
                       <span class="pcoded-micon"
-                        ><i class="ti-home"></i><b>d</b></span
+                        ><i class="fa fa-pencil-square-o" style="color: #294a70;"></i><b>d</b></span
                       >
                       <span class="pcoded-mtext">Nom club</span>
                       <span class="pcoded-mcaret"></span>

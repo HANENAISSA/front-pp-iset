@@ -18,7 +18,7 @@ sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any) {
 
       }
     );
-  }
+}
   getRequests() {
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/demande_event/getRequests",

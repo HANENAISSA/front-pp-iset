@@ -28,9 +28,9 @@ export class SigninComponent implements OnInit {
         console.log(data["token"]);
         localStorage.setItem("token",data["token"]);
         localStorage.setItem("nom",data['data']['nom']);
-        //localStorage.setItem("prenom",data['data']['prenom']);
-       // localStorage.setItem("club",data['data']['id_club']);
-        this.router.navigate(['/dashboard_accueil/accueil']);
+        localStorage.setItem("prenom",data['data']['prenom']);
+        localStorage.setItem("id_club",data['data']['id_club']);
+        this.router.navigate(['/dashboard_club/accueil']);
 
       }else{
         alert(data['message'])
