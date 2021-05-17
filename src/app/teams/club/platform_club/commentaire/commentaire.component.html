@@ -1,4 +1,5 @@
 <!-- display commantaire -->
+<!--
 <div class="card-comment " *ngFor="let cmtre of cmtrs">
   <div class="card-block-small">
     <img class="img-radius img-50" src="assets/images/avatar-1.jpg" alt="user-1">
@@ -12,4 +13,20 @@
     </div>
   </div>
  </div>
+  -->
  <!-- display commantaire -->
+ <div class="media mt-2" *ngFor="let cmtre of cmtrs">
+
+
+ <a class="media-left" href="javascript:;"  >
+  <img class="media-object img-radius comment-img" src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
+</a>
+<div class="media-body">
+  <h6 class="media-heading">{{cmtre.nom}} {{cmtre.prenom}} <span class="f-12 text-muted m-l-5">Just now</span></h6>
+
+  <p class="m-b-0"> {{cmtre.description}}</p>
+
+  <hr>
+
+</div>
+</div>

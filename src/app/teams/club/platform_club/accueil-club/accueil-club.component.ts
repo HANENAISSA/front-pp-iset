@@ -1,17 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { ClubService } from '../../services/club.service';
 import { PostService } from '../../services/post.service';
 import { VoteService } from '../../services/vote.service';
+import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-accueil-club',
   templateUrl: './accueil-club.component.html',
   styleUrls: ['./accueil-club.component.scss'],
-  providers: [{
-    provide: MAT_RADIO_DEFAULT_OPTIONS,
-    useValue: { color: 'primary' },
-}]
+  animations: [
+    trigger('fadeInOutTranslate', [
+      transition(':enter', [
+        style({opacity: 0}),
+        animate('400ms ease-in-out', style({opacity: 1}))
+      ]),
+      transition(':leave', [
+        style({transform: 'translate(0)'}),
+        animate('400ms ease-in-out', style({opacity: 0}))
+      ])
+    ])
+  ]
 })
 export class AccueilClubComponent implements OnInit {
 post:any;

@@ -1,30 +1,125 @@
-<!--add post-->
-<div class="page-body">
-  <div class="row">
-      <!-- card1 start -->
-      <div class="col-sm-12 col-xl-8">
-          <div class="card widget-card-1">
-              <div class="card-block-small">
-                <i class="icofont icofont-ui-home bg-c-blue card1-icon"></i>
 
-                  <h6>{{nom}} {{prenom}}</h6>
-                  <div class="form-group row">
-                     <div class="col-sm-11">
-                        <input type="text" class="form-control" [(ngModel)]="post"
-                        placeholder="votre post">
+<div class="row">
+  <div class="col-sm-12 col-xl-8">
+    <div class="md-tabs">
+      <ngb-tabset>
+<!-- posts tab-->
 
-                    </div>
+        <ngb-tab title="Publications">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text">Publications</h5>
                 </div>
-                  <div>
-                      <span class="f-left m-t-10 text-muted">
-                        <button class="btn btn-primary btn-round" (click)=addpost()>Partager</button>
-                      </span>
+                <div class="card-body">
+                  <!--add post-->
+  <div class="row">
+    <!-- card1 start -->
+    <div class="col-lg-12">
+        <div class="card widget-card-1">
+            <div class="card-block-small">
+              <i class="icofont icofont-ui-home bg-c-blue card1-icon"></i>
+
+                <h6>{{nom}} {{prenom}}</h6>
+                <div class="form-group row">
+                   <div class="col-sm-11">
+                      <input type="text" class="form-control" [(ngModel)]="post"
+                      placeholder="votre post">
+
                   </div>
               </div>
-          </div>
-      </div>
-      <!-- card1 end -->
-       <!-- calendar-->
+                <div>
+                    <span class="f-left m-t-10 text-muted">
+                      <button class="btn btn-primary btn-round" (click)=addpost()>Partager</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- card1 end -->
+    </div>
+    <!--add post-->
+                <!--display post-->
+
+
+
+            <app-card [title]="'Publication '" [blockClass]="'p-3'" *ngFor="let post of posts">
+            <br>
+                  <ul class="media-list" >
+                    <li class="media">
+                      <div class="media-left">
+                        <a href="javascript:;">
+                          <img class="media-object img-radius comment-img" src="assets/images/avatar-1.jpg" alt="Generic placeholder image">
+                        </a>
+                      </div>
+                      <div class="media-body">
+                        <h6 class="media-heading">{{post.nom}}{{post.prenom}}<span class="f-12 text-muted m-l-5">{{post.date}}{{post.heure}}</span></h6>
+                        <p class="m-b-0">{{post.description}}</p>
+                        <div class="m-b-25">
+                          <span><a href="javascript:;" class="m-r-10 f-12">Reply</a></span><span><a href="javascript:;" class="f-12">Edit</a> </span>
+                        </div>
+                        <hr>
+
+                        <!-- display commentaires -->
+                        <app-commentaire idpublication={{post.id_publication}}></app-commentaire>
+                      <!-- display commentaires -->
+                      </div>
+                    </li>
+
+                  </ul>
+
+    <!--display post-->
+
+                 <!--add commentaire-->
+
+                  <div class="md-float-material d-flex ">
+                    <div class="md-group-add-on p-relative col-lg-12">
+                      <div class="input-group input-group-button input-group-primary">
+
+                        <input type="text" class="form-control" placeholder="Write Comment">
+                        <span class="input-group-append"><label class="input-group-text">
+                                       <button type="button" class="btn btn-primary"><i class="icofont icofont-plus"></i>Publier</button>
+                        </label></span>
+                      </div>
+                    </div>
+                  </div>
+                     <!--add commentaire-->
+
+                </app-card>
+
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+<!-- posts tab-->
+
+<!--events tab-->
+        <ngb-tab title="événements">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <!-- personal card start -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text">événements</h5>
+
+                </div>
+                <div class="card-body">
+
+                </div>
+                <!-- end of card-body -->
+              </div>
+              <!-- personal card end-->
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <!-- events tab-->
+      </ngb-tabset>
+    </div>
+
+  </div>
+  <!-- calendar-->
 
 <div class="col-md-12 col-xl-4">
   <div class="card fb-card">
@@ -41,123 +136,72 @@
       </div>
     </div>
   </div>
-</div>
-
-  <!-- calendar -->
-    </div>
-    </div>
-<!--add post-->
-
-<!--display post-->
-<div class="page-body">
-  <div class="row">
-      <!-- card1 start -->
-      <div class="col-sm-12 col-xl-8">
-
-          <div class="card widget-card-1 "  *ngFor="let post of posts" >
-              <div class="card-block-small">
-                <i class="icofont icofont-ui-home bg-c-blue card1-icon"></i>
-                <span class="text-c-blue f-w-600">{{post.date}}{{post.heure}}</span>
-                  <h6>{{post.nom}}{{post.prenom}}</h6>
-                  <div>
-                      <span class="f-left m-t-10 ">
-                        <p> {{post.description}}</p>
-                      </span>
-                  </div>
-
-              </div>
-            <!-- commantaire -->
-              <div class="col-sm-12 text-left ">
-                <app-card [title]="'Commentaires récents'" [blockClass]="'p-0'">
-              <!-- add commantaire -->
-                <div class="card-comment ">
-                <div class="card-block-small">
-                  <img class="img-radius img-50" src="assets/images/avatar-1.jpg" alt="user-1">
-                  <div class="comment-desc text-left">
-                    <h6>{{nom }} {{prenom}}</h6>
-                    <input type="text" class="form-control" [(ngModel)]="cmtre"
-                    placeholder="ecrire votre commantaire"><br>
-                    <button class="btn btn-mat btn-primary " (click)=addcmtre(post.id_publication)>Publier</button>
-
-                  </div>
-                </div>
-               </div>
-               <!-- add commantaire -->
-<!-- display commantaire -->
-<app-commentaire idpublication={{post.id_publication}}></app-commentaire>
- <!-- display commantaire -->
-              </app-card>
-            </div>
-            <!-- commantaire -->
-          </div>
+  <!-- sondage -->
+  <!-- add sondage -->
+  <div class="card widget-statstic-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <h4>Ajouter Sondage</h4>
+        <input type="text" class="form-control" [(ngModel)]="title"
+        placeholder="ecrire description"> <br>
+        <button class="btn btn-mat btn-primary " (click)=addsondage()>Publier</button>
       </div>
-      <!-- card1 end -->
-      <!-- sondage -->
-      <div class="col-sm-12 col-xl-4">
-        <!-- add sondage -->
-        <div class="card widget-statstic-card">
-          <div class="card-header">
-            <div class="card-header-left">
-              <h4>Ajouter Sondage</h4>
-              <input type="text" class="form-control" [(ngModel)]="title"
-              placeholder="ecrire description"> <br>
-              <button class="btn btn-mat btn-primary " (click)=addsondage()>Publier</button>
-            </div>
-          </div>
-
-        </div>
-
-      <!-- add sondage -->
-      <!-- display sondage -->
-
-        <div class="card widget-statstic-card" *ngFor="let sondage of sondages">
-          <div class="card-header">
-            <div class="card-header-left">
-              <h4>Sondage</h4>
-              <h6>{{sondage.titre}}</h6>
-              <p class="p-t-10 m-b-0 text-c-blue">{{sondage.date_sondage}} {{sondage.heure_sondage}}</p>
-            </div>
-          </div>
-          <div class="card-block">
-            <i  class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
-
-
-
-            <div class="text-left">
-              <form #f="ngForm">
-                <div class="radio">
-                  <label>
-                      <input type="radio"
-
-                             [ngValue]="true"
-                             id="true"
-                             (change)="voter(true,sondage.id_sondage)"
-                             name="vote"  >Oui
-                  </label>
-
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio"
-                             value="false"
-
-                             id="true"
-                             (change)="voter(false,sondage.id_sondage)"
-                             name="vote">non
-                  </label>
-                   </div>
-  </form>
-  <p  *ngIf="f.value==true">vous avez voté avec oui . </p>
-  <p  *ngIf="value==false">vous avez voté avec non .</p>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- display sondage -->
-<!--  sondage -->
     </div>
 
   </div>
-<!--display post-->
+
+<!-- add sondage -->
+<!-- display sondage -->
+
+<div class="card widget-statstic-card" *ngFor="let sondage of sondages">
+  <div class="card-header">
+    <div class="card-header-left">
+      <h4>Sondage</h4>
+      <h6>{{sondage.titre}}</h6>
+      <p class="p-t-10 m-b-0 text-c-blue">{{sondage.date_sondage}} {{sondage.heure_sondage}}</p>
+    </div>
+  </div>
+  <div class="card-block">
+    <i  class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
+
+
+
+    <div class="text-left">
+      <form #f="ngForm">
+        <div class="radio">
+          <label>
+              <input type="radio"
+
+                     [ngValue]="true"
+                     id="true"
+                     (change)="voter(true,sondage.id_sondage)"
+                     name="vote"  >Oui
+          </label>
+
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio"
+                     value="false"
+
+                     id="true"
+                     (change)="voter(false,sondage.id_sondage)"
+                     name="vote">non
+          </label>
+           </div>
+</form>
+<p  *ngIf="f.value==true">vous avez voté avec oui . </p>
+<p  *ngIf="value==false">vous avez voté avec non .</p>
+
+    </div>
+  </div>
+</div>
+<!-- display sondage -->
+<!--  sondage -->
+</div>
+<!-- calendar -->
+
+</div>
+
+
 

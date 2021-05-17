@@ -1,19 +1,17 @@
                                         <!--  Breadcrumb card start -->
                                         <div class="card borderless-card">
-                                          <div class="card-block inverse-breadcrumb">
+                                          <div class="card-block " style="background-color: #294a70;">
                                               <div class="breadcrumb-header">
-                                                  <h5>Liste des demandes</h5>
+                                                  <h5 style="color: #ffffff;">Club et la vie associative</h5>
                                                  </div>
                                               <div class="page-header-breadcrumb">
                                                   <ul class="breadcrumb-title">
                                                       <li class="breadcrumb-item">
-                                                          <a href="#!">
-                                                              <i class="icofont icofont-home"></i>
+                                                          <a [routerLink]="['/dashboard_club/accueil']" style="color: #ffffff;">
+                                                              <i class="icofont icofont-home"></i>  /
                                                           </a>
-                                                      </li>
-                                                      <li class="breadcrumb-item"><a href="#!">Accueil</a>
-                                                      </li>
-                                                      <li class="breadcrumb-item"><a href="#!">liste des demandes</a>
+
+                                                      <a [routerLink]="['/dashboard_club/liste-demandes']" style="color: #ffffff;">liste des demandes</a>
                                                       </li>
                                                   </ul>
                                               </div>
@@ -28,10 +26,10 @@
                                       </div>
                                       <div class="card-block table-border-style">
                                           <div class="table-responsive">
+                                            <!--
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
                                                         <th>cin</th>
                                                         <th>nom</th>
                                                         <th>prenom</th>
@@ -46,8 +44,8 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let request of requests">
-                                                        <th scope="row">{{request.id_demande}}</th>
-                                                        <td>{{request.cin}}</td>
+                                                        <th scope="row">{{request.cin}}</th>
+
                                                         <td>{{request.nom}}</td>
                                                         <td>{{request.prenom}}</td>
                                                         <td>{{request.sexe}}</td>
@@ -57,18 +55,90 @@
                                                         <td>{{request.motivation}}</td>
                                                         <td>{{request.date}}</td>
                                                         <td>
-                                                        <button class="btn btn-success" (click)=Accepter(request.id_demande,request.email)>
-                                                          <i class="icofont icofont-check-circled"></i>
-                                                        </button>
-                                                        <button class="btn btn-warning" (click)=Delete(request.id_demande,request.email)>
-                                                          <i class="icofont icofont-not-allowed"></i>
-                                                        </button>
 
+                                                        <div ngbDropdown>
+                                                          <span ngbDropdownToggle class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip">
+                                                                         </span>
+                                                          <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                            <a class="dropdown-item" href="javascript:;"><i class="icofont icofont-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="javascript:;"><i class="icofont icofont-ui-delete"></i> Delete</a>
+                                                            <a class="dropdown-item" href="javascript:;"><i class="icofont icofont-eye-alt"></i> View</a>
+                                                          </div>
+                                                        </div>
                                                       </td>
                                                       </tr>
 
                                                 </tbody>
                                             </table>
+                                          -->
+
+                                            <table class="table">
+                                              <thead>
+                                                <tr>
+                                                  <th>cin</th>
+                                                  <th>nom</th>
+                                                  <th>prenom</th>
+                                                  <th>sexe</th>
+                                                  <th>equipe</th>
+                                                  <th>age</th>
+                                                  <th>email</th>
+                                                  <th>motivation</th>
+                                                  <th>date</th>
+                                                  <th scope="col">Actions</th>
+
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td>1</td>
+                                                  <td>
+                                                    Item
+
+                                                  </td>
+                                                  <td>
+                                                    Item
+
+                                                  </td>
+                                                  <td>
+                                                    Item
+
+                                                  </td>
+                                                  <td>
+                                                    Item
+
+                                                  </td>
+                                                  <td>
+                                                    Item
+
+                                                  </td>
+                                                  <td>
+                                                    Item
+
+                                                  </td>
+                                                  <td>
+                                                    Item
+
+                                                  </td>
+                                                   <td>
+                                                    Item
+
+                                                  </td>
+                                                  <td class="overflow-hidden">
+                                                    <div ngbDropdown container="body">
+                                                      <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle></button>
+                                                      <div ngbDropdownMenu>
+                                                        <button ngbDropdownItem><i class="icofont icofont-edit"></i>Edit</button>
+                                                        <button ngbDropdownItem><i class="icofont icofont-eye-alt"></i>View </button>
+
+                                                        <div class="dropdown-divider"></div>
+                                                        <button ngbDropdownItem><i class="icofont icofont-ui-delete"></i>Delete</button>
+                                                      </div>
+                                                    </div>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+
                                           </div>
                                       </div>
                                   </div>
