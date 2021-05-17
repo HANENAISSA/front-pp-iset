@@ -35,8 +35,6 @@ export class NewDocumentComponent implements OnInit {
     if (this.addDocForm.invalid) {
       this.hidden = false;
     } else {
-      console.log(JSON.stringify(this.addDocForm.value));
-      // this.service.addDocument(this.addDocForm.value);
       const formValues = this.addDocForm.value;
       this.d = new Document(
         formValues.firstName,
@@ -49,8 +47,7 @@ export class NewDocumentComponent implements OnInit {
         formValues.status
       );
       this.service.addDocument(this.d);
-      alert("added succesfully!");
-      // this.router.navigate(["dashboard/myDemands"]);
+      this.router.navigate(["dashboard/documents-list"]);
     }
   }
 }

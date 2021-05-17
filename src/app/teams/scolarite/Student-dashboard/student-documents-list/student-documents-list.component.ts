@@ -21,10 +21,18 @@ import { DocumentService } from '../../services/document.service';
   ]
 })
 export class StudentDocumentsListComponent implements OnInit {
+  page = 1;
+  pageSize = 2;
+  pageSizes = [2, 4, 6];
   documents : Document[];
+  public search:any = '';
   constructor(private service:DocumentService) { }
 
   ngOnInit() {
+    this.refreshData();
+  }
+
+  refreshData(){
     this.documents = this.service.getDocuments();
   }
 
@@ -34,5 +42,11 @@ export class StudentDocumentsListComponent implements OnInit {
 
   filterItemsByType(type){
     return this.documents.filter(x => x.status == type);
-}
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.refreshData();
+  }
 }
