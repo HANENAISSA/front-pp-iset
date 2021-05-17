@@ -18,9 +18,8 @@
       [attr.pcoded-header-position]="pcodedHeaderPosition"
       [attr.header-theme]="headerTheme"
     >
-    /**/
       <div class="navbar-wrapper">
-        <div class="navbar-logo"  style="background-color: #294a70;" [attr.logo-theme]="logoTheme">
+        <div class="navbar-logo" style="background-color: #294a70;" [attr.logo-theme]="logoTheme">
           <a
             class="mobile-menu"
             id="mobile-collapse"
@@ -31,22 +30,14 @@
           >
             <i class="ti-menu"></i>
           </a>
-          <div>          
+          <a [routerLink]="['/']">
             <img
               class="img-fluid"
-<<<<<<< HEAD
-              src="../../../../../assets/iset.png"
-              alt="Theme-Logo"
-              style="width: 50px;height: 50px;"
-            />          
-          </div>
-=======
               src="assets/iset.png"
               alt="Theme-Logo"
               style="width: 50px;height: 50px;"
             />
           </a>
->>>>>>> 03246a84de0610a627b72906af8eeba1aa5f925b
           <h4 style="color:aliceblue; margin: 5px;">ISET Rades</h4>
           <a (click)="onMobileMenu()" class="mobile-options">
             <i class="ti-more"></i>
@@ -68,7 +59,13 @@
                   <i class="ti-fullscreen"></i>
                 </a>
               </li>
+              <li class="mega-menu-top">
+                <a href="javascript:;">
+                  Institut Supérieur des Etudes Technologiques de Rades
 
+                </a>
+
+              </li>
             </ul>
             <ul
               [@mobileMenuTop]="isCollapsedMobile"
@@ -125,7 +122,7 @@
                 </a>
               </li>
               <li class="user-profile header-notification">
-                <a [routerLink]="['/']">
+                <a [routerLink]="['/dashboard_club/profile']">
                   <img
                     src="assets/images/avatar-4.jpg"
                     class="img-radius"
@@ -141,11 +138,15 @@
                     </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/dashboard/profil']">
+                    <a [routerLink]="['/dashboard_club/profile']">
                       <i class="ti-user"></i> Mon Profile
                     </a>
                   </li>
-
+                  <li>
+                    <a [routerLink]="['/advance/notifications']">
+                      <i class="ti-email"></i> My Messages
+                    </a>
+                  </li>
 
                   <li>
                     <a (click)=logout()>
@@ -159,6 +160,7 @@
         </div>
       </div>
     </nav>
+
     <!-- rightbar chat start -->
     <div [@slideInOut]="verticalPlacement === 'right' ? chatToggleInverse : chatToggle" id="sidebar" class="users p-chat-user">
       <div class="had-container">
@@ -322,39 +324,7 @@
               [style.max-height]="'calc(100vh - 230px)'"
               [config]="config"
             >
-              <div class="d-color">
-                <div
-                  class="pcoded-navigatio-lavel"
-                  [attr.menu-title-theme]="menuTitleTheme"
-                >
-                  Accueil general
-                </div>
-                <ul
-                  class="pcoded-item pcoded-left-item"
-                  [attr.item-border]="itemBorder"
-                  [attr.item-border-style]="itemBorderStyle"
-                  [attr.subitem-border]="subItemBorder"
-                  appAccordionLink
-                >
-                  <!--menu-->
-                  <li appAccordionLink>
-                    <a [routerLink]="['/dashboard_club/accueil']" target="_self" appAccordionToggle>
-                      <span class="pcoded-micon" ><i class="ti-home" style="color: #294a70;"></i></span>
-                      <span class="pcoded-mtext">Accueil</span>
-                      <span class="pcoded-mcaret"></span>
-                    </a>
-                  </li>
-                  <li appAccordionLink>
-                    <a [routerLink]="['/dashboard_accueil/clubs']" target="_self" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="fa fa-users"   style="color: #294a70;"></i></span>  
-                      <span class="pcoded-mtext">Clubs</span>
-                      <span class="pcoded-mcaret"></span>
-                    </a>
-                  </li>
 
-                  <!--menu accueil-->
-                </ul>
-              </div>
               <!--list clubs-->
               <div class="d-color">
                 <div
@@ -380,8 +350,9 @@
                   >
                     <a href="javascript:;" appAccordionToggle *ngFor="let club of clubs" >
                       <span class="pcoded-micon"
-                        ><i class="fa fa-pencil-square-o" style="color: #294a70;"></i><b>d</b></span
+                        ><i class="fa fa-users" style="color: #294a70;"></i><b>d</b></span
                       >
+
                       <span class="pcoded-mtext">{{club.nom_club}}</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
@@ -461,4 +432,5 @@
       </div>
     </div>
   </div>
-</div>
+
+

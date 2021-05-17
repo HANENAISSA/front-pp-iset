@@ -18,27 +18,6 @@
       [attr.pcoded-header-position]="pcodedHeaderPosition"
       [attr.header-theme]="headerTheme"
     >
-<<<<<<< HEAD
-    <div class="navbar-wrapper">
-      <div class="navbar-logo"  style="background-color: #294a70;" [attr.logo-theme]="logoTheme">
-        <a
-          class="mobile-menu"
-          id="mobile-collapse"
-          href="javascript:;"
-          (click)="toggleOpened()"
-          [exclude]="'#main_navbar'"
-          (clickOutside)="onClickedOutside($event)"
-        >
-          <i class="ti-menu"></i>
-        </a>
-        <div>          
-          <img
-            class="img-fluid"
-            src="../../../../../assets/iset.png"
-            alt="Theme-Logo"
-            style="width: 50px;height: 50px;"
-          />          
-=======
       <div class="navbar-wrapper">
         <div class="navbar-logo" style="background-color: #49688e;" [attr.logo-theme]="logoTheme">
           <a
@@ -61,7 +40,6 @@
           <a (click)="onMobileMenu()" class="mobile-options">
             <i class="ti-more"></i>
           </a>
->>>>>>> 03246a84de0610a627b72906af8eeba1aa5f925b
         </div>
         <h4 style="color:aliceblue; margin: 5px;">CELVA</h4>
         <a (click)="onMobileMenu()" class="mobile-options">
@@ -172,7 +150,7 @@
                   </a>
                 </li>
                 <li>
-                  <a (click)=logout()>
+                  <a >
                     <i class="ti-layout-sidebar-left"></i> Logout
                   </a>
                 </li>
@@ -181,7 +159,7 @@
           </ul>
         </div>
       </div>
-    </div>
+
     </nav>
     <!-- rightbar chat start -->
     <div [@slideInOut]="verticalPlacement === 'right' ? chatToggleInverse : chatToggle" id="sidebar" class="users p-chat-user">
@@ -386,10 +364,10 @@
                     </a>
                   </li>
 
-                 
+
                   <li appAccordionLink>
                     <a [routerLink]="['/dashboard_accueil/clubs']" target="_self" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="fa fa-users"   style="color: #294a70;"></i></span>  
+                      <span class="pcoded-micon"><i class="fa fa-users"   style="color: #294a70;"></i></span>
                       <span class="pcoded-mtext">Clubs</span>
                       <span class="pcoded-mcaret"></span>
                     </a>

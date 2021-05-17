@@ -192,7 +192,7 @@ export class DashboardClubComponent implements OnInit {
     this.setBackgroundPattern('pattern2');
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
-    //this.idclub=localStorage.getItem('id_club');
+    this.idclub=localStorage.getItem('id_club');
     this.role=localStorage.getItem('role');
   }
 

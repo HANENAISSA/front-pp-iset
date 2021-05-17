@@ -9,12 +9,19 @@ import { RequestService } from '../../services/request.service';
 export class ListeDemandesComponent implements OnInit {
   requests: any=[];
 
-
-
+  isCollapsedMobile: string;
+  isCollapsedSideBar: string;
 
   constructor(private _http:RequestService,private route: ActivatedRoute)
-  { }
-
+  { this.isCollapsedMobile = 'no-block';
+  this.isCollapsedSideBar = 'no-block';
+}
+  toggleOpenedSidebar() {
+    this.isCollapsedSideBar = this.isCollapsedSideBar === 'yes-block' ? 'no-block' : 'yes-block';
+  }
+  onMobileMenu() {
+    this.isCollapsedMobile = this.isCollapsedMobile === 'yes-block' ? 'no-block' : 'yes-block';
+  }
 
   ngOnInit(): void {
     this.getrequests();

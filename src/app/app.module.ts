@@ -18,15 +18,6 @@ import { SimplePageComponent } from './pages/simple-page/simple-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { PopupComponent } from './popup/popup.component';
-<<<<<<< HEAD
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatCardModule} from '@angular/material/card';
-import { MatRadioModule } from '@angular/material';
-
-
-=======
->>>>>>> 03246a84de0610a627b72906af8eeba1aa5f925b
 //club-components
 
 import { AccueilGeneralComponent } from './teams/club/general/accueil-general/accueil-general.component';
@@ -92,11 +83,7 @@ import { VotesComponent } from './teams/club/platform_club/votes/votes.component
     ReactiveFormsModule,
     MatCardModule,
     MatRadioModule,
-<<<<<<< HEAD
- 
-=======
     MatDialogModule
->>>>>>> 03246a84de0610a627b72906af8eeba1aa5f925b
 
   ],
   entryComponents: [PopupComponent],

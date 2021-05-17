@@ -149,9 +149,10 @@ votes:any=[];
       if(data['error']!=true){
         console.log(idsondage)
         localStorage.setItem("votes",data["votes"])
-         }else{
-        alert(data['message'])
         window.alert('votre vote a été enregistré avec succès');
+      }else{
+        alert(data['message'])
+
       }
     },
       err => {

@@ -27,11 +27,6 @@
               "node_modules/ti-icons/css/themify-icons.css",
               "src/assets/icon/icofont/css/icofont.scss",
               "src/styles.scss"
-<<<<<<< HEAD
-             
-=======
-
->>>>>>> 03246a84de0610a627b72906af8eeba1aa5f925b
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"

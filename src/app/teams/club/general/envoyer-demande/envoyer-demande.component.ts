@@ -32,13 +32,8 @@ sendRequest(){
         console.log(data["token"])
         localStorage.setItem("token",data["token"])
         localStorage.setItem("id_club",data['data']['id_club']);
-<<<<<<< HEAD
-        this.router.navigate(['dashboard_accueil/clubs']);
-       
-=======
         this.router.navigate(['accueil/service_en_ligne/clubs']);
         window.alert('votre demande a été envoyé avec succès')
->>>>>>> 03246a84de0610a627b72906af8eeba1aa5f925b
       }else{
         alert(data['message'])
       }
