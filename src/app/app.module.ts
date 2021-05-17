@@ -19,6 +19,8 @@ import { DocumentsListComponent } from './teams/scolarite/admin-dashboard/docume
 import { SearchPipe } from './teams/scolarite/admin-dashboard/documents-list/search.pipe';
 import { NewReclamationComponent } from './teams/scolarite/Student-dashboard/new-reclamation/new-reclamation.component';
 import { StudentReclamationsListComponent } from './teams/scolarite/Student-dashboard/student-reclamations-list/student-reclamations-list.component';
+import { ReclamationsListComponent } from './teams/scolarite/admin-dashboard/reclamations-list/reclamations-list.component';
+import { SearchReclamationPipe } from './teams/scolarite/admin-dashboard/reclamations-list/search-reclamation.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { StudentReclamationsListComponent } from './teams/scolarite/Student-dash
     DocumentsListComponent,
     SearchPipe,
     NewReclamationComponent,
-    StudentReclamationsListComponent
+    StudentReclamationsListComponent,
+    ReclamationsListComponent,
+    SearchReclamationPipe
   ],
   imports: [
     BrowserModule,

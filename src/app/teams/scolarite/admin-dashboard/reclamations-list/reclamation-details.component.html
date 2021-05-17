@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ reclamationDetails.reclamationType }}</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <label class="col-sm-4">Prénom</label>
+    <h5>{{ reclamationDetails.firstName }}</h5>
+  </div>
+  <hr />
+  <div class="row">
+    <label class="col-sm-4">Nom</label>
+    <h5>{{ reclamationDetails.lastName }}</h5>
+  </div>
+  <hr />
+  <div class="row">
+    <label class="col-sm-4">Classe</label>
+    <h5>{{ reclamationDetails.classe }}</h5>
+  </div>
+  <hr />
+  <div class="row">
+    <label class="col-sm-4">Type de Réclamation</label>
+    <h5>{{ reclamationDetails.reclamationType }}</h5>
+  </div>
+  <hr />
+  <div class="row">
+    <label class="col-sm-4">Status du réclamation</label>
+    <h5>{{ reclamationDetails.status }}</h5>
+  </div>
+  <hr />
+  <div class="row">
+    <label class="col-sm-4">Message de réclamation</label>
+    <h5>{{ reclamationDetails.reclamationContent }}</h5>
+  </div>
+  <hr />
+  <div class="row">
+    <label class="col-sm-4">Date de Création</label>
+    <h5>{{ reclamationDetails.date }}</h5>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close('Close click')"
+  >
+    Close
+  </button>
+</div>

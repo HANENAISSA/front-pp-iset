@@ -1,0 +1,116 @@
+<!-- Page-header start -->
+<div class="">
+  <div class="page-header card">
+    <div class="row align-items-end">
+      <div class="col-lg-8">
+        <div class="page-header-title">
+          <span><i class="icofont icofont-file-document bg-c-blue"></i></span>
+          <div class="d-inline">
+            <span class="d-block">
+              <h4>Les Demandes des papiers administratifs</h4></span
+            >
+            <span
+              >Consulter la liste des demandes des papiers
+              administratifs</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="page-header-breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/'">
+                <i class="icofont icofont-home"></i>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a>scolarité</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page-header end -->
+<div class="card">
+  <div class="card-header">
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <!-- Search Field -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><i class="icofont icofont-search"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="rechercher..." [(ngModel)]="search" id="listSearch">
+      </div>
+      <!-- Data Table  -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Type de reclamation</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Classe</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor=" let reclamation of reclamations | searchReclamation: search | slice: (page-1) * pageSize : page * pageSize ; let i = index " >
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ reclamation.reclamationType }}</td>
+            <td>{{ reclamation.firstName }}</td>
+            <td>{{ reclamation.lastName }}</td>
+            <td>{{ reclamation.classe }}</td>
+            <td>{{ reclamation.date | date: "dd-MM-yyyy" }}</td>
+            <td>
+              <div ngbDropdown container="body">
+                <button class="btn float-right" ngbDropdownToggle>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" >
+                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                  </svg>
+                </button>
+                <div ngbDropdownMenu>
+                  <button ngbDropdownItem (click)="openReclamModal(reclamation)">
+                    <i class="icofont icofont-eye"></i>Consulter
+                  </button>
+                  <button ngbDropdownItem >
+                    <i class="icofont icofont-check"></i>Accepter
+                  </button>
+                  <button ngbDropdownItem >
+                    <i class="icofont icofont-close-line"></i>Refuser
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Alert message if Table is Empty -->
+      <div class="d-flex justify-content-center" *ngIf="!reclamations?.length">
+        <div class="alert alert-light" role="alert">
+          <i class="icofont icofont-info-circle"></i>Il n'y a aucune reclamation pour le moment.
+        </div>
+      </div>
+      <!-- Pagination  -->
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize"
+                        [collectionSize]="reclamations.length">
+        </ngb-pagination>
+        <!-- Items Par Page  -->
+        <div>
+          Items per Page:
+          <select class="custom-select" style="width: auto" name="pageSize" (change)="handlePageSizeChange($event)">
+            <option *ngFor="let size of pageSizes" [ngValue]="size">
+              {{ size }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

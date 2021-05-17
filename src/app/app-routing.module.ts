@@ -5,6 +5,7 @@ import { DashboardDefaultComponent } from "./pages/dashboard/dashboard-default/d
 import { SimplePageComponent } from "./pages/simple-page/simple-page.component";
 import { ProfileComponent } from "./pages/user/profile/profile.component";
 import { DocumentsListComponent } from "./teams/scolarite/admin-dashboard/documents-list/documents-list.component";
+import { ReclamationsListComponent } from "./teams/scolarite/admin-dashboard/reclamations-list/reclamations-list.component";
 import { NewDocumentComponent } from "./teams/scolarite/Student-dashboard/new-document/new-document.component";
 import { NewReclamationComponent } from "./teams/scolarite/Student-dashboard/new-reclamation/new-reclamation.component";
 import { StudentDocumentsListComponent } from "./teams/scolarite/Student-dashboard/student-documents-list/student-documents-list.component";
@@ -55,7 +56,7 @@ const routes: Routes = [
       },
       {
         path: "admin-reclamations-list",
-        component: DocumentsListComponent
+        component: ReclamationsListComponent
       },
 
       // {
