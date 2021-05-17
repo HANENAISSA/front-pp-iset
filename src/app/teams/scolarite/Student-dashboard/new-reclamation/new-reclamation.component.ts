@@ -44,7 +44,7 @@ export class NewReclamationComponent implements OnInit {
         formValues.status
       );
       this.service.addReclamation(this.r);
-      alert("added succesfully!");
+      this.router.navigate(["dashboard/reclamations-list"]);
     }
   }
 }

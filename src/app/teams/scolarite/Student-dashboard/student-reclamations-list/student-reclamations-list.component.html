@@ -31,3 +31,67 @@
   </div>
 </div>
 <!-- Page-header end -->
+
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-header-text">Les demandes en attente</h5>
+    <button type="button" class="btn btn-outline-primary float-right" [routerLink]="['/dashboard/new-reclamation']" >
+      <i class="icofont icofont-ui-add"></i>Ajouter
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+    <!-- Search Field -->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class="icofont icofont-search"></i></span>
+      </div>
+      <input type="text" class="form-control" placeholder="rechercher..." [(ngModel)]="search" id="listSearch">
+    </div>
+    <!-- Data Table  -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Message de Réclamation</th>
+          <th scope="col">Date</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reclamation of reclamations | searchFilter: search | slice: (page-1) * pageSize : page * pageSize ; let i = index ">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ reclamation.reclamationContent }}</td>
+          <td>{{ reclamation.date | date: "dd-MM-yyyy" }}</td>
+          <td>
+            <button type="button" class="btn btn-warning" (click)="deleteReclamation(i)">
+              <i class="icofont icofont-ui-delete"></i>Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Alert message if Table is Empty -->
+    <div class="d-flex justify-content-center" *ngIf="!reclamations?.length">
+      <div class="alert alert-light" role="alert">
+        <i class="icofont icofont-info-circle"></i>Il n'y a aucune demande pour le moment.
+      </div>
+    </div>
+    <!-- Pagination  -->
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [(page)]="page" [pageSize]="pageSize"
+                      [collectionSize]="reclamations.length">
+      </ngb-pagination>
+        <!-- Items Par Page  -->
+        <div>
+          Items per Page:
+          <select class="custom-select" style="width: auto" name="pageSize" (change)="handlePageSizeChange($event)">
+            <option *ngFor="let size of pageSizes" [ngValue]="size">
+            {{ size }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
