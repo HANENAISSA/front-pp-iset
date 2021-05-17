@@ -28,12 +28,12 @@ export class PostService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
-  addComment(idclub:any,description:any){
+  addComment(id_publication:any,description:any){
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/post/addComment",   {
 
 
-        idclub:idclub,
+        id_publication:id_publication,
         description:description,
       },
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}

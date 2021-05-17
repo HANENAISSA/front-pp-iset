@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
+import { ClubService } from '../../services/club.service';
 import { PostService } from '../../services/post.service';
 import { VoteService } from '../../services/vote.service';
 
@@ -13,27 +14,34 @@ import { VoteService } from '../../services/vote.service';
 }]
 })
 export class AccueilClubComponent implements OnInit {
-post!:any;
+post:any;
+cmtre: any;
+
 posts:any=[];
 cmtrs:any=[];
 sondages:any=[];
 votes:any=[];
-idclub:any;
-  cmtre: any;
+
+  idclub:any;
   title: any;
   nom:any;
   prenom:any;
+  idpub: void;
+  clubs: any;
 
-  constructor(private v_http:VoteService,private p_http:PostService) { }
+  constructor(private v_http:VoteService,private p_http:PostService,private _http:ClubService) { }
 
   ngOnInit() {
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
     this.idclub=localStorage.getItem('id_club');
-   // this.getposts();
+   this.getposts();
+
     //this.getcmtre();
-    //this.getsondage();
+   this.getsondage();
     //this.getvote();
+    //this.getuserClubs();
+
   }
 
 //post
@@ -52,8 +60,8 @@ idclub:any;
   addpost(){
     this.p_http.addpost(this.idclub,this.post).subscribe(data => {
       if(data['error']!=true){
-        console.log(data["token"])
-        localStorage.setItem("token",data["token"])
+        console.log(data["posts"])
+        localStorage.setItem("posts",data["posts"])
          }else{
         alert(data['message'])
       }
@@ -67,22 +75,23 @@ idclub:any;
 
 
   //commantaire
-  getcmtre(idpublication:any) {
+  /*getcmtre(idpublication:any) {
     this.p_http.getComments(idpublication).subscribe(club => {
         this.cmtrs= club['data'];
-        console.log(club);
+       // console.log(club);
       },
       error => {
         console.log(error);
       });
 
-  }
+  }*/
 
   addcmtre(idpublication:any){
     this.p_http.addComment(idpublication,this.cmtre).subscribe(data => {
       if(data['error']!=true){
-        console.log(data["token"])
-        localStorage.setItem("token",data["token"])
+
+        localStorage.setItem("cmtres",data["cmtres"])
+        console.log(data["cmtres"])
          }else{
         alert(data['message'])
       }
@@ -99,7 +108,7 @@ idclub:any;
   getsondage(){
     this.v_http.getsondage(this.idclub).subscribe(club => {
       this.sondages= club['data'];
-      console.log(club);
+      //console.log(this.sondages);
     },
     error => {
       console.log(error);
@@ -107,10 +116,10 @@ idclub:any;
   }
 
   addsondage(){
-    this.p_http.addComment(this.title,this.idclub).subscribe(data => {
+    this.v_http.addsondage(this.title,this.idclub).subscribe(data => {
       if(data['error']!=true){
-        console.log(data["token"])
-        localStorage.setItem("token",data["token"])
+        console.log(data["sondages"])
+        localStorage.setItem("sondages",data["sondages"])
          }else{
         alert(data['message'])
       }
@@ -124,23 +133,25 @@ idclub:any;
 
 
   //vote
-  getvote(idsondage:any){
+  getvotes(idsondage:any){
     this.v_http.getVotes(idsondage).subscribe(club => {
       this.votes= club['data'];
-      console.log(club);
+     // console.log(club);
     },
     error => {
       console.log(error);
     });
   }
 
-  addvote(satut:any,idsondage:any){
-    this.p_http.addComment(satut,idsondage).subscribe(data => {
+  voter(satut:any,idsondage:any){
+    this.v_http.addVote(satut,idsondage).subscribe(data => {
+      //console.log(idsondage)
       if(data['error']!=true){
-        console.log(data["token"])
-        localStorage.setItem("token",data["token"])
+        console.log(idsondage)
+        localStorage.setItem("votes",data["votes"])
          }else{
         alert(data['message'])
+        window.alert('votre vote a été enregistré avec succès');
       }
     },
       err => {
@@ -150,7 +161,15 @@ idclub:any;
     );
   }
 
-
+  /*getuserClubs() {
+    this._http.getuserClubs().subscribe(club => {
+      this.clubs= club['data'];
+      console.log(club);
+    },
+    error => {
+      console.log(error);
+    });
+  }*/
 
 
 }

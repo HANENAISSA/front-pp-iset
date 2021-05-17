@@ -21,6 +21,7 @@ export class ListeClubsComponent implements OnInit {
       .subscribe(
         club => {
           this.clubs= club['data'];
+
           console.log(club);
         },
         error => {
@@ -29,5 +30,6 @@ export class ListeClubsComponent implements OnInit {
   }
   inscrire(e:any){
     this.router.navigate(['dashboard_accueil/demande/'+e]);
+    localStorage.setItem("id_club",e);
   }
 }

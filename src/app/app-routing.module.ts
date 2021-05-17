@@ -1,4 +1,4 @@
-
+//main
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomePageComponent } from "./home-page/home-page.component";
@@ -9,18 +9,24 @@ import { ProfileComponent } from "./pages/user/profile/profile.component";
 
 //club-components
 import { AccueilGeneralComponent } from "./teams/club/general/accueil-general/accueil-general.component";
+import { ClubsComponent } from "./teams/club/general/clubs/clubs.component";
 import { DashboardAccueilComponent } from "./teams/club/general/dashboard-accueil/dashboard-accueil.component";
 import { EnvoyerDemandeComponent } from "./teams/club/general/envoyer-demande/envoyer-demande.component";
 import { ListeClubsComponent } from "./teams/club/general/liste-clubs/liste-clubs.component";
 import { ResetPasswordComponent } from "./teams/club/general/reset-password/reset-password.component";
+import { SendRequestComponent } from "./teams/club/general/send-request/send-request.component";
 import { SigninComponent } from "./teams/club/general/signin/signin.component";
 import { AccueilClubComponent } from "./teams/club/platform_club/accueil-club/accueil-club.component";
 import { DashboardClubComponent } from "./teams/club/platform_club/dashboard-club/dashboard-club.component";
 import { ListeDemandesComponent } from "./teams/club/platform_club/liste-demandes/liste-demandes.component";
 import { MembresComponent } from "./teams/club/platform_club/membres/membres.component";
 import { ProfileMembreComponent } from "./teams/club/platform_club/profile-membre/profile-membre.component";
-
+//administration-components
+//communication-components
+//scolarite-components
+//stagepfe-components
 const routes: Routes = [
+ //main-routes
   {
     path: "",
     component: HomePageComponent,
@@ -31,55 +37,6 @@ const routes: Routes = [
       },
     ],
   },
-
-
-//club-routes
-{ path: "club/signin", component: SigninComponent },
-{ path: "club/reset_password", component: ResetPasswordComponent },
-{
-  path: "dashboard_accueil",
-  component: DashboardAccueilComponent,
-  children: [
-    {
-      path: "accueil",
-      component: AccueilGeneralComponent,
-    },
-    {
-      path: "clubs",
-      component: ListeClubsComponent,
-    },
-    {
-      path: "demande/:id",
-      component: EnvoyerDemandeComponent,
-    },
-
-  ],
-},
-
-{
-  path: "dashboard_club",
-  component: DashboardClubComponent,
-  children: [
-    {
-      path: "accueil",
-      component: AccueilClubComponent,
-    },
-    {
-      path: "membres",
-      component: MembresComponent,
-    },
-    {
-      path: "profile",
-      component: ProfileMembreComponent,
-    },
-    {
-      path: "liste-demandes",
-      component: ListeDemandesComponent,
-    },
-  ],
-},
-
-
 
   {
     path: "dashboard",
@@ -95,9 +52,6 @@ const routes: Routes = [
         component: ProfileComponent,
       },
       { path: "simple", component: SimplePageComponent },
-
-
-
 
 
       // {
@@ -135,6 +89,55 @@ const routes: Routes = [
       // },
     ],
   },
+
+//club-routes
+{ path: "club/signin", component: SigninComponent },
+{ path: "club/reset_password", component: ResetPasswordComponent },
+{ path: "accueil/service_en_ligne/clubs", component: ClubsComponent },
+{ path: "clubs/envoyer_demande/:id", component: EnvoyerDemandeComponent },
+{
+  path: "dashboard_accueil",
+  component: DashboardAccueilComponent,
+  children: [
+    {
+      path: "accueil",
+      component: AccueilGeneralComponent,
+    },
+    {
+      path: "clubs",
+      component: ListeClubsComponent,
+    },
+    {
+      path: "demande/:id",
+      component: SendRequestComponent,
+    },
+
+  ],
+},
+
+{
+  path: "dashboard_club",
+  component: DashboardClubComponent,
+  children: [
+    {
+      path: "accueil",
+      component: AccueilClubComponent,
+    },
+    {
+      path: "membres",
+      component: MembresComponent,
+    },
+    {
+      path: "profile",
+      component: ProfileMembreComponent,
+    },
+    {
+      path: "liste-demandes",
+      component: ListeDemandesComponent,
+    },
+  ],
+},
+
 ];
 
 @NgModule({

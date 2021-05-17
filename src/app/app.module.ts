@@ -1,6 +1,14 @@
+ //imports
 import { BrowserModule } from '@angular/platform-browser';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import { MatRadioModule } from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
+
+//main-components
 import { AppComponent } from './app.component';
 import { AdminComponent } from './layout/admin/admin.component';
 import { SharedModule} from './shared/shared.module';
@@ -10,12 +18,15 @@ import { SimplePageComponent } from './pages/simple-page/simple-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { PopupComponent } from './popup/popup.component';
+<<<<<<< HEAD
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { MatRadioModule } from '@angular/material';
 
 
+=======
+>>>>>>> 03246a84de0610a627b72906af8eeba1aa5f925b
 //club-components
 
 import { AccueilGeneralComponent } from './teams/club/general/accueil-general/accueil-general.component';
@@ -29,9 +40,17 @@ import { SigninComponent } from './teams/club/general/signin/signin.component';
 import { EnvoyerDemandeComponent } from './teams/club/general/envoyer-demande/envoyer-demande.component';
 import { ProfileMembreComponent } from './teams/club/platform_club/profile-membre/profile-membre.component';
 import { ResetPasswordComponent } from './teams/club/general/reset-password/reset-password.component';
-//
+import { ClubsComponent } from './teams/club/general/clubs/clubs.component';
+import { SendRequestComponent } from './teams/club/general/send-request/send-request.component';
+import { CommentaireComponent } from './teams/club/platform_club/commentaire/commentaire.component';
+import { VotesComponent } from './teams/club/platform_club/votes/votes.component';
+//administration-components
+//communication-components
+//scolarite-components
+//stagepfe-components
 @NgModule({
   declarations: [
+    //main-components
     AppComponent,
     AdminComponent,
     DashboardDefaultComponent,
@@ -39,6 +58,7 @@ import { ResetPasswordComponent } from './teams/club/general/reset-password/rese
     HomePageComponent,
     ProfileComponent,
     PopupComponent,
+
 
     //club-components
     AccueilGeneralComponent,
@@ -51,7 +71,16 @@ import { ResetPasswordComponent } from './teams/club/general/reset-password/rese
     SigninComponent,
     EnvoyerDemandeComponent,
     ProfileMembreComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ClubsComponent,
+    SendRequestComponent,
+    CommentaireComponent,
+    VotesComponent,
+    //administration-components
+    //communication-components
+    //scolarite-components
+    //stagepfe-components
+
   ],
   imports: [
     BrowserModule,
@@ -63,7 +92,11 @@ import { ResetPasswordComponent } from './teams/club/general/reset-password/rese
     ReactiveFormsModule,
     MatCardModule,
     MatRadioModule,
+<<<<<<< HEAD
  
+=======
+    MatDialogModule
+>>>>>>> 03246a84de0610a627b72906af8eeba1aa5f925b
 
   ],
   entryComponents: [PopupComponent],

@@ -10,6 +10,7 @@ export class ClubService {
   getClubs() {
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/club/getclubs", ""
+
     );
   }
 
@@ -19,6 +20,14 @@ export class ClubService {
       {
         Idclub:Idclub
       }
+    );
+  }
+
+  getuserClubs() {
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/club/getuserClubs", ""
+      ,
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
     );
   }
 }
