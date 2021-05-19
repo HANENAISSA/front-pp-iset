@@ -36,6 +36,7 @@ import { SendRequestComponent } from './teams/club/general/send-request/send-req
 import { CommentaireComponent } from './teams/club/platform_club/commentaire/commentaire.component';
 import { VotesComponent } from './teams/club/platform_club/votes/votes.component';
 import { TestaccueilComponent } from './teams/club/platform_club/testaccueil/testaccueil.component';
+import { SearchPipe } from './teams/club/platform_club/liste-demandes/search.pipe';
 //administration-components
 //communication-components
 //scolarite-components
@@ -69,6 +70,7 @@ import { TestaccueilComponent } from './teams/club/platform_club/testaccueil/tes
     CommentaireComponent,
     VotesComponent,
     TestaccueilComponent,
+    SearchPipe,
     //administration-components
     //communication-components
     //scolarite-components

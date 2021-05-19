@@ -9,19 +9,32 @@ import { RequestService } from '../../services/request.service';
 export class ListeDemandesComponent implements OnInit {
   requests: any=[];
 
-  isCollapsedMobile: string;
-  isCollapsedSideBar: string;
+  //isCollapsedMobile: string;
+  //isCollapsedSideBar: string;
+  page = 1;
+  pageSize = 2;
+  pageSizes = [2, 4, 6];
+  query:any;
 
+  public searchFilter: any = '';
   constructor(private _http:RequestService,private route: ActivatedRoute)
-  { this.isCollapsedMobile = 'no-block';
-  this.isCollapsedSideBar = 'no-block';
+  {
+    //this.isCollapsedMobile = 'no-block';
+   //this.isCollapsedSideBar = 'no-block';
 }
-  toggleOpenedSidebar() {
+
+
+handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    //this.refreshData();
+  }
+  /*toggleOpenedSidebar() {
     this.isCollapsedSideBar = this.isCollapsedSideBar === 'yes-block' ? 'no-block' : 'yes-block';
   }
   onMobileMenu() {
     this.isCollapsedMobile = this.isCollapsedMobile === 'yes-block' ? 'no-block' : 'yes-block';
-  }
+  }*/
 
   ngOnInit(): void {
     this.getrequests();
