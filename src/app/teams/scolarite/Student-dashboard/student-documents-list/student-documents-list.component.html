@@ -38,9 +38,9 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="md-tabs">
-      <ngb-tabset>
+      <ngb-tabset (tabChange)="this.changePapier($event)">
         <!-- Les Demandes en Attente  -->
-        <ngb-tab title="En Attente">
+        <ngb-tab title="En Attente" [id]="3">
           <ng-template ngbTabContent>
             <div [@fadeInOutTranslate] class="m-t-15">
               <div class="card">
@@ -57,7 +57,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1"><i class="icofont icofont-search"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="rechercher..." [(ngModel)]="query" id="listSearch">
+                    <input type="text" class="form-control" placeholder="rechercher..." [(ngModel)]="search" id="listSearch">
                   </div>
                   <!-- Data Table  -->
                   <table class="table">
@@ -70,12 +70,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let document of filterItemsByType('En attente') | searchFilter: query | slice: (page-1) * pageSize : page * pageSize ; let i = index ">
+                      <tr *ngFor="let document of DocumentEnAttente | searchFilter: search | slice: (page-1) * pageSize : page * pageSize ; let i = index ">
                         <th scope="row">{{ i + 1 }}</th>
-                        <td>{{ document.paperType }}</td>
+                        <td>{{ document.libelle }}</td>
                         <td>{{ document.date | date: "dd-MM-yyyy" }}</td>
                         <td>
-                          <button type="button" class="btn btn-warning" (click)="deleteDocument(i)">
+                          <button type="button" class="btn btn-warning" (click)="deleteDocument(document.id_papier)">
                             <i class="icofont icofont-ui-delete"></i>Supprimer
                           </button>
                         </td>
@@ -83,7 +83,7 @@
                     </tbody>
                   </table>
                   <!-- Alert message if Table is Empty -->
-                  <div class="d-flex justify-content-center" *ngIf="!documents?.length">
+                  <div class="d-flex justify-content-center" *ngIf="!DocumentEnAttente?.length">
                     <div class="alert alert-light" role="alert">
                       <i class="icofont icofont-info-circle"></i>Il n'y a aucune demande pour le moment.
                     </div>
@@ -91,7 +91,7 @@
                   <!-- Pagination  -->
                   <div class="d-flex justify-content-between p-2">
                     <ngb-pagination [(page)]="page" [pageSize]="pageSize"
-                                    [collectionSize]="documents.length">
+                                    [collectionSize]="DocumentEnAttente.length">
                     </ngb-pagination>
                       <!-- Items Par Page  -->
                       <div>
@@ -110,7 +110,7 @@
           </ng-template>
         </ngb-tab>
         <!-- Les Demandes Acceptée -->
-        <ngb-tab title="Accepté">
+        <ngb-tab title="Accepté" [id]="1">
           <ng-template ngbTabContent>
             <div [@fadeInOutTranslate] class="m-t-15">
               <div class="card">
@@ -127,7 +127,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="icofont icofont-search"></i></span>
                       </div>
-                      <input type="text" class="form-control" placeholder="rechercher..." [(ngModel)]="query" id="listSearch">
+                      <input type="text" class="form-control" placeholder="rechercher..." [(ngModel)]="search" id="listSearch">
                     </div>
                     <!-- Data Table  -->
                     <table class="table">
@@ -140,20 +140,15 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let document of filterItemsByType('Accepté - En train de Préparation') | searchFilter: query | slice: (page-1) * pageSize : page * pageSize ; let i = index ">
+                        <tr *ngFor="let document of DocumentAccepted | searchFilter: search | slice: (page-1) * pageSize : page * pageSize ; let i = index ">
                           <th scope="row">{{ i + 1 }}</th>
-                          <td>{{ document.paperType }}</td>
+                          <td>{{ document.libelle }}</td>
                           <td>{{ document.date | date: "dd-MM-yyyy" }}</td>
-                          <td>
-                            <button type="button" class="btn btn-warning" (click)="deleteDocument(i)">
-                              <i class="icofont icofont-ui-delete"></i>Supprimer
-                            </button>
-                          </td>
                         </tr>
                       </tbody>
                     </table>
                      <!-- Alert message if Table is Empty -->
-                  <div class="d-flex justify-content-center" *ngIf="!documents?.length">
+                  <div class="d-flex justify-content-center" *ngIf="!DocumentAccepted?.length">
                     <div class="alert alert-light" role="alert">
                       <i class="icofont icofont-info-circle"></i>Il n'y a aucune demande pour le moment.
                     </div>
@@ -161,7 +156,7 @@
                   <!-- Pagination  -->
                   <div class="d-flex justify-content-between p-2">
                     <ngb-pagination [(page)]="page" [pageSize]="pageSize"
-                                    [collectionSize]="documents.length">
+                                    [collectionSize]="DocumentAccepted.length">
                     </ngb-pagination>
                       <!-- Items Par Page  -->
                       <div>
@@ -180,7 +175,7 @@
           </ng-template>
         </ngb-tab>
         <!-- Les Demandes Refuser -->
-        <ngb-tab title="Refuser">
+        <ngb-tab title="Refuser" [id]="2">
           <ng-template ngbTabContent>
             <div [@fadeInOutTranslate] class="m-t-15">
               <div class="card">
@@ -197,7 +192,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="icofont icofont-search"></i></span>
                       </div>
-                      <input type="text" class="form-control" placeholder="rechercher..." [(ngModel)]="query" id="listSearch">
+                      <input type="text" class="form-control" placeholder="rechercher..." [(ngModel)]="search" id="listSearch">
                     </div>
                     <!-- Data Table  -->
                     <table class="table">
@@ -210,20 +205,15 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let document of filterItemsByType('Refuser') | searchFilter: query | slice: (page-1) * pageSize : page * pageSize ; let i = index ">
+                        <tr *ngFor="let document of DocumentRefused | searchFilter: search | slice: (page-1) * pageSize : page * pageSize ; let i = index ">
                           <th scope="row">{{ i + 1 }}</th>
-                          <td>{{ document.paperType }}</td>
+                          <td>{{ document.libelle }}</td>
                           <td>{{ document.date | date: "dd-MM-yyyy" }}</td>
-                          <td>
-                            <button type="button" class="btn btn-warning" (click)="deleteDocument(i)">
-                              <i class="icofont icofont-ui-delete"></i>Supprimer
-                            </button>
-                          </td>
                         </tr>
                       </tbody>
                     </table>
                     <!-- Alert message if Table is Empty -->
-                  <div class="d-flex justify-content-center" *ngIf="!documents?.length">
+                  <div class="d-flex justify-content-center" *ngIf="!DocumentRefused?.length">
                     <div class="alert alert-light" role="alert">
                       <i class="icofont icofont-info-circle"></i>Il n'y a aucune demande pour le moment.
                     </div>
@@ -231,7 +221,7 @@
                   <!-- Pagination  -->
                   <div class="d-flex justify-content-between p-2">
                     <ngb-pagination [(page)]="page" [pageSize]="pageSize"
-                                    [collectionSize]="documents.length">
+                                    [collectionSize]="DocumentRefused.length">
                     </ngb-pagination>
                       <!-- Items Par Page  -->
                       <div>

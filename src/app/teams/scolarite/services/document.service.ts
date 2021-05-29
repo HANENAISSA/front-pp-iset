@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { Document } from '../models/document.model';
 
 @Injectable({
@@ -6,28 +9,32 @@ import { Document } from '../models/document.model';
 })
 export class DocumentService {
 
-  documents : Document[] = [];
-  constructor() { }
+  private baseURL="http://127.0.0.1:5010";
+  constructor(private httpClient: HttpClient) { }
 
-  saveDocuments(){
-    window.localStorage.setItem("documents", JSON.stringify(this.documents));
+  // Get Administratif Papers Filtred By Status
+  DocumentEnAttente(){
+    return this.httpClient.get<Document[]>(this.baseURL+'/getFileEnAttente/getEnAttente')
+      .pipe( catchError(this.handleError) );
+  }
+  DocumentAccepted(){
+    return this.httpClient.get<Document[]>(this.baseURL+'/getFileAccepter/getAccpeter')
+      .pipe( catchError(this.handleError) );
+  }
+  DocumentRefused(){
+    return this.httpClient.get<Document[]>(this.baseURL+'/getFileRefuser/getRefuser')
+      .pipe( catchError(this.handleError) );
   }
 
-  getDocuments(){
-    if(window.localStorage.getItem("documents")){
-      this.documents = JSON.parse(window.localStorage.getItem("documents"));
-    }
-    else{
-      this.documents = [];
-    }
-
-    return this.documents;
-
+  // Delete Administratif Paper
+  deleteDocument(indice : number){
+    return this.httpClient.delete(this.baseURL+'/DeleteFile/delete/'+indice);
   }
 
-  addDocument(d : Document){
-    this.documents.push(d);
-    this.saveDocuments();
+
+  // Creat new Paper
+  addDocument(doc : Document){
+    return this.httpClient.post<Document[]>(this.baseURL+'/addfile/add',doc);
   }
 
   acceptDocumet(i: number){
@@ -37,15 +44,16 @@ export class DocumentService {
   }
 
   refuseDocument(i: number){
-    let data = JSON.parse(window.localStorage.getItem("documents"));
-    data[i].status = "Refuser";
-    localStorage.setItem("documents", JSON.stringify(data));
+    // let data = JSON.parse(window.localStorage.getItem("documents"));
+    // data[i].status = "Refuser";
+    // localStorage.setItem("documents", JSON.stringify(data));
   }
 
-  deleteDocument(indice : number){
-    if(confirm("Etes-vous sûre de vouloir supprimer cette demande : " + this.documents[indice].paperType)){
-      this.documents.splice(indice, 1);
-      this.saveDocuments();
-    }
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      console.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
   }
 }

@@ -1,30 +1,7 @@
 export class Document {
-  firstName: string;
-  lastName: string;
-  cin: string;
-  classe: string;
-  paperType: string;
-  description: string;
   date: Date;
-  status: string;
-
-  constructor(
-    firstName: string,
-    lastName: string,
-    cin: string,
-    classe: string,
-    paperType: string,
-    description: string,
-    date: Date,
-    status: string
-  ) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.cin = cin;
-    this.classe = classe;
-    this.paperType = paperType;
-    this.description = description;
-    this.date = date;
-    this.status = status;
-  }
+  raison: string;
+  id_type_papier: number;
+  id_user : 1;
+  id_statut_papier: 3;
 }

@@ -25,7 +25,7 @@ export class DocumentsListComponent implements OnInit {
   page = 1;
   pageSize = 2;
   pageSizes = [2, 4, 6];
-  documents: Document[];
+  // documents: Document[];
   public search:any = '';
   constructor(private service: DocumentService, private modalService: NgbModal) { }
 
@@ -33,7 +33,7 @@ export class DocumentsListComponent implements OnInit {
     this.refreshData();
   }
   refreshData(){
-    this.documents = this.service.getDocuments();
+    // this.documents = this.service.getDocuments();
   }
 
   deleteDocument(indice: number) {
@@ -71,7 +71,7 @@ export class DocumentsListComponent implements OnInit {
   }
 
   filterItemsByType(type){
-    return this.documents.filter(x => x.status == type);
+    // return this.documents.filter(x => x.status == type);
   }
 
   handlePageSizeChange(event: any): void {

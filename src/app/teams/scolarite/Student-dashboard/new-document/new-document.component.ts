@@ -35,18 +35,18 @@ export class NewDocumentComponent implements OnInit {
     if (this.addDocForm.invalid) {
       this.hidden = false;
     } else {
-      const formValues = this.addDocForm.value;
-      this.d = new Document(
-        formValues.firstName,
-        formValues.lastName,
-        formValues.cin,
-        formValues.class,
-        formValues.paperType,
-        formValues.description,
-        formValues.date,
-        formValues.status
-      );
-      this.service.addDocument(this.d);
+      // const formValues = this.addDocForm.value;
+      // this.d = new Document(
+      //   formValues.firstName,
+      //   formValues.lastName,
+      //   formValues.cin,
+      //   formValues.class,
+      //   formValues.paperType,
+      //   formValues.description,
+      //   formValues.date,
+      //   formValues.status
+      // );
+      // this.service.addDocument(this.d);
       this.router.navigate(["dashboard/documents-list"]);
     }
   }
