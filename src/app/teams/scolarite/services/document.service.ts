@@ -8,7 +8,6 @@ import { Document } from '../models/document.model';
   providedIn: 'root'
 })
 export class DocumentService {
-
   private baseURL="http://127.0.0.1:5010";
   constructor(private httpClient: HttpClient) { }
 
@@ -43,16 +42,12 @@ export class DocumentService {
     return this.httpClient.post<Document[]>(this.baseURL+'/addfile/add',document);
   }
 
-  acceptDocumet(i: number){
-    let data = JSON.parse(window.localStorage.getItem("documents"));
-    data[i].status = "Accepté - En train de Préparation";
-    localStorage.setItem("documents", JSON.stringify(data));
+  acceptDocumet(id, document){
+    return this.httpClient.put(this.baseURL+"/updatefile/update/"+id,document);
   }
 
-  refuseDocument(i: number){
-    // let data = JSON.parse(window.localStorage.getItem("documents"));
-    // data[i].status = "Refuser";
-    // localStorage.setItem("documents", JSON.stringify(data));
+  refuseDocument(id: number, document:Document){
+    return this.httpClient.put(this.baseURL+"/updatefile/update/"+id,document.id_statut_papier=2);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
