@@ -1,7 +1,8 @@
 export class Document {
-  date: Date;
+  id_papier: number;
   raison: string;
+  date: Date;
   id_type_papier: number;
-  id_user : 1;
-  id_statut_papier: 3;
+  id_user : number;
+  id_statut_papier: number;
 }

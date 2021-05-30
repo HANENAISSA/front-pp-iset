@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewDocumentComponent } from './teams/scolarite/Student-dashboard/new-document/new-document.component';
 import { ScolariteComponent } from './teams/scolarite/scolarite/scolarite.component';
 import { StudentDocumentsListComponent } from './teams/scolarite/Student-dashboard/student-documents-list/student-documents-list.component';
-import { DocumentsListComponent } from './teams/scolarite/admin-dashboard/documents-list/documents-list.component';
+import { DocDetailsModal, DocumentsListComponent } from './teams/scolarite/admin-dashboard/documents-list/documents-list.component';
 import { SearchPipe } from './teams/scolarite/admin-dashboard/documents-list/search.pipe';
 import { NewReclamationComponent } from './teams/scolarite/Student-dashboard/new-reclamation/new-reclamation.component';
 import { StudentReclamationsListComponent } from './teams/scolarite/Student-dashboard/student-reclamations-list/student-reclamations-list.component';
@@ -39,7 +39,8 @@ import { SearchReclamationPipe } from './teams/scolarite/admin-dashboard/reclama
     NewReclamationComponent,
     StudentReclamationsListComponent,
     ReclamationsListComponent,
-    SearchReclamationPipe
+    SearchReclamationPipe,
+    DocDetailsModal
   ],
   imports: [
     BrowserModule,

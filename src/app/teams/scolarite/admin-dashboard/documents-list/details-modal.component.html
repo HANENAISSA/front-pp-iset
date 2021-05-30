@@ -47,7 +47,7 @@
   <hr />
   <div class="row">
     <label class="col-sm-4">Date de Création</label>
-    <h5>{{ demandDetails.date }}</h5>
+    <h5>{{ demandDetails.date | date: "dd-MM-yyyy" }}</h5>
   </div>
 </div>
 <div class="modal-footer">

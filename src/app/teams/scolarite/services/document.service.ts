@@ -25,7 +25,10 @@ export class DocumentService {
     return this.httpClient.get<Document[]>(this.baseURL+'/getFileRefuser/getRefuser')
       .pipe( catchError(this.handleError) );
   }
-
+  getAllDocument(){
+    return this.httpClient.get<Document[]>(this.baseURL+'/getAllFile/getAll')
+      .pipe( catchError(this.handleError) );
+  }
   // Delete Administratif Paper
   deleteDocument(indice : number){
     return this.httpClient.delete(this.baseURL+'/DeleteFile/delete/'+indice);
