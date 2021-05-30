@@ -180,7 +180,11 @@ export class DashboardClubComponent implements OnInit {
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubs= club['data'];
-     // localStorage.setItem("id_club",club['data']['id_club']);
+      for (var club of this.clubs) {
+        console.log(club.id_club);
+        localStorage.setItem("id_club",club.id_club);
+      }
+
       console.log(club);
     },
     error => {

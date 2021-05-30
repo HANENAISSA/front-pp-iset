@@ -17,6 +17,7 @@ export class ListeDemandesComponent implements OnInit {
   query:any;
 
   public searchFilter: any = '';
+  equipes: any=[];
   constructor(private _http:RequestService,private route: ActivatedRoute)
   {
     //this.isCollapsedMobile = 'no-block';
@@ -40,6 +41,17 @@ handlePageSizeChange(event: any): void {
     this.getrequests();
 
   }
+  getteams() {
+    this._http.getTeams()
+      .subscribe(
+        club => {
+          this.equipes= club['data'];
+          console.log(this.equipes)
+        },
+        error => {
+          console.log(error);
+        });
+  }
   getrequests() {
     this._http.getRequests().subscribe(club => {
         this.requests= club['data'];
@@ -51,8 +63,8 @@ handlePageSizeChange(event: any): void {
 
   }
 
-  Accepter(iddemande:any, email:any ){
-     this._http.acceptRequests(iddemande,email).subscribe(data => {
+  Accepter(id_demande:any, email:any ){
+     this._http.acceptRequests(id_demande,email).subscribe(data => {
       console.log(data)
       if(data['error']!=true){
 

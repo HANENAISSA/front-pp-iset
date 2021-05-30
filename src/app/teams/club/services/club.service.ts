@@ -30,4 +30,13 @@ export class ClubService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
     );
   }
+  ///club/getClubYouAreAdminIn
+
+  getClubYouAreAdminIn() {
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/club/getClubYouAreAdminIn", ""
+      ,
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+    );
+  }
 }

@@ -23,10 +23,8 @@ import { ClubService } from '../../services/club.service';
 })
 export class ProfileMembreComponent implements OnInit {
   editProfile = true;
-  editProfileIcon = 'icofont-edit';
+  editProfileIcon = 'icofont-ui-edit';
 
-  editAbout = true;
-  editAboutIcon = 'icofont-edit';
 
   public basicContent: string;
 
@@ -73,10 +71,7 @@ export class ProfileMembreComponent implements OnInit {
     this.editProfile = !this.editProfile;
   }
 
-  toggleEditAbout() {
-    this.editAboutIcon = (this.editAboutIcon === 'icofont-close') ? 'icofont-edit' : 'icofont-close';
-    this.editAbout = !this.editAbout;
-  }
+
   getuserClubs() {
     this.http.getuserClubs().subscribe(club => {
       this.clubs= club['data'];

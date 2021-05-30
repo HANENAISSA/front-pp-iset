@@ -28,35 +28,60 @@
   </nav>
 </header>
 <!-- End header -->
-<div class="clubnavbar">
-  <div class="btnContainer"><button (click)="signin()">Sign in</button></div>
-</div>
+
 <!-- section -->
 
+<div class="section layout_padding padding_bottom-0">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="full">
+                  <div class="heading_main text_align_center">
+         <h2><span>événements</span></h2>
+                  </div>
+      </div>
+          </div>
+  </div>
+         <div class="row">
+          <div class="col-lg-12">
+              <div id="demo" class="carousel slide" data-ride="carousel" *ngFor="let event of events">
+
+                  <!-- The slideshow -->
+                  <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                  <div class="full blog_img_popular">
+                                    <img class="img-responsive" [src]="event.url_image" alt="#" />
+                                    <h4>{{event.titre_event}}</h4>
+
+
+
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-12">
+
+
+                                 <h5>{{event.date_debut}} à {{event.heure_debut}}</h5>
+                                 <h5>{{event.date_fin}} à {{event.heure_fin}}</h5>
+                                 <p>{{event.description}}</p>
+
+                            </div>
+                          </div>
+                      </div>
+
+                  </div>
+
+
+
+              </div>
+          </div>
+
+      </div>
+     </div>
+</div>
  <!-- end section -->
 
- <!-- section club  -->
-<div class="section margin-top_50 allClubContainer">
-    <div class="container"  *ngFor="let club of clubs" >
-        <div class="row">
-            <div class="col-md-6 imageContainer">
-                <div class="full float-right_img">
-                    <img src="assets/assets/images/img6.png" alt="#" />
-                </div>
-            </div>
-            <div class="col-md-6 layout_padding_2">
-
-              <div class="club_data_container">
-                <div class="header"><h1>{{club.nom_club}}</h1></div>
-                <div class="domain"><h3 >domain {{club.domaine}}</h3></div>
-                <div class="description"><p>{{club.description}} </p></div>
-                <div class="btninscri"><a class="hvr-radial-out button-theme btninscri" (click)="inscrire(club.id_club)" >Inscrire</a></div>
-              </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end section -->
 <!-- Start Footer -->
 <footer class="footer-box">
   <div class="container">

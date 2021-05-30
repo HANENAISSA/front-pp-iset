@@ -44,7 +44,7 @@
 
 
 
-            <app-card [title]="'Publication '" [blockClass]="'p-3'" *ngFor="let post of posts">
+            <app-card [title]="'Publication '" [blockClass]="'p-3'" *ngFor="let post of posts " sortBy="post.description">
             <br>
                   <ul class="media-list" >
                     <li class="media">
@@ -55,7 +55,7 @@
                       </div>
                       <div class="media-body">
                         <h6 class="media-heading">{{post.nom}}{{post.prenom}}<span class="f-12 text-muted m-l-5">{{post.date}}{{post.heure}}</span></h6>
-                        <p class="m-b-0">{{post.description}}</p>
+                        <p class="m-b-0" sortBy="post.description">{{post.description}}</p>
                         <div class="m-b-25">
                           <span><a href="javascript:;" class="m-r-10 f-12">Reply</a></span><span><a href="javascript:;" class="f-12">Edit</a> </span>
                         </div>
@@ -77,9 +77,9 @@
                     <div class="md-group-add-on p-relative col-lg-12">
                       <div class="input-group input-group-button input-group-primary">
 
-                        <input type="text" class="form-control" placeholder="Write Comment">
+                        <input type="text" class="form-control" placeholder="Write Comment" [(ngModel)]="cmtre">
                         <span class="input-group-append"><label class="input-group-text">
-                                       <button type="button" class="btn btn-primary"><i class="icofont icofont-plus"></i>Publier</button>
+                                       <button type="button" class="btn btn-primary" (click)=addcmtre(post.id_publication)><i class="icofont icofont-plus"></i>Publier</button>
                         </label></span>
                       </div>
                     </div>
@@ -103,15 +103,185 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-header-text">événements</h5>
-
+                  <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
+                    <i class="icofont {{ editProfileIcon }}"></i>
+                  </button>
                 </div>
                 <div class="card-body">
+	<!-- section
+  <div class="section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <div class="heading_main text_align_center">
+                      <h2><span>Popular </span>Courses</h2>
+                    </div>
+                </div>
+              </div>
 
+
+        </div>
+    </div>
+</div>
+ end section -->
+                  <div class="view-info" *ngIf="editProfile">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="general-info">
+                          <div class="row">
+<!--display event-->
+                            <div class="col-lg-12">
+                              <div class="card fb-card" *ngFor="let event of events" >
+                                <div class="card-header">
+                                  <i class="ti-announcement"></i>
+                                  <div class="d-inline-block">
+                                    <h5>{{event.titre_event}}</h5>
+                                    <span *ngIf="event.statut == 0">Gratuit</span>
+                                    <span *ngIf="event.statut == 1">Payé</span>
+                                  </div>
+                                </div>
+                                <div class="card-block text-center">
+                                  <div class="row">
+
+             <div class="col-md-4">
+              <div class="full blog_img_popular">
+                  <img class="img-responsive" src="assets/assets/images/p3.png" alt="#" />
+                   <h4>{{event.titre_event}}</h4>
+              </div>
+            </div>
+                                    <div class="col-6">
+                                      <h5 style="color:blue; align-self: left;">{{event.date_debut}} à {{event.heure_debut}}</h5> <br>
+                                      <h5 style="color:blue;">{{event.date_fin}} à {{event.heure_fin}} </h5>
+                                      <p class="text-muted">{{event.description}}</p>
+                                      <p >{{event.url_event}}</p>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+          <!--display event-->
+                            </div>
+                          </div>
+                          <!-- end of row -->
+                        </div>
+                        <!-- end of general info -->
+                      </div>
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of view-info -->
+                  <div class="edit-info" *ngIf="!editProfile">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="general-info">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="table-responsive">
+                                <table class="table">
+                                  <tbody>
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
+                                        <input type="text" class="form-control" placeholder="Titre " value="" [(ngModel)]="titre_event">
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-prepend"><label class="input-group-text"><i class="ti-gallery"></i></label></span>
+                                        <input type="file" class="form-control" value="" placeholder="upload image de l'événement" [(ngModel)]="url_image">
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <div class="form-radio">
+                                        <div class="group-add-on">
+                                          <div class="radio radiofill radio-inline">
+                                            <label>
+                                              <input type="radio" name="statut" value="0" [(ngModel)]="statut" checked><i class="helper"></i> Gratuit
+                                            </label>
+                                          </div>
+                                          <div class="radio radiofill radio-inline">
+                                            <label>
+                                              <input type="radio" name="statut" value ="1" [(ngModel)]="statut" ><i class="helper"></i> Payé
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <input id="dropper-default" class="form-control" type="date" value="" placeholder="date de debut" [(ngModel)]="date_debut" />
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <input id="dropper-default" class="form-control" type="date" value="" placeholder="date de fin" [(ngModel)]="date_fin" />
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-location-pin"></i></label></span>
+                                        <input type="text" class="form-control" placeholder="Description" value="" [(ngModel)]="description">
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <input id="dropper-default" class="form-control" type="time" value="" placeholder="heure de debut" [(ngModel)]="heure_debut" />
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <input id="dropper-default" class="form-control" type="time" value="" placeholder="heure de fin" [(ngModel)]="heure_fin" />
+                                    </td>
+                                  </tr>
+                                <tr>
+                                  <td>
+                                    <div class="input-group">
+                                      <span class="input-group-prepend"><label class="input-group-text"><i class="ti-file"></i></label></span>
+                                      <input type="file" class="form-control" value="" placeholder="upload le fichier de participer" [(ngModel)]="url_event">
+                                    </div>
+                                  </td>
+                                </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+
+                          </div>
+                          <!-- end of row -->
+                          <div class="text-center">
+                            <button  class="btn btn-primary waves-effect waves-light m-r-20" (click)="addevent()">Sauvegarder</button>
+                            <a href="javascript:;" id="edit-cancel" class="btn btn-default waves-effect" (click)="toggleEditProfile()">Annuler
+                              </a>
+                          </div>
+                        </div>
+                        <!-- end of edit info -->
+                      </div>
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of edit-info -->
                 </div>
                 <!-- end of card-body -->
               </div>
               <!-- personal card end-->
-            </div>
+
+
+                </div>
+                <!-- end of card-body -->
+
+              <!-- personal card end-->
+
           </ng-template>
         </ngb-tab>
         <!-- events tab-->
@@ -121,8 +291,19 @@
   </div>
   <!-- calendar-->
 
+
 <div class="col-md-12 col-xl-4">
-  <div class="card fb-card">
+   <!-- browser Start -->
+
+    <app-card [title]="'Calendrier'">
+      <div class="browser-card b-t-default p-t-15">
+        <p class="d-inline-block m-0 ">event</p>
+        <button class="btn bg-c-yellow btn-round float-right btn-browser ">date</button>
+      </div>
+    </app-card>
+
+  <!-- browser End -->
+  <!--<div class="card fb-card">
     <div class="card-header">
       <i class="ti-calendar"></i>
       <div class="d-inline-block">
@@ -135,7 +316,7 @@
 
       </div>
     </div>
-  </div>
+  </div>-->
   <!-- sondage -->
   <!-- add sondage -->
   <div class="card widget-statstic-card">
@@ -190,8 +371,54 @@
           </label>
            </div>
 </form>
+                                            <!-- Data widget start -->
+                                            <div class="card-block p-b-10">
+                                              <div class="table-responsive">
+                                                  <table class="table table-hover" *ngFor="let vote of vote">
+                                                      <thead>
+                                                          <tr>
+                                                              <th>Vote</th>
+                                                              <th>Nombres de votes</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                          <tr>
+                                                              <td>
+                                                                  <div class="task-contain">
+                                                                      <h6 class="bg-c-blue d-inline-block text-center">Oui</h6>
+                                                                      <p class="d-inline-block m-l-20">OUI</p>
+                                                                  </div>
+                                                              </td>
+                                                              <td>
+                                                                  <p class="d-inline-block m-r-20">{{vote}}</p>
+                                                                  <div class="progress d-inline-block">
+                                                                      <div class="progress-bar bg-c-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                                                                      </div>
+                                                                  </div>
+                                                              </td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td>
+                                                                <div class="task-contain">
+                                                                    <h6 class="bg-c-pink d-inline-block text-center">Non</h6>
+                                                                    <p class="d-inline-block m-l-20">Non</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <p class="d-inline-block m-r-20">4 : 36</p>
+                                                                <div class="progress d-inline-block">
+                                                                    <div class="progress-bar bg-c-pink" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                      </tbody>
+                                                  </table>
+                                              </div>
+                                          </div>
+
 <p  *ngIf="f.value==true">vous avez voté avec oui . </p>
-<p  *ngIf="value==false">vous avez voté avec non .</p>
+<p  *ngIf="f.value==false">vous avez voté avec non .</p>
 
     </div>
   </div>

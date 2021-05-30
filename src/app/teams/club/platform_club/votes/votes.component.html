@@ -1,1 +1,45 @@
-<p>votes works!</p>
+
+                                            <div class="card-block p-b-10">
+                                              <div class="table-responsive">
+                                                  <table class="table table-hover" *ngFor="let vote of votes">
+                                                      <thead>
+                                                          <tr>
+                                                              <th>Vote</th>
+                                                              <th>Nombres de votes</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                          <tr>
+                                                              <td>
+                                                                  <div class="task-contain">
+                                                                      <h6 class="bg-c-blue d-inline-block text-center">Oui</h6>
+                                                                      <p class="d-inline-block m-l-20">OUI</p>
+                                                                  </div>
+                                                              </td>
+                                                              <td>
+                                                                  <p class="d-inline-block m-r-20">{{vote}}</p>
+                                                                  <div class="progress d-inline-block">
+                                                                      <div class="progress-bar bg-c-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                                                                      </div>
+                                                                  </div>
+                                                              </td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td>
+                                                                <div class="task-contain">
+                                                                    <h6 class="bg-c-pink d-inline-block text-center">Non</h6>
+                                                                    <p class="d-inline-block m-l-20">Non</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <p class="d-inline-block m-r-20">4 : 36</p>
+                                                                <div class="progress d-inline-block">
+                                                                    <div class="progress-bar bg-c-pink" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                      </tbody>
+                                                  </table>
+                                              </div>
+                                          </div>
