@@ -65,13 +65,7 @@
             type="text"
             id="first-name"
             class="form-control"
-            formControlName="firstName"
-            [ngClass]="{
-              'is-invalid':
-                addDocForm.get('firstName').touched &&
-                addDocForm.get('firstName').invalid
-            }"
-            required
+            disabled
           />
         </div>
         <div class="form-group">
@@ -81,13 +75,7 @@
             type="text"
             id="last-name"
             class="form-control"
-            formControlName="lastName"
-            [ngClass]="{
-              'is-invalid':
-                addDocForm.get('lastName').touched &&
-                addDocForm.get('lastName').invalid
-            }"
-            required
+            disabled
           />
         </div>
         <div class="form-group">
@@ -99,38 +87,19 @@
             maxlength="99999999"
             id="cin"
             class="form-control"
-            formControlName="cin"
-            [ngClass]="{
-              'is-invalid':
-                addDocForm.get('cin').touched && addDocForm.get('cin').invalid
-            }"
-            required
+            disabled
           />
           <div class="invalid-feedback">Veuillez tapez votre CIN.</div>
         </div>
         <div class="form-group">
           <!-- Class Input  -->
           <label for="class">Classe</label>
-          <select
-            class="form-control"
+          <input
+            type="text"
             id="class"
-            formControlName="class"
-            [ngClass]="{
-              'is-invalid':
-                addDocForm.get('class').touched &&
-                addDocForm.get('class').invalid
-            }"
-            required
-          >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-          <div class="invalid-feedback">
-            Veuillez sélectionner votre classe.
-          </div>
+            class="form-control"
+            disabled
+          />
         </div>
 
         <div class="form-group">
@@ -139,21 +108,11 @@
           <select
             class="form-control"
             id="paperType"
-            formControlName="paperType"
-            [ngClass]="{
-              'is-invalid':
-                addDocForm.get('paperType').touched &&
-                addDocForm.get('paperType').invalid
-            }"
+            formControlName="id_type_papier"
+            [ngClass]="{ 'is-invalid': addDocForm.get('id_type_papier').touched && addDocForm.get('id_type_papier').invalid }"
             required
           >
-            <option value=""></option>
-            <option value="Attestation de présence">Attestation de présence</option>
-            <option value="Certificat de départ">Certificat de départ</option>
-            <option value="Extraire un fichier sain">Extraire un fichier sain</option>
-            <option value="Un pair d'une carte d'étudiant">Un pair d'une carte d'étudiant</option>
-            <option value="Certificat en cursus universitaire">Certificat en cursus universitaire</option>
-            <option value="Retrait de la démarcation">Retrait de la démarcation</option>
+            <option *ngFor="let item of paperTypes" [value]="item.id_type_papier">{{item.libelle_type_papier}}</option>
           </select>
           <div class="invalid-feedback">
             Veuillez sélectionner le type de papier.
@@ -166,7 +125,7 @@
             class="form-control"
             id="paperRaison"
             rows="3"
-            formControlName="description"
+            formControlName="raison"
           ></textarea>
         </div>
         <!-- alert Message -->

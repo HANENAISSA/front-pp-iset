@@ -11,43 +11,39 @@ import { DocumentService } from '../../services/document.service';
 })
 export class NewDocumentComponent implements OnInit {
   hidden;
-  d : Document;
   currentDate = new Date();
+  paperTypes:any =[];
 
   addDocForm = new FormGroup({
-    firstName: new FormControl("", Validators.required),
-    lastName: new FormControl("", Validators.required),
-    cin: new FormControl("", [Validators.required, Validators.minLength(8)]),
-    class: new FormControl("", Validators.required),
-    paperType: new FormControl("", Validators.required),
-    description: new FormControl(""),
+    // firstName: new FormControl("" ),
+    // lastName: new FormControl("" ),
+    // cin: new FormControl("" ),
+    // class: new FormControl("" ),
+    id_type_papier: new FormControl("", Validators.required),
+    raison: new FormControl(""),
     date: new FormControl(this.currentDate),
-    status: new FormControl("En attente")
+    id_user: new FormControl(1),
+    status: new FormControl(3)
   });
 
   constructor(private service: DocumentService, private router: Router) {}
 
   ngOnInit() {
     this.hidden = true;
+    this.service.getAllPaperTypes().subscribe(data=>{
+      this.paperTypes = data;
+    });
   }
 
   addDocument() {
     if (this.addDocForm.invalid) {
       this.hidden = false;
     } else {
-      // const formValues = this.addDocForm.value;
-      // this.d = new Document(
-      //   formValues.firstName,
-      //   formValues.lastName,
-      //   formValues.cin,
-      //   formValues.class,
-      //   formValues.paperType,
-      //   formValues.description,
-      //   formValues.date,
-      //   formValues.status
-      // );
-      // this.service.addDocument(this.d);
-      this.router.navigate(["dashboard/documents-list"]);
+      const formValues = this.addDocForm.value;
+      const newDoc = new Document(formValues.raison,formValues.date,parseInt(formValues.id_type_papier),formValues.id_user,formValues.status);
+      this.service.addDocument(newDoc).subscribe((data)=>{
+        this.router.navigate(["dashboard/documents-list"]);
+      })
     }
   }
 }
