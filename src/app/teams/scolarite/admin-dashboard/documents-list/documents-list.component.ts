@@ -74,35 +74,26 @@ export class DocumentsListComponent implements OnInit {
 
 
   accept(id,document) {
+    let index = id;
+    document.id_statut_papier = 1;
+    this.documents[index] = document;
     this.service.acceptDocumet(id,document).subscribe(response => {
-      let index = id;
-      console.log(index);
-      document.id_statut_papier == 1;
-      this.documents[index] = document;
-      console.log(document.id_statut_papier);
       this.refreshData(this.actualId);
-      console.log(document.id_statut_papier,"after");
-      // this.documents.map(x => {
-      //   if(x.id == this.doc.id_papier){
-      //     x = this.doc;
-      //   }
-      // });
-      // this.doc.id_statut_papier = 1;
-      // console.log(this.doc.id_statut_papier);
     },
     error => {
       console.log(error);
     });
-    // data =>{
-    //   this.refreshData(this.actualId);
-    //   console.warn(data);
-    //   console.warn(document);
-    // });
   }
-  refuse(i: number,document:Document) {
-    this.service.acceptDocumet(i,document);
-    this.refreshData(this.actualId);
-    console.log(i);
+  refuse(id,document) {
+    let index = id;
+    document.id_statut_papier = 2;
+    this.documents[index] = document;
+    this.service.refuseDocument(id,document).subscribe(response => {
+      this.refreshData(this.actualId);
+    },
+    error => {
+      console.log(error);
+    });
   }
 
   openModal(document) {

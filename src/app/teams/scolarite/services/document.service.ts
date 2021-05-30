@@ -43,11 +43,11 @@ export class DocumentService {
   }
 
   acceptDocumet(id, document){
-    return this.httpClient.put(this.baseURL+"/updatefile/update/"+id,document);
+    return this.httpClient.put(this.baseURL+"/updatefile/update"+"/"+id,document);
   }
 
-  refuseDocument(id: number, document:Document){
-    return this.httpClient.put(this.baseURL+"/updatefile/update/"+id,document.id_statut_papier=2);
+  refuseDocument(id, document){
+    return this.httpClient.put(this.baseURL+"/updatefile/update"+"/"+id,document);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
