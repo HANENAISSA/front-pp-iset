@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
+//import { DialogElementsExampleDialog } from './dialog-elements-example-dialog';
+//import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-envoyer-demande',
@@ -14,7 +17,7 @@ export class EnvoyerDemandeComponent implements OnInit {
   motivation?: String;
   club?:any;
   equipes: any =[];
-  constructor(private _http:RequestService,private route: ActivatedRoute,private router: Router) {
+  constructor(public dialog: MatDialog,private _http:RequestService,private route: ActivatedRoute,private router: Router) {
 
   }
   ngOnInit(): void {
@@ -33,7 +36,8 @@ sendRequest(){
         localStorage.setItem("token",data["token"])
        // localStorage.setItem("id_club",data['data']['id_club']);
         this.router.navigate(['accueil/service_en_ligne/clubs']);
-        window.alert('votre demande a été envoyé avec succès')
+        //window.alert('votre demande a été envoyé avec succès')
+        //this.dialog.open(DialogElementsExampleDialog);
       }else{
         alert(data['message'])
       }
@@ -59,4 +63,5 @@ sendRequest(){
   fun(e: any){
     this.equipe = e.target.value;
   }
+
 }

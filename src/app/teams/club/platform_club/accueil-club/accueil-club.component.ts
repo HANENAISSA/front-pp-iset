@@ -4,6 +4,7 @@ import { PostService } from '../../services/post.service';
 import { VoteService } from '../../services/vote.service';
 import {animate, style, transition, trigger} from '@angular/animations';
 import { EventService } from '../../services/event.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-accueil-club',
@@ -56,12 +57,15 @@ export class AccueilClubComponent implements OnInit {
 
 
 
-  constructor(private e_http: EventService,private v_http:VoteService,private p_http:PostService,private _http:ClubService) { }
+  constructor(private route: ActivatedRoute,private router: Router,private e_http: EventService,private v_http:VoteService,private p_http:PostService,private _http:ClubService) {
+
+   }
 
   ngOnInit() {
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
-    this.idclub=localStorage.getItem('id_club');
+    this.idclub= this.route.snapshot.paramMap.get('id');
+    console.log(this.idclub)
     this.id_membre=localStorage.getItem('id_membre');
     this.getposts();
     this.getClubEvents();
@@ -222,14 +226,31 @@ getClubEvents(){
 }
 //description	date_debut	date_fin	heure_debut	heure_fin	statut
   //	url_image	url_event	id_membre	id_club
-
+image(e:any){
+this.url_image=e.target.files[0];
+console.log(e.target.files[0])
+}
 addevent(){
-  this.e_http.addevent(this.titre_event,this.description,this.date_debut, this.date_fin,this.heure_debut,this.heure_fin,
-    this.statut,this.url_image,this.url_event,this.id_membre,this.idclub).subscribe(data => {
+  const formData = new FormData();
+  formData.append('titre_event', this.titre_event);
+  formData.append('description', this.description);
+  formData.append('date_debut', this.date_debut);
+  formData.append('date_fin', this.date_fin);
+  formData.append('heure_debut', this.heure_debut);
+  formData.append('heure_fin', this.heure_fin);
+  formData.append('statut', this.statut);
+    formData.append('file', this.url_image);
+    console.log(this.url_image)
+    formData.append('url_event', this.url_event);
+    formData.append('id_membre', this.id_membre);
+    formData.append('id_club', this.idclub);
+
+  this.e_http.addevent(formData).subscribe(data => {
+
     if(data['error']!=true){
       //this.description='';
       //this.getClubEvents();
-console.log(data)
+      console.log(data)
       window.alert('votre event a été enregistré avec succès');
 
        }else{
@@ -238,7 +259,7 @@ console.log(data)
   },
     err => {
   //show error toast when the server went wrong
-  console.log(err);
+   console.log(err);
     }
   );
 }

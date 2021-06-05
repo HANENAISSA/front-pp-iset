@@ -93,6 +93,7 @@ const routes: Routes = [
   },
 
 //club-routes
+{ path: "test", component: TestaccueilComponent },
 { path: "club/events", component: EventsComponent },
 { path: "club/signin", component: SigninComponent },
 { path: "club/reset_password", component: ResetPasswordComponent },
@@ -124,11 +125,15 @@ const routes: Routes = [
   component: DashboardClubComponent,
   children: [
     {
+      path: "accueil/:id",
+      component: AccueilClubComponent,
+    },
+    {
       path: "accueil",
       component: AccueilClubComponent,
     },
     {
-      path: "membres",
+      path: "membres/:id",
       component: MembresComponent,
     },
     {
@@ -136,7 +141,7 @@ const routes: Routes = [
       component: ProfileMembreComponent,
     },
     {
-      path: "liste-demandes",
+      path: "liste-demandes/:id",
       component: ListeDemandesComponent,
     },
     {

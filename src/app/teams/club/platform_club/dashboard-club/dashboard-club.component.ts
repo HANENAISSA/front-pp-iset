@@ -110,6 +110,7 @@ export class DashboardClubComponent implements OnInit {
   idclub: string;
   role: string;
   clubs:any=[];
+  id: string;
 
   constructor(private _http:ClubService,private  router: Router,public menuItems: MenuItems, private modalService: NgbModal) {
     this.navType = 'st5';
@@ -174,15 +175,28 @@ export class DashboardClubComponent implements OnInit {
     localStorage.removeItem("nom");
     localStorage.removeItem("prenom");
     localStorage.removeItem("id_club");
-    this.router.navigate(['/dashboard_accueil/accueil']);
+    this.router.navigate(['/club/signin']);
 
+  }
+
+  gotoAccueil(idclub:any){
+    window.location.href = '/dashboard_club/accueil/'+idclub;
+  }
+  gotoProfil(idclub:any){
+    window.location.href = '/dashboard_club/profile/'+idclub;
+  }
+  gotoMembres(idclub:any){
+    window.location.href = '/dashboard_club/membres/'+idclub;
+  }
+  gotoDemandes(idclub:any){
+    window.location.href = '/dashboard_club/liste-demandes/'+idclub;
   }
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubs= club['data'];
       for (var club of this.clubs) {
-        console.log(club.id_club);
-        localStorage.setItem("id_club",club.id_club);
+       // console.log(club.id_club);
+        //localStorage.setItem("id_club",club.id_club);
       }
 
       console.log(club);
@@ -198,6 +212,7 @@ export class DashboardClubComponent implements OnInit {
     this.prenom=localStorage.getItem('prenom');
     this.idclub=localStorage.getItem('id_club');
     this.role=localStorage.getItem('role');
+    this.id=localStorage.getItem('id_membre');
   }
 
   onResize(event) {

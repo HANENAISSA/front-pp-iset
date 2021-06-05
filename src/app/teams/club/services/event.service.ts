@@ -18,21 +18,9 @@ export class EventService {
   }
   //description	date_debut	date_fin	heure_debut	heure_fin	statut
   //	url_image	url_event	id_membre	id_club
-  addevent(titre_event:any,description:any,date_debut:any , date_fin:any, heure_debut:any ,heure_fin:any, statut:any,
-    url_image:any,url_event,id_membre:any,idclub:any){
+  addevent(file:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "evenment/addevent",   {
-        titre_event:titre_event,
-         description:description,
-         date_debut:date_debut,
-         date_fin:date_fin,
-         heure_debut:heure_debut,
-         heure_fin:heure_fin,
-         url_image:url_image,
-         url_event:url_event,
-         id_membre:id_membre,
-         id_club:idclub,
-      },
+      "http://127.0.0.1:5010" + "/evenment/addevent",  file ,
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }

@@ -73,11 +73,12 @@
                                                     </button>
                                                     <div ngbDropdownMenu>
 
-                                                      <button ngbDropdownItem >
-                                                        <i class="icofont icofont-check" (click)="Accepter(request.id_demande,request.email)"></i>Accepter
+                                                      <button ngbDropdownItem (click)="Accepter(request.id_demande,request.email)" >
+                                                        <i class="icofont icofont-check" ></i>Accepter
                                                       </button>
-                                                      <button ngbDropdownItem >
-                                                        <i class="icofont icofont-close-line" (click)="Delete(request.id_demande,request.email)"></i>Refuser
+
+                                                      <button ngbDropdownItem (click)="Delete(request.id_demande,request.email)">
+                                                        <i class="icofont icofont-close-line" ></i>Refuser
                                                       </button>
                                                     </div>
                                                   </div>

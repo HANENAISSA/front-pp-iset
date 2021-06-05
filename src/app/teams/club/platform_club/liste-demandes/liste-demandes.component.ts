@@ -64,7 +64,9 @@ handlePageSizeChange(event: any): void {
   }
 
   Accepter(id_demande:any, email:any ){
+    console.log("h")
      this._http.acceptRequests(id_demande,email).subscribe(data => {
+
       console.log(data)
       if(data['error']!=true){
 

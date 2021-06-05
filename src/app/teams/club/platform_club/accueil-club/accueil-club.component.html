@@ -146,7 +146,7 @@
 
              <div class="col-md-4">
               <div class="full blog_img_popular">
-                  <img class="img-responsive" src="assets/assets/images/p3.png" alt="#" />
+                  <img class="img-responsive" src="http://127.0.0.1:5010/{{event.url_image}}" alt="#" />
                    <h4>{{event.titre_event}}</h4>
               </div>
             </div>
@@ -193,7 +193,7 @@
                                     <td>
                                       <div class="input-group">
                                         <span class="input-group-prepend"><label class="input-group-text"><i class="ti-gallery"></i></label></span>
-                                        <input type="file" class="form-control" value="" placeholder="upload image de l'événement" [(ngModel)]="url_image">
+                                        <input type="file" class="form-control" value="" placeholder="upload image de l'événement" (change)="image($event)">
                                       </div>
                                     </td>
                                   </tr>
@@ -247,7 +247,7 @@
                                   <td>
                                     <div class="input-group">
                                       <span class="input-group-prepend"><label class="input-group-text"><i class="ti-file"></i></label></span>
-                                      <input type="file" class="form-control" value="" placeholder="upload le fichier de participer" [(ngModel)]="url_event">
+                                      <input type="text" class="form-control" value="" placeholder="upload le fichier de participer" [(ngModel)]="url_event">
                                     </div>
                                   </td>
                                 </tr>

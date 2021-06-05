@@ -347,8 +347,9 @@
                     [attr.subitem-icon]="subItemIcon"
                     appAccordionLink
                     group="dashboard"
+                    *ngFor="let club of clubs"
                   >
-                    <a href="javascript:;" appAccordionToggle *ngFor="let club of clubs" >
+                    <a href="javascript:;" appAccordionToggle  >
                       <span class="pcoded-micon"
                         ><i class="fa fa-users" style="color: #294a70;"></i><b>d</b></span
                       >
@@ -360,7 +361,7 @@
                     <ul class="pcoded-submenu">
                       <li appAccordionLink>
                         <a
-                          [routerLink]="['/dashboard_club/accueil']"
+                         (click)="gotoAccueil(club.id_club)"
                           appAccordionToggle
                         >
                           <span class="pcoded-micon">
@@ -372,7 +373,8 @@
                       </li>
                       <li appAccordionLink>
                         <a
-                          [routerLink]="['/dashboard_club/membres']"
+                        (click)="gotoMembres(club.id_club)"
+
                           appAccordionToggle
                         >
                           <span class="pcoded-micon">
@@ -384,7 +386,8 @@
                       </li>
                       <li appAccordionLink>
                         <a
-                          [routerLink]="['/dashboard_club/profile']"
+                        (click)="gotoProfil(club.id_club)"
+
                           appAccordionToggle
                         >
                           <span class="pcoded-micon">
@@ -395,9 +398,10 @@
                         </a>
                       </li>
                        <!--les demandes for role responsable-->
-                      <li appAccordionLink>
+                      <li appAccordionLink *ngIf="club.idadminclub==id">
                         <a
-                          [routerLink]="['/dashboard_club/liste-demandes']"
+                        (click)="gotoDemandes(club.id_club)"
+
                           appAccordionToggle
                         >
                           <span class="pcoded-micon">

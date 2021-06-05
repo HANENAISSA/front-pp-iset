@@ -27,11 +27,11 @@ sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any) {
 
     );
   }
-  acceptRequests(id_demande:any,email:any) {
+  acceptRequests(idDemande:any,email:any) {
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/demande_event/acceptOrDeleteRequests",
       {
-        id_demande:id_demande,
+        idDemande:idDemande,
         option:"accept",
         email:email
       },
