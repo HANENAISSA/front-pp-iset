@@ -1,28 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Reclamation } from '../models/reclamation.model';
-
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ReclamationService {
   reclamations : Reclamation[] = [];
-  constructor() { }
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+  constructor(private httpClient:HttpClient) { }
 
   saveReclamations(){
     window.localStorage.setItem("reclamations", JSON.stringify(this.reclamations));
   }
 
-  getReclamations(){
-    if(window.localStorage.getItem("reclamations")){
-      this.reclamations = JSON.parse(window.localStorage.getItem("reclamations"));
-    }
-    else{
-      this.reclamations = [];
-    }
+  getReclamations():Observable<Reclamation[]>{
+      return this.httpClient.get<Reclamation[]>(' http://127.0.0.1:5010/getAllReclamtion/getAllReclamtion',this.httpOptions)
 
-    return this.reclamations;
-
-  }
+    }
 
   addReclamation(r : Reclamation){
     this.reclamations.push(r);

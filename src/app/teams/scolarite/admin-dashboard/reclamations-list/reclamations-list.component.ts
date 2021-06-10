@@ -33,9 +33,12 @@ export class ReclamationsListComponent implements OnInit {
     this.refreshData();
   }
 
+
   refreshData(){
-    this.reclamations = this.service.getReclamations();
+    console.log(this.reclamations)
+    this.service.getReclamations().subscribe(data => this.reclamations = data);
   }
+
 
   filterItemsByType(type){
     return this.reclamations.filter(x => x.status == type);
