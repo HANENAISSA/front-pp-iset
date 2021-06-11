@@ -11,18 +11,17 @@ import { ReclamationService } from "../../services/reclamation.service";
 })
 export class NewReclamationComponent implements OnInit {
   hidden;
-  r : Reclamation;
+  reclamation: Reclamation;
   currentDate = new Date();
 
   addReclamationForm = new FormGroup({
-    firstName: new FormControl("", Validators.required),
-    lastName: new FormControl("", Validators.required),
-    class: new FormControl("", Validators.required),
-    reclamationType: new FormControl("", Validators.required),
-    reclamationContent: new FormControl("", Validators.required),
-    date: new FormControl(this.currentDate),
-    status: new FormControl("En attente"),
+    type_Reclamation: new FormControl("", Validators.required),
+    contenu: new FormControl(""),
+    id_statut_reclamation: new FormControl(2),
+    date_reclamation: new FormControl(this.currentDate),
+    id_user: new FormControl(1),
   });
+
   constructor(private service: ReclamationService, private router: Router) {}
 
   ngOnInit() {
@@ -33,18 +32,17 @@ export class NewReclamationComponent implements OnInit {
     if (this.addReclamationForm.invalid) {
       this.hidden = false;
     } else {
-      const formValues = this.addReclamationForm.value;
-      this.r = new Reclamation(
-        formValues.firstName,
-        formValues.lastName,
-        formValues.class,
-        formValues.reclamationType,
-        formValues.reclamationContent,
-        formValues.date,
-        formValues.status
+      const Values = this.addReclamationForm.value;
+      this.reclamation = new Reclamation(
+        Values.type_Reclamation,
+        Values.contenu,
+        Values.id_statut_reclamation,
+        Values.date_reclamation,
+        Values.id_user
       );
-      this.service.addReclamation(this.r);
-      this.router.navigate(["dashboard/reclamations-list"]);
+      this.service.addReclamation(this.reclamation).subscribe((data) => {
+        this.router.navigate(["dashboard/reclamations-list"]);
+      });
     }
   }
 }

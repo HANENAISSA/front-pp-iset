@@ -36,12 +36,12 @@ export class ReclamationsListComponent implements OnInit {
 
   refreshData(){
     console.log(this.reclamations)
-    this.service.getReclamations().subscribe(data => this.reclamations = data);
+    // this.service.getReclamations().subscribe(data => this.reclamations = data);
   }
 
 
   filterItemsByType(type){
-    return this.reclamations.filter(x => x.status == type);
+    // return this.reclamations.filter(x => x.status == type);
   }
 
   accept(i: number) {

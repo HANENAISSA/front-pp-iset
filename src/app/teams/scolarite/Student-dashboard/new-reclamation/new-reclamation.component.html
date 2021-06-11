@@ -63,13 +63,7 @@
             type="text"
             id="first-name"
             class="form-control"
-            formControlName="firstName"
-            [ngClass]="{
-              'is-invalid':
-                addReclamationForm.get('firstName').touched &&
-                addReclamationForm.get('firstName').invalid
-            }"
-            required
+            disabled
           />
         </div>
         <div class="form-group">
@@ -79,38 +73,18 @@
             type="text"
             id="last-name"
             class="form-control"
-            formControlName="lastName"
-            [ngClass]="{
-              'is-invalid':
-                addReclamationForm.get('lastName').touched &&
-                addReclamationForm.get('lastName').invalid
-            }"
-            required
+            disabled
           />
         </div>
         <div class="form-group">
           <!-- Class Input  -->
           <label for="class">Classe</label>
-          <select
-            class="form-control"
+          <input
+            type="text"
             id="class"
-            formControlName="class"
-            [ngClass]="{
-              'is-invalid':
-                addReclamationForm.get('class').touched &&
-                addReclamationForm.get('class').invalid
-            }"
-            required
-          >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-          <div class="invalid-feedback">
-            Veuillez sélectionner votre classe.
-          </div>
+            class="form-control"
+            disabled
+          />
         </div>
         <div class="form-group">
           <!-- reclamation Type Input  -->
@@ -119,11 +93,11 @@
             type="text"
             id="reclamationType"
             class="form-control"
-            formControlName="reclamationType"
+            formControlName="type_Reclamation"
             [ngClass]="{
               'is-invalid':
-                addReclamationForm.get('reclamationType').touched &&
-                addReclamationForm.get('reclamationType').invalid
+                addReclamationForm.get('type_Reclamation').touched &&
+                addReclamationForm.get('type_Reclamation').invalid
             }"
             required
           />
@@ -135,11 +109,11 @@
             class="form-control"
             id="reclamationContent"
             rows="3"
-            formControlName="reclamationContent"
+            formControlName="contenu"
             [ngClass]="{
               'is-invalid':
-                addReclamationForm.get('reclamationContent').touched &&
-                addReclamationForm.get('reclamationContent').invalid
+                addReclamationForm.get('contenu').touched &&
+                addReclamationForm.get('contenu').invalid
             }"
             required
           ></textarea>

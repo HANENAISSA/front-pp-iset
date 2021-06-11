@@ -12,7 +12,7 @@ export class StudentReclamationsListComponent implements OnInit {
   pageSize = 2;
   pageSizes = [2, 4, 6];
   public search: any = "";
-  reclamations: any = [];
+  reclamations:any =[];
   constructor(private service: ReclamationService) {}
 
   ngOnInit() {
@@ -20,18 +20,13 @@ export class StudentReclamationsListComponent implements OnInit {
   }
 
   refreshData() {
-    this.service.getReclamations().subscribe({
-      next: (data) => {
-        this.reclamations = data;
-      },
-      error: (err) => {
-        return err;
-      },
-    });
+    this.service.getReclamations().subscribe(data => this.reclamations = data);
   }
 
   deleteReclamation(indice: number) {
-    this.service.deleteReclamation(indice);
+    this.service.deleteReclamation(indice).subscribe((response) => {
+      this.refreshData();
+    });
   }
 
   handlePageSizeChange(event: any): void {
