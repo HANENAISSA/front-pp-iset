@@ -14,11 +14,14 @@ export class ReclamationService {
   constructor(private httpClient: HttpClient) {}
 
   getReclamations():Observable<Reclamation[]>{
-    return this.httpClient.get<Reclamation[]>(this.baseURL+'/getAllReclamtion/getAllReclamtion',this.httpOptions)
+    return this.httpClient.get<Reclamation[]>(this.baseURL+'/getReclamtionAccepter/getAccpeter',this.httpOptions)
+  }
+
+  getReclamationsEnAttente():Observable<Reclamation[]>{
+    return this.httpClient.get<Reclamation[]>(this.baseURL+'/getReclamtionEnAttente/getEnAttente',this.httpOptions)
   }
 
   addReclamation(reclamation : Reclamation):Observable<any>{
-    console.log(JSON.stringify(reclamation))
     return this.httpClient.post<Reclamation[]>(this.baseURL+'/addReclamation/addReclamation',JSON.stringify(reclamation),this.httpOptions)
   }
 
@@ -29,9 +32,7 @@ export class ReclamationService {
   }
 
   refuseReclamation(i: number) {
-    // let data = JSON.parse(window.localStorage.getItem("reclamations"));
-    // data[i].status = "Refuser";
-    // localStorage.setItem("reclamations", JSON.stringify(data));
+    return this.httpClient.put<Reclamation[]>(this.baseURL+'/updateReclamation/updateReclamationRefuser'+'/'+i,this.httpOptions)
   }
 
   deleteReclamation(indice: number) {

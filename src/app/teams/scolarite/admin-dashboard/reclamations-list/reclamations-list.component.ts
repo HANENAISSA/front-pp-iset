@@ -25,33 +25,53 @@ export class ReclamationsListComponent implements OnInit {
   page = 1;
   pageSize = 2;
   pageSizes = [2, 4, 6];
-  reclamations: Reclamation[];
+  reclamations = [];
+  reclamationsEnAttente = [];
   public search:any = '';
-  constructor(private service: ReclamationService, private modal: NgbModal) { }
+  actualId:number;
+
+  constructor(private service: ReclamationService, private modal: NgbModal) {
+    this.actualId=1;
+  }
 
   ngOnInit() {
-    this.refreshData();
+    this.refreshData(1);
   }
 
 
-  refreshData(){
-    console.log(this.reclamations)
-    // this.service.getReclamations().subscribe(data => this.reclamations = data);
-  }
+  refreshData(id :number){
+    switch (id) {
+      case 1:
+        this.service.getReclamationsEnAttente().subscribe((data) => {
+          this.reclamationsEnAttente = data;
+        });
+        break;
+      case 2:
+      this.service.getReclamations().subscribe((data) => {
+        this.reclamations = data;
+        const filtredRecs = this.reclamations.filter(item => item.id_statut_reclamation === 1);
+        this.reclamations = filtredRecs;
+      });
+        break;
 
-
-  filterItemsByType(type){
-    // return this.reclamations.filter(x => x.status == type);
+      default:
+        break;
+    }
+    this.service.getReclamations().subscribe((data) => {
+      this.reclamations = data;
+    });
   }
 
   accept(i: number) {
-    this.service.acceptReclamation(i);
-    this.refreshData();
+    // this.service.acceptReclamation(i);
+    // this.refreshData();
   }
 
   refuse(i:number){
-    this.service.refuseReclamation(i);
-    this.refreshData();
+    this.service.refuseReclamation(i).subscribe((data) => {
+      alert("Reclamation Refused");
+      this.refreshData(this.actualId);
+    })
   }
 
   openReclamModal(reclam) {
@@ -61,13 +81,13 @@ export class ReclamationsListComponent implements OnInit {
     });
 
     let data = {
-      firstName: reclam.firstName,
-      lastName: reclam.lastName,
-      classe: reclam.classe,
-      reclamationContent: reclam.reclamationContent,
-      date: reclam.date,
-      reclamationType: reclam.reclamationType,
-      status: reclam.status,
+      firstName: reclam.nom,
+      lastName: reclam.prenom,
+      classe: reclam.id_classe,
+      reclamationContent: reclam.contenu,
+      date: reclam.date_reclamation,
+      reclamationType: reclam.type_reclamation,
+      status: reclam.libelle_statut_reclamation,
     };
     modalRef.componentInstance.reclamationDetails = data;
   }
@@ -75,7 +95,13 @@ export class ReclamationsListComponent implements OnInit {
   handlePageSizeChange(event: any): void {
     this.pageSize = event.target.value;
     this.page = 1;
-    this.refreshData();
+    this.refreshData(this.actualId);
+  }
+
+  changePapier(event){
+    const id=event.nextId;
+    this.actualId=id;
+    this.refreshData(id)
   }
 
 }
