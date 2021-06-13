@@ -14,11 +14,11 @@ export class ClubService {
     );
   }
 
-  getClubUsers(Idclub:any) {
+  getClubUsers(idclub:any) {
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/user/getClubUsers",
       {
-        Idclub:Idclub
+        idclub:idclub
       }
     );
   }

@@ -114,16 +114,22 @@
                               <div class="table-responsive" >
                                 <table class="table" >
                                   <tbody>
-
-
-                                    <tr>
-                                      <td>
-                                        <div class="input-group">
-                                          <span class="input-group-prepend"><label class="input-group-text"><i class="ti-email"></i></label></span>
-                                          <input type="email" class="form-control"  placeholder={{u.email}}  [(ngModel)]="email" >
-                                        </div>
-                                      </td>
-                                    </tr>
+                              <tr>
+                                <td>
+                                  <div class="input-group">
+                                    <span class="input-group-prepend"><label class="input-group-text"><i class="ti-user"></i></label></span>
+                                    <input type="text" class="form-control"  placeholder={{nom}} readonly >
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="input-group">
+                                    <span class="input-group-prepend"><label class="input-group-text"><i class="ti-user"></i></label></span>
+                                    <input type="text" class="form-control"  placeholder={{prenom}} readonly >
+                                  </div>
+                                </td>
+                              </tr>
 
                                   </tbody>
                                 </table>
@@ -134,7 +140,14 @@
                               <div class="table-responsive">
                                 <table class="table">
                                   <tbody>
-
+                                    <tr>
+                                      <td>
+                                        <div class="input-group">
+                                          <span class="input-group-prepend"><label class="input-group-text"><i class="ti-email"></i></label></span>
+                                          <input type="email" class="form-control"  placeholder={{u.email}}  [(ngModel)]="email" >
+                                        </div>
+                                      </td>
+                                    </tr>
                                     <tr>
                                       <td>
                                         <div class="input-group">
