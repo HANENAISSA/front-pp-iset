@@ -6,6 +6,7 @@ import { PopupComponent } from '../../../../popup/popup.component';
 import { MenuItems } from '../../../../shared/menu-items/menu-items';
 import { Router } from '@angular/router';
 import { ClubService } from '../../services/club.service';
+import { MembreService } from '../../services/membre.service';
 @Component({
   selector: 'app-dashboard-club',
   templateUrl: './dashboard-club.component.html',
@@ -111,8 +112,9 @@ export class DashboardClubComponent implements OnInit {
   role: string;
   clubs:any=[];
   id: string;
+  user: any=[];
 
-  constructor(private _http:ClubService,private  router: Router,public menuItems: MenuItems, private modalService: NgbModal) {
+  constructor(private u_http:MembreService,private _http:ClubService,private  router: Router,public menuItems: MenuItems, private modalService: NgbModal) {
     this.navType = 'st5';
     this.themeLayout = 'vertical';
     this.vNavigationView = 'view1';
@@ -205,6 +207,17 @@ export class DashboardClubComponent implements OnInit {
       console.log(error);
     });
   }
+  getuser(id_membre:any) {
+    this.u_http.getUser(id_membre)
+      .subscribe(
+        club => {
+          this.user= club['data'];
+
+        },
+        error => {
+          console.log(error);
+        });
+  }
   ngOnInit() {
     this.getuserClubs();
     this.setBackgroundPattern('pattern2');
@@ -213,6 +226,7 @@ export class DashboardClubComponent implements OnInit {
     this.idclub=localStorage.getItem('id_club');
     this.role=localStorage.getItem('role');
     this.id=localStorage.getItem('id_membre');
+    this.getuser(this.id);
   }
 
   onResize(event) {

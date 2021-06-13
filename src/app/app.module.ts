@@ -38,6 +38,7 @@ import { VotesComponent } from './teams/club/platform_club/votes/votes.component
 import { TestaccueilComponent } from './teams/club/platform_club/testaccueil/testaccueil.component';
 import { SearchPipe } from './teams/club/platform_club/liste-demandes/search.pipe';
 import { EventsComponent } from './teams/club/general/events/events.component';
+import { AddTOcalendrierComponent } from './teams/club/platform_club/add-tocalendrier/add-tocalendrier.component';
 
 //administration-components
 //communication-components
@@ -74,6 +75,7 @@ import { EventsComponent } from './teams/club/general/events/events.component';
     TestaccueilComponent,
     SearchPipe,
     EventsComponent,
+    AddTOcalendrierComponent,
 
     //administration-components
     //communication-components

@@ -18,13 +18,9 @@ export class PostService {
       );
 
   }
-  addpost(idclub:any,description:any){
+  addpost(file:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/post/addpost",   {
-
-         idclub:idclub,
-         description:description,
-      },
+      "http://127.0.0.1:5010" + "/post/addpost",    file ,
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
@@ -48,4 +44,25 @@ export class PostService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
+  // 127.0.0.1:5010/post/deletePost  id_publication ou token
+  deletePost(id_publication:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/post/deletePost",   {
+
+        id_publication:id_publication
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+  }
+
+ //  127.0.0.1:5010/post/deleteComment  id_commentaire ou token
+ deleteComment(id_commentaire:any){
+  return this._http.post<any>(
+    "http://127.0.0.1:5010" + "/post/deleteComment",   {
+
+      id_commentaire:id_commentaire,
+    },
+    {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+    );
+}
 }

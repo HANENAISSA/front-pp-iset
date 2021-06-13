@@ -73,58 +73,12 @@
               [ngClass]="isCollapsedMobile"
             >
 
-            <li class="header-notification">
-                <a href="javascript:;">
-                  <i class="ti-bell"></i>
-                  <span class="badge bg-c-pink"></span>
-                </a>
-                <ul class="show-notification">
-                  <li>
-                    <h6>Notifications</h6>
-                    <label class="label label-danger">New</label>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <img class="d-flex align-self-center img-radius" src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="notification-user">John Doe</h5>
-                        <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                        <span class="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <img class="d-flex align-self-center img-radius" src="assets/images/avatar-3.jpg" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="notification-user">Joseph William</h5>
-                        <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                        <span class="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <img class="d-flex align-self-center img-radius" src="assets/images/avatar-5.jpg" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="notification-user">Sara Soudein</h5>
-                        <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                        <span class="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li class="header-notification">
-                <a href="javascript:;" (click)="toggleChat()" class="displayChatbox">
-                  <i class="ti-comments"></i>
-                  <span class="badge bg-c-green"></span>
-                </a>
-              </li>
-              <li class="user-profile header-notification">
+
+              <li class="user-profile header-notification" *ngFor="let u of user">
                 <a [routerLink]="['/dashboard_club/profile']">
+
                   <img
-                    src="assets/images/avatar-4.jpg"
+                  src="http://127.0.0.1:5010/{{u.membreimage}}"
                     class="img-radius"
                     alt="User-Profile-Image"
                   />
@@ -298,10 +252,10 @@
           </div>
           <div class="pcoded-inner-navbar main-menu" appAccordion>
             <div class="">
-              <div class="main-menu-header">
+              <div class="main-menu-header" *ngFor="let u of user">
                 <img
                   class="img-40 img-radius"
-                  src="assets/images/avatar-4.jpg"
+                  src="http://127.0.0.1:5010/{{u.membreimage}}"
                   alt="User-Profile-Image"
                 />
                 <div class="user-details">

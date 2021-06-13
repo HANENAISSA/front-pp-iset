@@ -58,5 +58,15 @@ export class VoteService {
       );
 
   }
+  // 127.0.0.1:5010/sondage/deletesondage idsondage ou token
+  deleteSondage(idsondage:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/sondage/deletesondage",   {
 
+        idsondage:idsondage
+
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+  }
 }

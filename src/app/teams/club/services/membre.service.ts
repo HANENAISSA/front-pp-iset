@@ -27,4 +27,26 @@ export class MembreService {
       }
     );
   }
+  // /updateUserInfo
+  UpdateUser(id_membre:any,email:any,motdepasse:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/user/updateUserInfo",
+      {
+        id_membre:id_membre,
+        email:email,
+        motdepasse:motdepasse
+      }
+    );
+  }
+  // /user/updateUserImage
+  UpdatePic(file:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/user/updateUserImage",
+      {
+        file:file
+
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+  }
 }

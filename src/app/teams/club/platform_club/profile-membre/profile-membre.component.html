@@ -7,9 +7,16 @@
         <div class="card-body user-info">
           <div class="col-md-12">
             <div class="media-left">
-              <a href="javascript:;" class="profile-image">
-                <img class="user-img img-radius" src="assets/images/user-profile/user-img.jpg" alt="user-img">
-              </a>
+
+                <div class="picture-container">
+                    <div class="picture" *ngFor="let u of user">
+                        <img src="http://127.0.0.1:5010/{{u.membreimage}}" class="picture-src" id="wizardPicturePreview" title="">
+                        <input type="file"  [(ngModel)]="file" (change)="updatePic()" id="wizard-picture" class="">
+                    </div>
+                     <h6 class="">Choose Picture</h6>
+
+                </div>
+
             </div>
             <div class="media-body row">
               <div class="col-lg-12">
@@ -76,7 +83,7 @@
                                   <tbody>
                                   <tr>
                                     <th scope="row">Email</th>
-                                    <td><a href="javascript:;">{{u.email}}</a></td>
+                                    <td>{{u.email}}</td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Mobile Number</th>
@@ -98,33 +105,26 @@
                     <!-- end of row -->
                   </div>
                   <!-- end of view-info -->
-                  <div class="edit-info" *ngIf="!editProfile">
-                    <div class="row">
+                  <div class="edit-info" *ngIf="!editProfile" >
+                    <div class="row" *ngFor="let u of user">
                       <div class="col-lg-12">
                         <div class="general-info">
                           <div class="row">
                             <div class="col-lg-6">
-                              <div class="table-responsive">
-                                <table class="table">
+                              <div class="table-responsive" >
+                                <table class="table" >
                                   <tbody>
-                                  <tr>
-                                    <td>
-                                      <div class="input-group">
-                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
-                                        <input type="text" class="form-control" placeholder="Full Name" value="Josephine Villa">
-                                      </div>
-                                    </td>
-                                  </tr>
 
 
-                                  <tr>
-                                    <td>
-                                      <div class="input-group">
-                                        <span class="input-group-prepend"><label class="input-group-text"><i class="ti-file"></i></label></span>
-                                        <input type="text" class="form-control" placeholder="photo de profile" value="">
-                                      </div>
-                                    </td>
-                                  </tr>
+                                    <tr>
+                                      <td>
+                                        <div class="input-group">
+                                          <span class="input-group-prepend"><label class="input-group-text"><i class="ti-email"></i></label></span>
+                                          <input type="email" class="form-control"  placeholder={{u.email}}  [(ngModel)]="email" >
+                                        </div>
+                                      </td>
+                                    </tr>
+
                                   </tbody>
                                 </table>
                               </div>
@@ -135,23 +135,15 @@
                                 <table class="table">
                                   <tbody>
 
+                                    <tr>
+                                      <td>
+                                        <div class="input-group">
+                                          <span class="input-group-prepend"><label class="input-group-text"><i class="ti-lock"></i></label></span>
+                                          <input type="password" class="form-control" placeholder="******" [(ngModel)]="motdepasse"  >
+                                        </div>
+                                      </td>
+                                    </tr>
 
-                                  <tr>
-                                    <td>
-                                      <div class="input-group">
-                                        <span class="input-group-prepend"><label class="input-group-text"><i class="ti-email"></i></label></span>
-                                        <input type="email" class="form-control" value="" placeholder="email">
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                      <div class="input-group">
-                                        <span class="input-group-prepend"><label class="input-group-text"><i class="ti-lock"></i></label></span>
-                                        <input type="text" class="form-control" value="" placeholder="mot de passe">
-                                      </div>
-                                    </td>
-                                  </tr>
                                   </tbody>
                                 </table>
                               </div>
@@ -160,7 +152,7 @@
                           </div>
                           <!-- end of row -->
                           <div class="text-center">
-                            <a href="javascript:;" class="btn btn-primary waves-effect waves-light m-r-20">Save</a>
+                            <a href="javascript:;" class="btn btn-primary waves-effect waves-light m-r-20" (click)=Updateuser()>Save</a>
                             <a href="javascript:;" id="edit-cancel" class="btn btn-default waves-effect" (click)="toggleEditProfile()">Cancel</a>
                           </div>
                         </div>

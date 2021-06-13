@@ -27,4 +27,14 @@ getcmtre(idpub:any) {
     });
 
 }
+deleteCMTRE(id_commentaire:any){
+  this._http.deleteComment(id_commentaire).subscribe(club => {
+    console.log(club);
+    this.getcmtre(this.idpublication);
+
+  },
+  error => {
+    console.log(error);
+  });
+}
 }

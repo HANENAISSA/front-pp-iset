@@ -34,4 +34,48 @@ export class EventService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
     );
   }
+  //calendrier
+  // /calander/getcalender id_club
+  getcalendrier(id_club:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/calander/getcalender",
+      {
+        id_club:id_club
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+    );
+  }
+  // /calander/addcalender "id_club"temps"date"description"
+  addTOcalendrier(id_club:any,temps:any,date:any,description:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/calander/addcalender",
+      {
+        id_club:id_club,
+        temps:temps,
+        date:date,
+        description:description
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+    );
+  }
+  // 127.0.0.1:5010/evenment/deleteEvent
+  deleteEvent(id_event:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/evenment/deleteEvent",
+      {
+        id_event:id_event
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+  }
+  //  127.0.0.1:5010/calander/deletecalender id_calendrier ou tooken
+  deleteTask(id_calendrier:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/calander/deletecalender",
+      {
+        id_calendrier:id_calendrier
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+    );
+  }
 }

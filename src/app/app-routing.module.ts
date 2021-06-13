@@ -97,7 +97,7 @@ const routes: Routes = [
 { path: "club/events", component: EventsComponent },
 { path: "club/signin", component: SigninComponent },
 { path: "club/reset_password", component: ResetPasswordComponent },
-{ path: "accueil/service_en_ligne/clubs", component: ClubsComponent },
+{ path: "accueil/clubs", component: ClubsComponent },
 //{ path: "accueil/service_en_ligne/clubs/events", component: ListEventsComponent },
 { path: "clubs/envoyer_demande/:id", component: EnvoyerDemandeComponent },
 {
@@ -137,7 +137,7 @@ const routes: Routes = [
       component: MembresComponent,
     },
     {
-      path: "profile",
+      path: "profile/:id",
       component: ProfileMembreComponent,
     },
     {
