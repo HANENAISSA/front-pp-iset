@@ -128,10 +128,10 @@ const routes: Routes = [
       path: "accueil/:id",
       component: AccueilClubComponent,
     },
-    {
-      path: "accueil",
-      component: AccueilClubComponent,
-    },
+    /*{
+     path: "accueil",
+      component: *//*AccueilClubComponent,*/
+    //},
     {
       path: "membres/:id",
       component: MembresComponent,
@@ -145,7 +145,7 @@ const routes: Routes = [
       component: ListeDemandesComponent,
     },
     {
-      path: "test",
+      path: "accueil",
       component: TestaccueilComponent,
     }
   ],

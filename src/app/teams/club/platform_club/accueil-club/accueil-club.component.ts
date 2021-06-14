@@ -64,7 +64,7 @@ export class AccueilClubComponent implements OnInit {
   descriptionCal: any;
   temps: any;
   date: any;
-
+  clubss: any=[];
 
   fileName = '';
   post_image : any;
@@ -82,9 +82,22 @@ export class AccueilClubComponent implements OnInit {
     this.getClubEvents();
     this.getsondage();
     this.getcal(this.idclub);
-
+this.getuserClubs();
   }
+  getuserClubs() {
+    this._http.getuserClubs().subscribe(club => {
+      this.clubss= club['data'];
+      for (var club of this.clubss) {
+       // console.log(club.id_club);
+        //localStorage.setItem("id_club",club.id_club);
+      }
 
+      console.log(club);
+    },
+    error => {
+      console.log(error);
+    });
+  }
 
   toggleEditProfile() {
     this.editProfileIcon = (this.editProfileIcon === 'icofont-close') ? 'icofont-edit' : 'icofont-close';
@@ -253,6 +266,15 @@ addevent(){
       window.alert('votre event a été enregistré avec succès');
       this.editProfile = !this.editProfile;
       this.getClubEvents();
+      this.titre_event="";
+      this.description="";
+      this.date_debut="";
+      this.date_fin="";
+      this.heure_debut="";
+      this.heure_fin="";
+      this.statut="";
+      this.url_image="";
+      this.url_event="";
        }else{
       alert(data['message'])
     }

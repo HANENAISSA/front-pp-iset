@@ -10,7 +10,7 @@
 
                 <div class="picture-container">
                     <div class="picture" *ngFor="let u of user">
-                        <img src="http://127.0.0.1:5010/{{u.membreimage}}" class="picture-src" id="wizardPicturePreview" title="">
+                        <img src="http://127.0.0.1:5010/{{u.url_image}}" class="picture-src" id="wizardPicturePreview" title="">
                         <input type="file"  [(ngModel)]="file" (change)="updatePic()" id="wizard-picture" class="">
                     </div>
                      <h6 class="">Choose Picture</h6>

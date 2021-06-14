@@ -17,6 +17,7 @@ export class EnvoyerDemandeComponent implements OnInit {
   motivation?: String;
   club?:any;
   equipes: any =[];
+  tel: any;
   constructor(public dialog: MatDialog,private _http:RequestService,private route: ActivatedRoute,private router: Router) {
 
   }
@@ -28,16 +29,16 @@ this.club = this.route.snapshot.paramMap.get('id');
 
 sendRequest(){
     this._http.sendRequest(this.cin,this.equipe,this.club,this.motivation,
-       this.email
+       this.email,this.tel
       ).subscribe(data => {
       console.log(data)
       if(data['error']!=true){
         console.log(data["token"])
         localStorage.setItem("token",data["token"])
        // localStorage.setItem("id_club",data['data']['id_club']);
-        this.router.navigate(['accueil/service_en_ligne/clubs']);
-        //window.alert('votre demande a été envoyé avec succès')
-        //this.dialog.open(DialogElementsExampleDialog);
+        this.router.navigate(['accueil/clubs']);
+        window.alert('votre demande a été envoyé avec succès')
+
       }else{
         alert(data['message'])
       }
@@ -47,8 +48,8 @@ sendRequest(){
     console.log(err);
       }
     );
-  //this.router.navigate(['']);
 }
+
   getteams() {
     this._http.getTeams()
       .subscribe(

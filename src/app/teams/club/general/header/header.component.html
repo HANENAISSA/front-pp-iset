@@ -1,0 +1,32 @@
+
+<!-- Start header -->
+<header class="top-header">
+  <nav class="navbar header-nav navbar-expand-lg">
+      <div class="container-fluid">
+          <a class="navbar-brand" [routerLink]="['/']"><img src="assets/assets/images/cropped-logo.png" alt="image"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+              <ul class="navbar-nav">
+                  <li><a class="nav-link active" [routerLink]="['/']">Accueil</a></li>
+                  <li><a class="nav-link" href="about.html">Présentation</a></li>
+                  <li><a class="nav-link" href="courses.html">Inscription</a></li>
+                  <li><a class="nav-link" href="reaserch.html">Service en ligne</a></li>
+                  <li><a class="nav-link" (click)="clubs()">Clubs</a></li>
+                  <li><a class="nav-link" (click)="event()">evenements</a></li>
+                  <li><a class="nav-link" href="contact.html">Contact us</a></li>
+              </ul>
+          </div>
+          <div class="search-box">
+              <input type="text" class="search-txt" placeholder="Search">
+              <a class="search-btn">
+                  <img src="assets/assets/images/search_icon.png" alt="#" />
+              </a>
+          </div>
+      </div>
+  </nav>
+</header>
+<!-- End header -->

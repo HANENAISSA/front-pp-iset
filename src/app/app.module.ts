@@ -39,6 +39,7 @@ import { TestaccueilComponent } from './teams/club/platform_club/testaccueil/tes
 import { SearchPipe } from './teams/club/platform_club/liste-demandes/search.pipe';
 import { EventsComponent } from './teams/club/general/events/events.component';
 import { AddTOcalendrierComponent } from './teams/club/platform_club/add-tocalendrier/add-tocalendrier.component';
+import { HeaderComponent } from './teams/club/general/header/header.component';
 
 //administration-components
 //communication-components
@@ -76,6 +77,7 @@ import { AddTOcalendrierComponent } from './teams/club/platform_club/add-tocalen
     SearchPipe,
     EventsComponent,
     AddTOcalendrierComponent,
+    HeaderComponent,
 
     //administration-components
     //communication-components

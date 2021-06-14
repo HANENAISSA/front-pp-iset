@@ -10,7 +10,7 @@ export class EventService {
 
   getevents(){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/evenment/getevents",
+      "http://127.0.0.1:5010" + "/event/getevents",
       {},
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
@@ -20,14 +20,14 @@ export class EventService {
   //	url_image	url_event	id_membre	id_club
   addevent(file:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/evenment/addevent",  file ,
+      "http://127.0.0.1:5010" + "/event/addevent",  file ,
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
   ///evenment/getClubEvents
   getClubEvents(id_club:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/evenment/getClubEvents",
+      "http://127.0.0.1:5010" + "/event/getClubEvents",
       {
         id_club:id_club
       },
@@ -38,7 +38,7 @@ export class EventService {
   // /calander/getcalender id_club
   getcalendrier(id_club:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/calander/getcalender",
+      "http://127.0.0.1:5010" + "/calendar/getcalendar",
       {
         id_club:id_club
       },
@@ -48,7 +48,7 @@ export class EventService {
   // /calander/addcalender "id_club"temps"date"description"
   addTOcalendrier(id_club:any,temps:any,date:any,description:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/calander/addcalender",
+      "http://127.0.0.1:5010" + "/calendar/addcalendar",
       {
         id_club:id_club,
         temps:temps,
@@ -61,7 +61,7 @@ export class EventService {
   // 127.0.0.1:5010/evenment/deleteEvent
   deleteEvent(id_event:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/evenment/deleteEvent",
+      "http://127.0.0.1:5010" + "/event/deleteEvent",
       {
         id_event:id_event
       },
@@ -71,7 +71,7 @@ export class EventService {
   //  127.0.0.1:5010/calander/deletecalender id_calendrier ou tooken
   deleteTask(id_calendrier:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/calander/deletecalender",
+      "http://127.0.0.1:5010" + "/calendar/deletecalendar",
       {
         id_calendrier:id_calendrier
       },

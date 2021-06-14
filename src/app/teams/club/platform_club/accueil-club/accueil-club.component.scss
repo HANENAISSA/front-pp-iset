@@ -2,3 +2,6 @@
 .file-input {
   display: none;
 }
+.dropdown-toggle::after {
+  display:none;
+}

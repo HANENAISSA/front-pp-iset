@@ -77,7 +77,7 @@
                         <p class="m-b-0" sortBy={{post.date}}>{{post.description}}</p>
 
 
-                          <div class="col-lg-10">
+                          <div class="col-lg-10" *ngIf="post.url_image !='undefined'" >
                               <img class="img-responsive" src="http://127.0.0.1:5010/{{post.url_image}}" alt="#" />
 
                           </div>
@@ -119,16 +119,18 @@
 <!-- posts tab-->
 
 <!--events tab-->
-        <ngb-tab title="événements">
+        <ngb-tab title="événements" >
           <ng-template ngbTabContent>
             <div [@fadeInOutTranslate] class="m-t-15">
               <!-- personal card start -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-header-text">événements</h5>
-                  <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
+                  <div *ngFor="let club of clubss">
+                  <button *ngIf="club.idadminclub==id_membre" id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
                     <i class="icofont {{ editProfileIcon }}"></i>
                   </button>
+                </div>
                 </div>
                 <div class="card-body">
 	<!-- section
@@ -154,15 +156,15 @@
                         <div class="general-info">
                           <div class="row">
 <!--display event-->
-                            <div class="col-lg-12">
-                              <div class="card fb-card" *ngFor="let event of events" >
-                                <div ngbDropdown container="body">
+                            <div class="col-lg-12" *ngFor="let event of events">
+                              <div class="card fb-card" *ngFor="let club of clubss" >
+                                <div ngbDropdown container="body" *ngIf="club.idadminclub==id_membre">
                                   <button class="btn float-right" ngbDropdownToggle>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" >
                                       <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                                     </svg>
                                   </button>
-                                  <div ngbDropdownMenu >
+                                  <div ngbDropdownMenu  >
 
                                     <button ngbDropdownItem (click)="deleteEVENT(event.id_event)">
                                       <i class="icofont icofont-close-line" ></i>Supprimer
@@ -333,9 +335,10 @@
   <!-- calendar-->
 
 
-<div class="col-md-12 col-xl-4">
+<div class="col-md-12 col-xl-4"  *ngFor="let club of clubss">
    <!-- browser Start -->
-   <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="open()">
+
+   <button *ngIf="club.idadminclub==id_membre" id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="open()">
     <i class="icofont icofont-ui-add"></i>
   </button>
 
@@ -352,7 +355,8 @@
   <i class="icofont icofont-stylish-right text-danger"></i> autres
     <div *ngIf="add">
       <div class="browser-card b-t-default p-t-15" *ngFor="let task of tasks">
-        <button class="badge badge-inverse-info" (click)="deleteCAL(task.id_calendrier)"><i class="icofont icofont-close-line" ></i></button>
+
+        <button *ngIf="club.idadminclub==id_membre" class="badge badge-inverse-info" (click)="deleteCAL(task.id_calendrier)"><i class="icofont icofont-close-line" ></i></button>
         &nbsp;
         <p class="d-inline-block m-0 ">{{task.description}}</p>
         <label class="btn bg-c-yellow btn-round float-right btn-browser ">{{task.date}}</label>
@@ -396,8 +400,8 @@
   </div>-->
   <!-- sondage -->
   <!-- add sondage -->
-  <div class="card widget-statstic-card">
-    <div class="card-header">
+  <div class="card widget-statstic-card" *ngFor="let club of clubss">
+    <div class="card-header" *ngIf="club.idadminclub==id_membre">
       <div class="card-header-left">
         <h4>Ajouter Sondage</h4>
         <input type="text" class="form-control" [(ngModel)]="title"
@@ -419,10 +423,11 @@
       <p class="p-t-10 m-b-0 text-c-blue">{{sondage.date_sondage}} {{sondage.heure_sondage}}</p>
     </div>
   </div>
-  <div class="card-block">
-
-    <i (click)="deleteSONDAGE(sondage.id_sondage)"  class="icofont icofont-close-line st-icon bg-c-blue txt-lite-color"></i>
-
+  <div class="card-block" >
+    <div *ngFor="let club of clubss">
+    <i *ngIf="club.idadminclub==id_membre" (click)="deleteSONDAGE(sondage.id_sondage)"  class="icofont icofont-close-line st-icon bg-c-blue txt-lite-color"></i>
+    <i *ngIf="club.idadminclub!=id_membre"  class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
+  </div>
 
 
     <div class="text-left">
@@ -451,9 +456,9 @@
 </form>
 <p class="text-danger">{{ message }}</p>
                                             <!-- Data widget start -->
-                                            <div class="card-block p-b-10">
+
                                               <div class="table-responsive">
-                                                  <table class="table table-hover" *ngFor="let vote of vote">
+                                                  <table class="table table-hover" >
                                                       <thead>
                                                           <tr>
                                                               <th>Vote</th>
@@ -465,11 +470,11 @@
                                                               <td>
                                                                   <div class="task-contain">
                                                                       <h6 class="bg-c-blue d-inline-block text-center">Oui</h6>
-                                                                      <p class="d-inline-block m-l-20">OUI</p>
+
                                                                   </div>
                                                               </td>
                                                               <td>
-                                                                  <p class="d-inline-block m-r-20">{{vote}}</p>
+                                                                  <p class="d-inline-block m-r-20">4</p>
                                                                   <div class="progress d-inline-block">
                                                                       <div class="progress-bar bg-c-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:80%">
                                                                       </div>
@@ -480,11 +485,11 @@
                                                             <td>
                                                                 <div class="task-contain">
                                                                     <h6 class="bg-c-pink d-inline-block text-center">Non</h6>
-                                                                    <p class="d-inline-block m-l-20">Non</p>
+
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <p class="d-inline-block m-r-20">4 : 36</p>
+                                                                <p class="d-inline-block m-r-20">4 </p>
                                                                 <div class="progress d-inline-block">
                                                                     <div class="progress-bar bg-c-pink" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:60%">
                                                                     </div>
@@ -494,10 +499,11 @@
                                                       </tbody>
                                                   </table>
                                               </div>
-                                          </div>
 
-<p  *ngIf="f.value==true">vous avez voté avec oui . </p>
-<p  *ngIf="f.value==false">vous avez voté avec non .</p>
+
+
+  <!-- data widget End -->
+
 
     </div>
   </div>

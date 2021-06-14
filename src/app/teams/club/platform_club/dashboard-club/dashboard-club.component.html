@@ -78,7 +78,7 @@
                 <a [routerLink]="['/dashboard_club/profile']">
 
                   <img
-                  src="http://127.0.0.1:5010/{{u.membreimage}}"
+                  src="http://127.0.0.1:5010/{{u.url_image}}"
                     class="img-radius"
                     alt="User-Profile-Image"
                   />
@@ -255,7 +255,7 @@
               <div class="main-menu-header" *ngFor="let u of user">
                 <img
                   class="img-40 img-radius"
-                  src="http://127.0.0.1:5010/{{u.membreimage}}"
+                  src="http://127.0.0.1:5010/{{u.url_image}}"
                   alt="User-Profile-Image"
                 />
                 <div class="user-details">

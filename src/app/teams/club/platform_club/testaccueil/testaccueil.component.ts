@@ -4,40 +4,65 @@ import { ClubService } from '../../services/club.service';
 import { PostService } from '../../services/post.service';
 import { VoteService } from '../../services/vote.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MembreService } from '../../services/membre.service';
+import { Router } from '@angular/router';
 
-@Component({
-  selector: 'app-test',
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title">Hi there!</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Hello, {{name}}!</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    </div>
-  `
-})
 
-export class NgbdModalContent {
-  @Input() name;
-
-  constructor(public activeModal: NgbActiveModal) {}
-}
 
 @Component({
   selector: 'ngbd-modal-component',
   templateUrl: './testaccueil.component.html'
 })
-export class TestaccueilComponent  {
-  constructor(private modalService: NgbModal) {}
+export class TestaccueilComponent implements OnInit {
+  clubs: any = [];
+  user: any= [];
+     //local storage items
+     idmembre:any;
+     prenom: string;
+     nom: string;
+     role: string;
+  constructor(private  _http:ClubService,private  u_http:MembreService,private  router: Router) {}
+  ngOnInit() {
+    this.getuserClubs();
+    this.idmembre=localStorage.getItem('id_membre') ;
+    this.nom=localStorage.getItem('nom');
+    this.prenom=localStorage.getItem('prenom');
 
-  open() {
-    const modalRef = this.modalService.open(NgbdModalContent);
-    modalRef.componentInstance.name = 'World';
+    this.role=localStorage.getItem('role');
+
+    this.getuser(this.idmembre);
+  }
+  getuserClubs() {
+    this._http.getuserClubs().subscribe(club => {
+      this.clubs= club['data'];
+      for (var club of this.clubs) {
+       // console.log(club.id_club);
+        //localStorage.setItem("id_club",club.id_club);
+      }
+
+      console.log(club);
+    },
+    error => {
+      console.log(error);
+    });
+  }
+  gotoAccueil(idclub:any){
+
+    this.router.navigate(['/dashboard_club/profile/'+idclub]);
+  }
+  getuser(id_membre:any) {
+    this.u_http.getUser(id_membre)
+      .subscribe(
+        club => {
+          this.user= club['data'];
+
+        },
+        error => {
+          console.log(error);
+        });
+  }
+  profil(e:any){
+    this.router.navigate(['/dashboard_club/profile/'+e]);
+
   }
 }

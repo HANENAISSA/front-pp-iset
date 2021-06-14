@@ -25,7 +25,7 @@
                                       <tr>
                                           <td>
                                               <div class="task-contain">
-                                                  <h6 class="bg-c-blue d-inline-block text-center">U</h6>
+                                                  <h6 class="bg-c-blue d-inline-block text-center"><img src="http://127.0.0.1:5010/{{membre.url_image}}"></h6>
                                                   <p class="d-inline-block m-l-20">{{membre.nom}}</p>
                                               </div>
                                           </td>
@@ -43,13 +43,13 @@
               </div>
 
               <!-- responsables list-->
-                  <div class="col-lg-12 col-xl-6 tab-with-img">
+                  <div class="col-lg-12 col-xl-6 tab-with-img" *ngFor="let resp of responsables">
                       <div class="sub-title">liste de responsables</div>
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs md-tabs img-tabs b-none" role="tablist">
                           <li class="nav-item">
                               <a class="nav-link active" data-toggle="tab" href="#home8" role="tab">
-                                  <img src="assets/images/avatar-1.jpg" class="img-fluid img-circle" alt="">
+                                  <img src="http://127.0.0.1:5010/{{resp.url_image}}" class="img-fluid img-circle" alt="">
                                   <span class="quote"><i class="icofont icofont-quote-left bg-primary"></i></span>
                               </a>
                           </li>
@@ -60,13 +60,13 @@
 
                         <dl class="dl-horizontal row">
                             <dt class="col-sm-3">Nom et prenom</dt>
-                            <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
+                            <dd class="col-sm-9">{{resp.nom}} {{resp.prenom}} </dd>
                             <dt class="col-sm-3">Role</dt>
-                            <dd class="col-sm-9">Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                            <dt class="col-sm-3">equipe</dt>
-                            <dd class="col-sm-9">Etiam porta sem malesuada magna mollis euismod.</dd>
+                            <dd class="col-sm-9">{{resp.role}}</dd>
+                           <!--<dt class="col-sm-3">equipe</dt>
+                            <dd class="col-sm-9">Etiam porta sem malesuada magna mollis euismod.</dd>-->
                             <dt class="col-sm-3">Contact</dt>
-                            <dd class="col-sm-9">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
+                            <dd class="col-sm-9">Email. {{resp.email}} Tel. 2222222</dd>
                         </dl>
 
                       </div>

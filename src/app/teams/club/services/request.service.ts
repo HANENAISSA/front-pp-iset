@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class RequestService {
   constructor(private _http:HttpClient) { }
 
-sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any) {
+sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any,tel: any) {
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/demande_event/sendRequest",
       {  cin: cin,
@@ -15,6 +15,7 @@ sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any) {
         club:club,
         motivation:motivation,
         email:email,
+        tel:tel
 
       }
     );

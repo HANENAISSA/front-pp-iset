@@ -22,7 +22,22 @@ export class ClubService {
       }
     );
   }
-
+  getMembres(idclub:any) {
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/user/getMembres",
+      {
+        idclub:idclub
+      }
+    );
+  }
+  getResponsables(idclub:any) {
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/user/getResponsables",
+      {
+        idclub:idclub
+      }
+    );
+  }
   getuserClubs() {
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/club/getuserClubs", ""
