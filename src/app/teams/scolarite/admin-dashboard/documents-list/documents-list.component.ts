@@ -55,7 +55,7 @@ export class DocumentsListComponent implements OnInit {
       case 2:
         this.service.getAllDocument().subscribe((data) => {
           this.DocumentsEnAttente = data;
-          const EnattenteDocs = this.documents.filter(item => item.id_statut_papier === 3 );
+          const EnattenteDocs = this.DocumentsEnAttente.filter(item => item.id_statut_papier === 3 );
           this.DocumentsEnAttente = EnattenteDocs;
         });
         break;
@@ -69,28 +69,44 @@ export class DocumentsListComponent implements OnInit {
   }
 
 
-  accept(id,document) {
-    let index = id;
-    document.id_statut_papier = 1;
-    this.documents[index] = document;
-    this.service.acceptDocumet(id,document).subscribe(response => {
-      this.refreshData(this.actualId);
-    },
-    error => {
-      console.log(error);
-    });
+  accept(id) {
+    // let index = id;
+    // document.id_statut_papier = 1;
+    // this.documents[index] = document;
+    // this.service.acceptDocumet(id).subscribe(response => {
+    //   this.refreshData(this.actualId);
+    // },
+    // error => {
+    //   console.log(error);
+    // });
+    this.service.acceptDocumet(id).subscribe(
+      (Response)=>{
+        swal("Document administratif accepté!", "", "success");
+        this.refreshData(this.actualId);
+      },(error)=>{
+        console.log(error);
+      }
+    )
   }
-  refuse(id,document) {
-    let index = id;
-    document.id_statut_papier = 2;
-    this.documents[index] = document;
-    this.service.refuseDocument(id,document).subscribe(response => {
-      swal("Document administratif rejeté!", "", "success");
-      this.refreshData(this.actualId);
-    },
-    error => {
-      console.log(error);
-    });
+  refuse(id) {
+    this.service.refuseDocument(id).subscribe(
+      (Response)=>{
+        swal("Document administratif rejeté!", "", "success");
+        this.refreshData(this.actualId);
+      },(error)=>{
+        console.log(error);
+      }
+    )
+    // let index = id;
+    // document.id_statut_papier = 2;
+    // this.documents[index] = document;
+    // this.service.refuseDocument(id).subscribe(response => {
+    //   swal("Document administratif rejeté!", "", "success");
+    //   this.refreshData(this.actualId);
+    // },
+    // error => {
+    //   console.log(error);
+    // });
   }
 
   openModal(document) {

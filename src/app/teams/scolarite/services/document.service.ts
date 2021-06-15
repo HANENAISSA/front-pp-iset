@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -9,6 +9,9 @@ import { Document } from '../models/document.model';
 })
 export class DocumentService {
   private baseURL="http://127.0.0.1:5010";
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   constructor(private httpClient: HttpClient) { }
 
   // Get Administratif Papers Filtred By Status
@@ -42,12 +45,12 @@ export class DocumentService {
     return this.httpClient.post<Document[]>(this.baseURL+'/addfile/add',document);
   }
 
-  acceptDocumet(id, document){
-    return this.httpClient.put(this.baseURL+"/updatefile/update"+"/"+id,document);
+  acceptDocumet(id){
+    return this.httpClient.put<any>(this.baseURL+"/updatefile/updateAccept"+"/"+id,this.httpOptions);
   }
 
-  refuseDocument(id, document){
-    return this.httpClient.put(this.baseURL+"/updatefile/update"+"/"+id,document);
+  refuseDocument(id){
+    return this.httpClient.put(this.baseURL+"/updatefile/updateRefuse"+"/"+id,this.httpOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
