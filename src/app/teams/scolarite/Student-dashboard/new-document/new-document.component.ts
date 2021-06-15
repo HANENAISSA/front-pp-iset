@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Document } from '../../models/document.model';
 import { DocumentService } from '../../services/document.service';
+import swal from "sweetalert";
 
 @Component({
   selector: 'app-new-document',
@@ -15,10 +16,6 @@ export class NewDocumentComponent implements OnInit {
   paperTypes:any =[];
 
   addDocForm = new FormGroup({
-    // firstName: new FormControl("" ),
-    // lastName: new FormControl("" ),
-    // cin: new FormControl("" ),
-    // class: new FormControl("" ),
     id_type_papier: new FormControl("", Validators.required),
     raison: new FormControl(""),
     date: new FormControl(this.currentDate),
@@ -42,6 +39,7 @@ export class NewDocumentComponent implements OnInit {
       const formValues = this.addDocForm.value;
       const newDoc = new Document(formValues.raison,formValues.date,parseInt(formValues.id_type_papier),formValues.id_user,formValues.status);
       this.service.addDocument(newDoc).subscribe((data)=>{
+        swal("Ajouté!", "Ajouté avec succès", "success");
         this.router.navigate(["dashboard/documents-list"]);
       })
     }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Reclamation } from "../../models/reclamation.model";
 import { ReclamationService } from "../../services/reclamation.service";
+import swal from "sweetalert";
 
 @Component({
   selector: "app-student-reclamations-list",
@@ -25,7 +26,21 @@ export class StudentReclamationsListComponent implements OnInit {
 
   deleteReclamation(indice: number) {
     this.service.deleteReclamation(indice).subscribe((response) => {
-      this.refreshData();
+      swal({
+        title: "Êtes-vous sûr?",
+        text: "Êtes-vous sûr de supprimer cette demande?",
+        icon: "warning",
+        buttons:[true, true],
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Le demande a été supprimé avec succès!", {
+            icon: "success",
+          });
+          this.refreshData();
+        } else {}
+      });
     });
   }
 

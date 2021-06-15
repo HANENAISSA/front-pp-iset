@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Reclamation } from "../../models/reclamation.model";
 import { ReclamationService } from "../../services/reclamation.service";
+import swal from "sweetalert";
 
 @Component({
   selector: "app-new-reclamation",
@@ -41,6 +42,7 @@ export class NewReclamationComponent implements OnInit {
         Values.id_user
       );
       this.service.addReclamation(this.reclamation).subscribe((data) => {
+        swal("Ajouté!", "Ajouté avec succès", "success");
         this.router.navigate(["dashboard/reclamations-list"]);
       });
     }

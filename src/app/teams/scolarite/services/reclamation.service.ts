@@ -37,9 +37,7 @@ export class ReclamationService {
   }
 
   deleteReclamation(indice: number) {
-    if(confirm("Etes-vous sûre de vouloir supprimer cette demande ? ")){
-      return this.httpClient.delete<Reclamation[]>(this.baseURL+'/DeleteReclamation/DeleteReclamation'+'/'+indice,this.httpOptions)
-    }
+    return this.httpClient.delete<Reclamation[]>(this.baseURL+'/DeleteReclamation/DeleteReclamation'+'/'+indice,this.httpOptions)
   }
 
   private handleError<T>(operation = "operation", result?: T) {

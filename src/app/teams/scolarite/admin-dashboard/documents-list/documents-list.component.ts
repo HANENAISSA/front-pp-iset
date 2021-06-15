@@ -1,6 +1,7 @@
 import { animate, style, transition, trigger } from "@angular/animations";
 import { Component, Input, OnInit } from "@angular/core";
 import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import swal from "sweetalert";
 import { Document } from "../../models/document.model";
 import { DocumentService } from "../../services/document.service";
 
@@ -36,11 +37,11 @@ export class DocumentsListComponent implements OnInit {
     private service: DocumentService,
     private modalService: NgbModal
   ) {
-    this.actualId=3;
+    this.actualId=2;
   }
 
   ngOnInit() {
-    this.refreshData(3);
+    this.refreshData(2);
   }
   refreshData(id:number) {
     switch (id) {
@@ -51,12 +52,7 @@ export class DocumentsListComponent implements OnInit {
           this.DocumentsAccepted = filtredDocs;
         });
         break;
-      // case 2:
-      // this.service.getAllDocument().subscribe((data) => {
-      //   this.documents = data;
-      // });
-      //   break;
-      case 3:
+      case 2:
         this.service.getAllDocument().subscribe((data) => {
           this.DocumentsEnAttente = data;
           const EnattenteDocs = this.documents.filter(item => item.id_statut_papier === 3 );
@@ -89,6 +85,7 @@ export class DocumentsListComponent implements OnInit {
     document.id_statut_papier = 2;
     this.documents[index] = document;
     this.service.refuseDocument(id,document).subscribe(response => {
+      swal("Document administratif rejeté!", "", "success");
       this.refreshData(this.actualId);
     },
     error => {

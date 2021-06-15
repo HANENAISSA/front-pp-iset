@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ReclamationService } from "../../services/reclamation.service";
+import swal from "sweetalert";
 
 @Component({
   selector: "app-reclamation-detail",
@@ -76,6 +77,7 @@ export class ReclamationDetailComponent implements OnInit {
     };
     this.service.acceptReclamation(this.id, data).subscribe(
       (data) => {
+        swal("Reclamation acceptée!", "", "success");
         this.reloadComponent();
       },
       (err) => {

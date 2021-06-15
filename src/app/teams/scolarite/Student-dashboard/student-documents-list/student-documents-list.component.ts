@@ -2,6 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentService } from '../../services/document.service';
+import swal from "sweetalert";
 
 @Component({
   selector: 'app-student-documents-list',
@@ -97,19 +98,31 @@ export class StudentDocumentsListComponent implements OnInit {
     }
   }
   deleteDocument(id : number){
-    if(confirm("Etes-vous sûre de vouloir supprimer cette demande ?")){
       this.service.deleteDocument(id).subscribe(
        {next:(data)=>{
-        const {deleted,result}=data as any;
-        if(deleted){
-          this.refreshData(this.actualId);
-        }
-
+        swal({
+          title: "Êtes-vous sûr?",
+          text: "Êtes-vous sûr de supprimer cette demande?",
+          icon: "warning",
+          buttons:[true, true],
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal("Le demande a été supprimé avec succès!", {
+              icon: "success",
+            });
+            const {deleted,result}=data as any;
+            if(deleted){
+              this.refreshData(this.actualId);
+            }
+          } else {}
+        });
        },error:(error)=>{
         console.log(error)
        }
       });
-    }
+
   }
 
   handlePageSizeChange(event: any): void {

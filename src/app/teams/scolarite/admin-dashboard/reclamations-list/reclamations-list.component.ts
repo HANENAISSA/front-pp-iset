@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Reclamation } from '../../models/reclamation.model';
 import { ReclamationService } from '../../services/reclamation.service';
+import swal from "sweetalert";
 
 @Component({
   selector: 'app-reclamations-list',
@@ -63,15 +64,23 @@ export class ReclamationsListComponent implements OnInit {
     });
   }
 
-  accept(i: number) {
-    // this.service.acceptReclamation(i);
-    // this.refreshData();
-  }
-
   refuse(i:number){
     this.service.refuseReclamation(i).subscribe((data) => {
-      alert("Reclamation Refused");
-      this.refreshData(this.actualId);
+      swal({
+        title: "Êtes-vous sûr?",
+        text: "Êtes-vous sûr que cette demande sera rejetée",
+        icon: "warning",
+        buttons:[true, true],
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Document administratif rejeté!", {
+            icon: "success",
+          });
+          this.refreshData(this.actualId);
+        } else {}
+      });
     })
   }
 
