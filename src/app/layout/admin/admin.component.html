@@ -491,6 +491,12 @@
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
+                  <div
+                  class="pcoded-navigatio-lavel"
+                  [attr.menu-title-theme]="menuTitleTheme"
+                >
+                  Admin
+                </div>
                   <!-- Document Administratif Link -->
                   <li appAccordionLink>
                     <a [routerLink]="['/dashboard/admin-documents-list']" target="_self" appAccordionToggle>
@@ -520,6 +526,12 @@
                   group="dashboard"
                 >
                 <!-- Document administratif start -->
+                <div
+                  class="pcoded-navigatio-lavel"
+                  [attr.menu-title-theme]="menuTitleTheme"
+                >
+                  Etudiant
+                </div>
                   <li
                     class="pcoded-hasmenu"
                     [attr.dropdown-icon]="dropDownIcon"

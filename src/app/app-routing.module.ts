@@ -2,9 +2,9 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { DashboardDefaultComponent } from "./pages/dashboard/dashboard-default/dashboard-default.component";
-import { SimplePageComponent } from "./pages/simple-page/simple-page.component";
 import { ProfileComponent } from "./pages/user/profile/profile.component";
 import { DocumentsListComponent } from "./teams/scolarite/admin-dashboard/documents-list/documents-list.component";
+import { ReclamationDetailComponent } from "./teams/scolarite/admin-dashboard/reclamation-detail/reclamation-detail.component";
 import { ReclamationsListComponent } from "./teams/scolarite/admin-dashboard/reclamations-list/reclamations-list.component";
 import { NewDocumentComponent } from "./teams/scolarite/Student-dashboard/new-document/new-document.component";
 import { NewReclamationComponent } from "./teams/scolarite/Student-dashboard/new-reclamation/new-reclamation.component";
@@ -57,6 +57,10 @@ const routes: Routes = [
       {
         path: "admin-reclamations-list",
         component: ReclamationsListComponent
+      },
+      {
+        path: "reclamation-detail/:id",
+        component: ReclamationDetailComponent
       },
 
       // {

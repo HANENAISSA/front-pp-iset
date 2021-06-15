@@ -20,7 +20,7 @@ export class StudentReclamationsListComponent implements OnInit {
   }
 
   refreshData() {
-    this.service.getReclamations().subscribe(data => this.reclamations = data);
+    this.service.getReclamationsEnAttente().subscribe(data => this.reclamations = data);
   }
 
   deleteReclamation(indice: number) {

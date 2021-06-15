@@ -51,11 +51,11 @@ export class DocumentsListComponent implements OnInit {
           this.DocumentsAccepted = filtredDocs;
         });
         break;
-      case 2:
-      this.service.getAllDocument().subscribe((data) => {
-        this.documents = data;
-      });
-        break;
+      // case 2:
+      // this.service.getAllDocument().subscribe((data) => {
+      //   this.documents = data;
+      // });
+      //   break;
       case 3:
         this.service.getAllDocument().subscribe((data) => {
           this.DocumentsEnAttente = data;

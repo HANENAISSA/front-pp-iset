@@ -13,6 +13,9 @@ export class ReclamationService {
   private baseURL = "http://127.0.0.1:5010";
   constructor(private httpClient: HttpClient) {}
 
+  getReclamationById(i: number):Observable<Reclamation[]>{
+    return this.httpClient.get<Reclamation[]>(this.baseURL+'/getReclamtionById/getById'+'/'+i,this.httpOptions)
+  }
   getReclamations():Observable<Reclamation[]>{
     return this.httpClient.get<Reclamation[]>(this.baseURL+'/getReclamtionAccepter/getAccpeter',this.httpOptions)
   }
@@ -25,10 +28,8 @@ export class ReclamationService {
     return this.httpClient.post<Reclamation[]>(this.baseURL+'/addReclamation/addReclamation',JSON.stringify(reclamation),this.httpOptions)
   }
 
-  acceptReclamation(i: number) {
-    // let data = JSON.parse(window.localStorage.getItem("reclamations"));
-    // data[i].status = "Accepté - En train de Préparation";
-    // localStorage.setItem("reclamations", JSON.stringify(data));
+  acceptReclamation(id: any, message: any): Observable<any>{
+    return this.httpClient.put(this.baseURL+'/updateReclamation/updateReclamation/'+id,message)
   }
 
   refuseReclamation(i: number) {

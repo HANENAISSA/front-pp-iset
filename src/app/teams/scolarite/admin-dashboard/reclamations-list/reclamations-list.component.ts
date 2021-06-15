@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Reclamation } from '../../models/reclamation.model';
 import { ReclamationService } from '../../services/reclamation.service';
@@ -30,7 +31,7 @@ export class ReclamationsListComponent implements OnInit {
   public search:any = '';
   actualId:number;
 
-  constructor(private service: ReclamationService, private modal: NgbModal) {
+  constructor(private service: ReclamationService, private modal: NgbModal,private router :Router) {
     this.actualId=1;
   }
 
