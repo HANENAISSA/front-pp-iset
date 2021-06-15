@@ -1,0 +1,118 @@
+<!-- Page-header start -->
+<div class="">
+  <div class="page-header card">
+    <div class="row align-items-end">
+      <div class="col-lg-8">
+        <div class="page-header-title">
+          <span><i class="icofont icofont-file-document bg-c-blue"></i></span>
+          <div class="d-inline">
+            <span class="d-block">
+              <h4>Les Détails du Réclamation</h4>
+            </span>
+            <span>Consulter Les Détails du Réclamation</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="page-header-breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/'">
+                <i class="icofont icofont-home"></i>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a>scolarité</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page-header end -->
+<div>
+  <div class="card">
+    <div class="card-header">
+      <button type="button" class="btn btn-light" (click)="goBack()">
+        <i class="icofont icofont-swoosh-left"></i>Revenir à la liste
+      </button>
+    </div>
+    <div class="card-body">
+      <h4>Etudiant</h4>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label><b>Prénom</b></label><br>
+          <label>{{reclamation[0]?.prenom}}</label>
+        </div>
+        <div class="form-group col-md-6">
+          <label><b>Nom</b></label><br>
+          <label>{{reclamation[0]?.nom}}</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label><b>Classe</b></label><br>
+          <label>{{reclamation[0]?.libelle}}</label>
+        </div>
+        <div class="form-group col-md-6">
+          <label><b>N°CIN</b></label><br>
+          <label>{{reclamation[0]?.cin}}</label>
+        </div>
+      </div>
+      <hr>
+      <h4>Reclamation</h4>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label><b>Type du Reclamation</b></label><br>
+          <label>{{reclamation[0]?.type_reclamation}}</label>
+        </div>
+        <div class="form-group col-md-6">
+          <label><b>Description</b></label><br>
+          <label>{{reclamation[0]?.contenu}}</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label><b>Statut</b></label><br>
+          <label>{{reclamation[0]?.libelle_statut_reclamation}}</label>
+        </div>
+        <div class="form-group col-md-6">
+          <label><b>Message</b></label><br>
+          <label>{{reclamation[0]?.message}}</label>
+        </div>
+      </div>
+      <div *ngIf="!(reclamation[0]?.id_statut_reclamation == 1)">
+        <hr>
+        <h4>réponse à la réclamation</h4>
+        <form [formGroup]="responseForm" (ngSubmit)="msgResponse()">
+          <label for="message"><b>Les réponses</b></label>
+          <div class="row">
+            <div class="col-md-6">
+            <select id="message" class="form-control" formControlName="msgResponse" [(ngModel)]="response">
+              <option *ngFor="let option of options" value="{{option}}">{{option}}</option>
+            </select>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-{{btnColor}}" (click)="showAddMsg()">{{btnName}}</button>
+            </div>
+          </div>
+          <div [hidden]=hidden >
+            <label for="message"><b>Une aute réponse</b></label>
+            <div class="row">
+              <div class="col-md-10">
+                <input type="text" class="form-control" id="msg" >
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-primary" (click)="add()">Ajouter</button>
+              </div>
+            </div>
+          </div>
+          <br>
+          <button class="btn btn-primary" type="submit" [disabled]="responseForm.invalid">Envoyer</button>
+          <button class="btn btn-light" type="button" (click)="goBack()">Annuler</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
