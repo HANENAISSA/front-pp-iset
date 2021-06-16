@@ -18,12 +18,13 @@
  <div class="media mt-2" *ngFor="let cmtre of cmtrs">
 
 
- <a class="media-left" href="javascript:;"  >
-  <img class="media-object img-radius comment-img" src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
+ <a class="media-left" href="javascript:;" *ngFor="let u of user" >
+  <img *ngIf="u.membreimage=='imageurl'" class="media-object img-radius comment-img"  src="assets/images/5.png"  alt="Generic placeholder image">
+  <img *ngIf="u.membreimage!='imageurl'"class="media-object img-radius comment-img" src="http://127.0.0.1:5010/{{u.membreimage}}" alt="Generic placeholder image">
 </a>
 
 <div class="media-body">
-  <div ngbDropdown container="body">
+  <div ngbDropdown container="body" >
     <button class="btn float-right" ngbDropdownToggle>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" >
         <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />

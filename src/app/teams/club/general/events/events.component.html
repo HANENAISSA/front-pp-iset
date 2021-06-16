@@ -17,28 +17,23 @@
   </div>
          <div class="row">
           <div class="col-lg-12">
-              <div id="demo" class="carousel slide" data-ride="carousel" *ngFor="let event of events">
+              <div id="demo" class="carousel slide onevent" data-ride="carousel" *ngFor="let event of events">
 
                   <!-- The slideshow -->
                   <div class="carousel-inner">
                       <div class="carousel-item active">
-                          <div class="row">
-                              <div class="col-lg-6 col-md-6 col-sm-12">
-                                  <div class="full blog_img_popular">
+                          <div class="row changeBackground">
+                              <div class="col-lg-6 col-md-6 col-sm-12 leftside">
                                     <img class="img-responsive" src="http://127.0.0.1:5010/{{event.url_image}}" alt="#" />
-                                    <h4>{{event.titre_event}}</h4>
-
-
-
-                                  </div>
+                                    <div class="eventName"><h4>{{event.titre_event}}</h4></div>
                               </div>
-                              <div class="col-lg-6 col-md-6 col-sm-12">
+                              <div class="rightSide">
 
-
-                                 Date: <h5>{{event.date_debut}} à {{event.heure_debut}}</h5>
-                                 Heure: <h5>{{event.date_fin}} à {{event.heure_fin}}</h5>
-                                 Description: <p>{{event.description}}</p>
-                                 Lien de participation: <a  href={{event.url_event}}>{{event.url_event}}</a>
+                                <div class="description"><h1>description</h1></div>
+                                <div class="text"><span> Date: </span><h5>{{event.date_debut}} à {{event.date_fin}}</h5></div>
+                                <div class="text"><span>Heure:</span> <h5> {{event.heure_debut}} à {{event.heure_fin}}</h5></div>
+                                <div class="text"><span> Description: </span><p>{{event.description}}</p></div>
+                                  <div class="text"><span>Lien de participation:</span> <a  href={{event.url_event}}>{{event.url_event}}</a></div>
 
                             </div>
                           </div>

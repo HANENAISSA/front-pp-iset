@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PopupComponent } from '../../../../popup/popup.component';
 import { AuthService } from '../../services/auth.service';
 
 
@@ -15,7 +17,7 @@ export class SigninComponent implements OnInit {
 
 
 
-  constructor(private _http:AuthService,private  router: Router) {
+  constructor(private _http:AuthService,private  router: Router,private modalService: NgbModal) {
 
   }
   ngOnInit(): void {
@@ -37,7 +39,10 @@ export class SigninComponent implements OnInit {
         this.router.navigate(['/dashboard_club/accueil']);
 
       }else{
-        alert(data['message'])
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = data['message'];
+        modalRef.componentInstance.message = 'Erreur';
+       // alert(data['message'])
       }
     },
       err => {

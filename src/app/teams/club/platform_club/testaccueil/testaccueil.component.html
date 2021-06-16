@@ -1,7 +1,7 @@
-<div class="row" *ngFor="let club of clubs">
+<div class="row" >
   <!-- clubs Start -->
-<div class="col-md-12 col-xl-8"  (click)="gotoAccueil(club.id_club)" >
-  <div class="card card-blue total-card">
+ <div class="col-md-12 col-xl-8" *ngFor="let club of clubs" (click)="gotoAccueil(club.id_club)" >
+   <div class="card card-blue total-card">
     <div class="card-block">
       <div class="text-left">
         <h4>{{club.nom_club}}</h4>
@@ -10,14 +10,21 @@
       <span class="label bg-c-blue value-badges"><i class="ti-new-window"></i></span>
     </div>
 
-  </div>
+   </div>
   </div>
   <!-- profile Start -->
   <div class="col-md-12 col-xl-4" *ngFor="let u of user">
     <div class="card card-contact-box ">
       <div class="card-block ">
         <div class="card-contain text-center ">
-          <img src="http://127.0.0.1:5010/{{u.url_image}}" alt=" ">
+          <img *ngIf="u.membreimage=='imageurl'" src="assets/images/5.png"
+          style="height: 100px;width: 100px;" alt=" "
+                />
+                <img
+                *ngIf="u.membreimage!='imageurl'"
+                src="http://127.0.0.1:5010/{{u.membreimage}}" style="height: 100px;width: 100px;" alt=" "
+                />
+
           <h6 class="f-w-600 f-20 p-b-5 m-0 p-t-15 ">{{nom}} {{prenom}}</h6>
           <a href="javascript:">{{u.email}}</a>
           <p class="text-muted p-b-25 m-0 p-t-5 ">{{role}}</p>
@@ -26,8 +33,9 @@
       </div>
       <div class="b-t-default">
         <div class="row m-0">
-
-          <div class="col-12 f-btn text-center p-t-15 p-b-15 " (click)="profil(club.id_club)">
+        <div class="col-12 f-btn text-center p-t-15 p-b-15 " >
+          <div *ngFor="let club of clubs" (click)="profil(club.id_club)">
+          </div>
             <a href="javascript:">
               <i class="icofont icofont-user text-muted m-r-10 "></i>
               <p class="text-muted m-0 text-uppercase d-inline-block " >Profile</p>
@@ -38,4 +46,5 @@
     </div>
   </div>
   <!-- profile End -->
+
 </div>

@@ -9,7 +9,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class PopupComponent implements OnInit {
   @Input() name;
-
+  @Input()message;
   constructor(public activeModal: NgbActiveModal ) { }
 
 

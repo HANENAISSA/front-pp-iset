@@ -54,4 +54,13 @@ export class ClubService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
     );
   }
+  getadmin(idclub:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/club//isAdmin", {
+        id_club:idclub
+      }
+      ,
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+    );
+  }
 }

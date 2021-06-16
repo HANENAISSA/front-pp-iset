@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 //import { DialogElementsExampleDialog } from './dialog-elements-example-dialog';
 //import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PopupComponent } from '../../../../popup/popup.component';
 @Component({
   selector: 'app-envoyer-demande',
   templateUrl: './envoyer-demande.component.html',
@@ -18,7 +19,7 @@ export class EnvoyerDemandeComponent implements OnInit {
   club?:any;
   equipes: any =[];
   tel: any;
-  constructor(public dialog: MatDialog,private _http:RequestService,private route: ActivatedRoute,private router: Router) {
+  constructor(public dialog: MatDialog,private _http:RequestService,private route: ActivatedRoute,private router: Router,private modalService: NgbModal) {
 
   }
   ngOnInit(): void {
@@ -37,10 +38,15 @@ sendRequest(){
         localStorage.setItem("token",data["token"])
        // localStorage.setItem("id_club",data['data']['id_club']);
         this.router.navigate(['accueil/clubs']);
-        window.alert('votre demande a été envoyé avec succès')
-
+       // window.alert('votre demande a été envoyé avec succès')
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = 'votre demande a été envoyé avec succès';
+        modalRef.componentInstance.message = 'Succès';
       }else{
-        alert(data['message'])
+        //alert(data['message'])
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = data['message'];
+        modalRef.componentInstance.message = 'Erreur';
       }
     },
       err => {

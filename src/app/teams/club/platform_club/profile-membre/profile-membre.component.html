@@ -10,8 +10,10 @@
 
                 <div class="picture-container">
                     <div class="picture" *ngFor="let u of user">
-                        <img src="http://127.0.0.1:5010/{{u.url_image}}" class="picture-src" id="wizardPicturePreview" title="">
-                        <input type="file"  [(ngModel)]="file" (change)="updatePic()" id="wizard-picture" class="">
+
+                <img  *ngIf="u.membreimage=='imageurl'" src="assets/images/5.png" class="picture-src" id="wizardPicturePreview" title="">
+                        <img  *ngIf="u.membreimage!='imageurl'" src="http://127.0.0.1:5010/{{u.membreimage}}" class="picture-src" id="wizardPicturePreview" title="">
+                        <input type="file"  (change)="updatePic($event)"  id="wizard-picture" class="">
                     </div>
                      <h6 class="">Choose Picture</h6>
 
@@ -55,21 +57,21 @@
                       <div class="col-lg-12">
                         <div class="general-info">
                           <div class="row">
-                            <div class="col-lg-12 col-xl-6">
+                            <div class="col-lg-12 col-xl-6" *ngFor="let u of user">
                               <div class="table-responsive">
                                 <table class="table m-0">
                                   <tbody>
                                   <tr>
-                                    <th scope="row">Full Name</th>
+                                    <th scope="row">Nom et prenom </th>
                                     <td>{{nom}} {{prenom}}</td>
                                   </tr>
                                   <tr>
-                                    <th scope="row">Gender</th>
-                                    <td>Female</td>
+                                    <th scope="row">Sexe</th>
+                                    <td>{{u.sexe}}</td>
                                   </tr>
                                   <tr>
-                                    <th scope="row">Birth Date</th>
-                                    <td>October 25th, 1990</td>
+                                    <th scope="row">Date de naissance </th>
+                                    <td>{{u.date_naissance.slice(0,10)}}</td>
                                   </tr>
 
                                   </tbody>
@@ -84,10 +86,6 @@
                                   <tr>
                                     <th scope="row">Email</th>
                                     <td>{{u.email}}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Mobile Number</th>
-                                    <td>(0123) - 4567891</td>
                                   </tr>
 
                                   </tbody>
@@ -156,7 +154,14 @@
                                         </div>
                                       </td>
                                     </tr>
-
+                                    <tr>
+                                      <td>
+                                        <div class="input-group">
+                                          <span class="input-group-prepend"><label class="input-group-text"><i class="ti-mobile"></i></label></span>
+                                          <input type="number" class="form-control" placeholder={{u.tel}} [(ngModel)]="tel"  >
+                                        </div>
+                                      </td>
+                                    </tr>
                                   </tbody>
                                 </table>
                               </div>

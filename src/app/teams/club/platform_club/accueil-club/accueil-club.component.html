@@ -26,10 +26,19 @@
                    <div class="col-sm-11">
                       <input type="text" class="form-control" [(ngModel)]="post"
                       placeholder="votre post">
- <!-- upload file start -->
+ <!-- upload file start
 <input type="file" value=""  [(ngModel)]="post_image" (change)="imagePost($event)">
 
+<br>
+-->
+<!-- actual upload which is hidden -->
+<input type="file" id="actual-btn" [(ngModel)]="post_image" (change)="imagePost($event)" #files hidden/>
 
+<!-- our custom upload button -->
+<label class="bglabel" for="actual-btn" >Choisir le fichier</label>
+
+<!-- name of file chosen -->
+<span id="file-chosen" >{{fileName}}</span>
 
 
 <!-- upload file -->
@@ -54,13 +63,14 @@
             <br>
                   <ul class="media-list" >
                     <li class="media">
-                      <div class="media-left">
+                      <div class="media-left" *ngFor="let u of user">
                         <a href="javascript:;">
-                          <img class="media-object img-radius comment-img" src="assets/images/avatar-1.jpg" alt="Generic placeholder image">
+                          <img  *ngIf="u.membreimage=='imageurl'" src="assets/images/5.png" class="media-object img-radius comment-img">
+                          <img  *ngIf="u.membreimage!='imageurl'" class="media-object img-radius comment-img" src="http://127.0.0.1:5010/{{u.membreimage}}" alt="Generic placeholder image">
                         </a>
                       </div>
                       <div class="media-body">
-                        <div ngbDropdown container="body">
+                        <div ngbDropdown container="body" >
                           <button class="btn float-right" ngbDropdownToggle>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" >
                               <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
@@ -73,7 +83,7 @@
                             </button>
                           </div>
                         </div>
-                        <h6 class="media-heading">{{post.nom}}{{post.prenom}}<span class="f-12 text-muted m-l-5">{{post.date}}{{post.heure}}</span></h6>
+                        <h6 class="media-heading">{{post.nom}}{{post.prenom}}<span style="word-spacing: 15px;" class="f-12 text-muted m-l-5">{{post.date}} {{post.heure}}</span></h6>
                         <p class="m-b-0" sortBy={{post.date}}>{{post.description}}</p>
 
 
@@ -100,10 +110,12 @@
                     <div class="md-group-add-on p-relative col-lg-12">
                       <div class="input-group input-group-button input-group-primary">
 
-                        <input type="text" class="form-control" placeholder="ecrire votre commentaire" [(ngModel)]="cmtre">
-                        <span class="input-group-append"><label class="input-group-text">
-                                       <button type="button" class="btn btn-primary" (click)=addcmtre(post.id_publication)><i class="icofont icofont-plus"></i>Publier</button>
-                        </label></span>
+                        <input type="text" class="form-control"  style="height:46px"placeholder="ecrire votre commentaire" [(ngModel)]="cmtre">
+                        <span class="input-group-append">
+
+                          <button class="btn btn-out btn-primary btn-square" (click)=addcmtre(post.id_publication)><i class="icofont icofont-plus"></i>Publier</button>
+
+                       </span>
                       </div>
                     </div>
                   </div>
@@ -126,8 +138,8 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-header-text">événements</h5>
-                  <div *ngFor="let club of clubss">
-                  <button *ngIf="club.idadminclub==id_membre" id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
+                  <div >
+                  <button *ngIf="admin==true" id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
                     <i class="icofont {{ editProfileIcon }}"></i>
                   </button>
                 </div>
@@ -157,8 +169,8 @@
                           <div class="row">
 <!--display event-->
                             <div class="col-lg-12" *ngFor="let event of events">
-                              <div class="card fb-card" *ngFor="let club of clubss" >
-                                <div ngbDropdown container="body" *ngIf="club.idadminclub==id_membre">
+                              <div class="card fb-card" >
+                                <div ngbDropdown container="body" *ngIf="admin==true" >
                                   <button class="btn float-right" ngbDropdownToggle>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" >
                                       <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
@@ -335,10 +347,10 @@
   <!-- calendar-->
 
 
-<div class="col-md-12 col-xl-4"  *ngFor="let club of clubss">
+<div class="col-md-12 col-xl-4"  >
    <!-- browser Start -->
 
-   <button *ngIf="club.idadminclub==id_membre" id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="open()">
+   <button  *ngIf="admin==true" id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="open()">
     <i class="icofont icofont-ui-add"></i>
   </button>
 
@@ -346,20 +358,20 @@
     <app-card [title]="'Calendrier'"  >
 <i class="icofont icofont-stylish-right text-danger"></i> événements
     <div *ngIf="add">
-      <div class="browser-card b-t-default p-t-15" *ngFor="let event of events">
+      <div class="browser-card b-t-default p-t-15" style="border-top: none;" *ngFor="let event of events">
         <p class="d-inline-block m-0 ">{{event.titre_event}}</p>
         <label class="btn bg-c-yellow btn-round float-right btn-browser ">{{event.date_debut}}</label>
         <label class="btn bg-c-blue btn-round float-right btn-browser ">{{event.heure_debut}}</label>
       </div>
     </div>
-  <i class="icofont icofont-stylish-right text-danger"></i> autres
+  <i class="icofont icofont-stylish-right text-danger"></i> Autres
     <div *ngIf="add">
-      <div class="browser-card b-t-default p-t-15" *ngFor="let task of tasks">
+      <div class="browser-card b-t-default p-t-15" style="margin:10px 0;word-break: break-all;border-top: 0px;" *ngFor="let task of tasks">
 
-        <button *ngIf="club.idadminclub==id_membre" class="badge badge-inverse-info" (click)="deleteCAL(task.id_calendrier)"><i class="icofont icofont-close-line" ></i></button>
+        <button *ngIf="admin==true" class="badge badge-inverse-info" (click)="deleteCAL(task.id_calendrier)"><i class="icofont icofont-close-line" ></i></button>
         &nbsp;
-        <p class="d-inline-block m-0 ">{{task.description}}</p>
-        <label class="btn bg-c-yellow btn-round float-right btn-browser ">{{task.date}}</label>
+        <p class="d-inline-block m-0 " style="min-width:70%;">{{task.description}}</p>
+        <label class="btn bg-c-yellow btn-round float-right btn-browser " style="margin-left: 20px;">{{task.date}}</label>
         <label class="btn bg-c-blue btn-round float-right btn-browser ">{{task.temps}}</label>
 
       </div>
@@ -400,8 +412,8 @@
   </div>-->
   <!-- sondage -->
   <!-- add sondage -->
-  <div class="card widget-statstic-card" *ngFor="let club of clubss">
-    <div class="card-header" *ngIf="club.idadminclub==id_membre">
+  <div class="card widget-statstic-card" *ngIf="admin==true">
+    <div class="card-header" >
       <div class="card-header-left">
         <h4>Ajouter Sondage</h4>
         <input type="text" class="form-control" [(ngModel)]="title"
@@ -424,9 +436,9 @@
     </div>
   </div>
   <div class="card-block" >
-    <div *ngFor="let club of clubss">
-    <i *ngIf="club.idadminclub==id_membre" (click)="deleteSONDAGE(sondage.id_sondage)"  class="icofont icofont-close-line st-icon bg-c-blue txt-lite-color"></i>
-    <i *ngIf="club.idadminclub!=id_membre"  class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
+    <div >
+    <i *ngIf="admin==true" (click)="deleteSONDAGE(sondage.id_sondage)"  class="icofont icofont-close-line st-icon bg-c-blue txt-lite-color"></i>
+    <i *ngIf="admin==false"  class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
   </div>
 
 
@@ -439,7 +451,7 @@
                      [ngValue]="true"
                      id="true"
                      (change)="voter(true,sondage.id_sondage)"
-                     name="vote"  >Oui
+                     name="vote"  >       Oui
           </label>
 
           </div>
@@ -450,56 +462,14 @@
 
                      id="true"
                      (change)="voter(false,sondage.id_sondage)"
-                     name="vote">non
+                     name="vote">        Non
           </label>
            </div>
 </form>
 <p class="text-danger">{{ message }}</p>
                                             <!-- Data widget start -->
 
-                                              <div class="table-responsive">
-                                                  <table class="table table-hover" >
-                                                      <thead>
-                                                          <tr>
-                                                              <th>Vote</th>
-                                                              <th>Nombres de votes</th>
-                                                          </tr>
-                                                      </thead>
-                                                      <tbody>
-                                                          <tr>
-                                                              <td>
-                                                                  <div class="task-contain">
-                                                                      <h6 class="bg-c-blue d-inline-block text-center">Oui</h6>
-
-                                                                  </div>
-                                                              </td>
-                                                              <td>
-                                                                  <p class="d-inline-block m-r-20">4</p>
-                                                                  <div class="progress d-inline-block">
-                                                                      <div class="progress-bar bg-c-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:80%">
-                                                                      </div>
-                                                                  </div>
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>
-                                                                <div class="task-contain">
-                                                                    <h6 class="bg-c-pink d-inline-block text-center">Non</h6>
-
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <p class="d-inline-block m-r-20">4 </p>
-                                                                <div class="progress d-inline-block">
-                                                                    <div class="progress-bar bg-c-pink" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                      </tbody>
-                                                  </table>
-                                              </div>
-
+   <app-votes idsondage={{sondage.id_sondage}}></app-votes>
 
 
   <!-- data widget End -->

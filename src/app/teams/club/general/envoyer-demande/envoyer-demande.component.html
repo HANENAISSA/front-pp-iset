@@ -37,8 +37,8 @@
                  </div>
 							   <div class="full field">
 
-							   	<select [(ngModel)]="equipe" (change)="fun($event)">
-									<option value=""  selected="selected" >Choisir votre equipe..</option>
+							   	<select style="width: 100%;height: 43px;" [value]='1' [(ngModel)]="equipes[0].equipe" (change)="fun($event)">
+									<option value=""  [selected]="true" >Choisir votre equipe..</option>
                   <option  *ngFor="let eq of equipes" value="{{eq.id_equipe}}" >
                     {{eq.equipe}}
                   </option>
@@ -47,7 +47,7 @@
 							    </div>
 							   <div class="full field">
 								   <h5>Pourquoi voulez-vous être membre de ce club?</h5>
-                   <input type="text" [(ngModel)]="motivation" placeholder="motivation" name="motivation" />
+                   <input  type="text" style="background-color: white;border:1px solid black;height: 20px;" [(ngModel)]="motivation" placeholder="motivation" name="motivation" />
 							   </div>
                  <div class="full field"></div>
 							   <div class="full field">

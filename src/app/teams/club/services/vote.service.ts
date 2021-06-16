@@ -50,7 +50,7 @@ export class VoteService {
   }
   getVote(statut:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/sondage/getVotes",   {
+      "http://127.0.0.1:5010" + "/sondage/getVote",   {
 
          statut:statut
       },
@@ -69,4 +69,5 @@ export class VoteService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
+
 }

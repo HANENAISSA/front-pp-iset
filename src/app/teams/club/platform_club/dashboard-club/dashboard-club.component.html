@@ -71,36 +71,27 @@
               [@mobileMenuTop]="isCollapsedMobile"
               class="nav-right"
               [ngClass]="isCollapsedMobile"
+
             >
 
 
               <li class="user-profile header-notification" *ngFor="let u of user">
-                <a [routerLink]="['/dashboard_club/profile']">
+                <a >
 
-                  <img
-                  src="http://127.0.0.1:5010/{{u.url_image}}"
-                    class="img-radius"
-                    alt="User-Profile-Image"
-                  />
+                  <img *ngIf="u.membreimage=='imageurl'" src="assets/images/5.png"
+                class="img-40 img-radius"
+                alt="User-Profile-Image"
+                />
+                <img
+                *ngIf="u.membreimage!='imageurl'"
+                  class="img-40 img-radius"
+                  src="http://127.0.0.1:5010/{{u.membreimage}}"
+                  alt="User-Profile-Image"
+                />
                   <span>{{nom}} {{prenom}}</span>
                   <i class="ti-angle-down"></i>
                 </a>
-                <ul class="show-notification profile-notification">
-                  <li>
-                    <a [routerLink]="['/crm-contact']">
-                      <i class="ti-settings"></i> Paramètres
-                    </a>
-                  </li>
-                  <li>
-                    <a [routerLink]="['/dashboard_club/profile']">
-                      <i class="ti-user"></i> Mon Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a [routerLink]="['/advance/notifications']">
-                      <i class="ti-email"></i> My Messages
-                    </a>
-                  </li>
+                <ul class="show-notification profile-notification" >
 
                   <li>
                     <a (click)=logout()>
@@ -253,9 +244,14 @@
           <div class="pcoded-inner-navbar main-menu" appAccordion>
             <div class="">
               <div class="main-menu-header" *ngFor="let u of user">
+                <img *ngIf="u.membreimage=='imageurl'" src="assets/images/5.png"
+                class="img-40 img-radius"
+                alt="User-Profile-Image"
+                />
                 <img
+                *ngIf="u.membreimage!='imageurl'"
                   class="img-40 img-radius"
-                  src="http://127.0.0.1:5010/{{u.url_image}}"
+                  src="http://127.0.0.1:5010/{{u.membreimage}}"
                   alt="User-Profile-Image"
                 />
                 <div class="user-details">

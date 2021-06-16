@@ -24,7 +24,7 @@ this.club = this.route.snapshot.paramMap.get('id');
   }
 
 sendRequest(){
-    this._http.sendRequest(this.cin,this.equipe,this.club,this.motivation,
+    /*this._http.sendRequest(this.cin,this.equipe,this.club,this.motivation,
        this.email
       ).subscribe(data => {
       console.log(data)
@@ -42,7 +42,7 @@ sendRequest(){
     //show error toast when the server went wrong
     console.log(err);
       }
-    );
+    );*/
   //this.router.navigate(['']);
 }
   getteams() {

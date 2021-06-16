@@ -3,6 +3,8 @@ import {animate, style, transition, trigger} from '@angular/animations';
 import { MembreService } from '../../services/membre.service';
 import { Router } from '@angular/router';
 import { ClubService } from '../../services/club.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PopupComponent } from '../../../../popup/popup.component';
 
 @Component({
   selector: 'app-profile-membre',
@@ -48,12 +50,12 @@ export class ProfileMembreComponent implements OnInit {
 //message confirmation
   message = '';
   file: any;
-
-  constructor(private http:ClubService,private _http:MembreService,private  router: Router)
+tel: any;
+  constructor(private modalService: NgbModal,private http:ClubService,private _http:MembreService,private  router: Router)
   { }
 
   ngOnInit(): void {
-//this.getuserClubs();
+   //this.getuserClubs();
     this.idmembre=localStorage.getItem('id_membre') ;
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
@@ -78,16 +80,22 @@ export class ProfileMembreComponent implements OnInit {
   }
 
   Updateuser() {
-    this._http.UpdateUser(this.idmembre,this.email,this.motdepasse)
+    this._http.UpdateUser(this.email,this.motdepasse,this.tel)
     .subscribe(data => {
 
       if(data['error']!=true){
 
         console.log(data)
-        window.alert('votre profile a été modifier avec succès');
-
+        //window.alert('votre profile a été modifier avec succès');
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = 'votre profile a été modifier avec succès';
+        modalRef.componentInstance.message = 'Succès';
+        this.editProfile = !this.editProfile;
          }else{
-        alert(data['message'])
+        //alert(data['message'])
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = data['message'];
+        modalRef.componentInstance.message = 'Erreur';
       }
     },
       err => {
@@ -101,10 +109,10 @@ export class ProfileMembreComponent implements OnInit {
     console.log(e.target.files[0])
     }
   //this.idclub,this.post
-   updatePic(){
+   updatePic(e:any){
     const formData = new FormData();
 
-    formData.append('file', this.file);
+    formData.append('file', e.target.files[0]);
       console.log(this.file)
     this._http.UpdatePic(formData).subscribe(data => {
       if(data['error']!=true){

@@ -6,6 +6,7 @@ import { VoteService } from '../../services/vote.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MembreService } from '../../services/membre.service';
 import { Router } from '@angular/router';
+import { EventService } from '../../services/event.service';
 
 
 
@@ -20,8 +21,9 @@ export class TestaccueilComponent implements OnInit {
      idmembre:any;
      prenom: string;
      nom: string;
+     events: any = [];
      role: string;
-  constructor(private  _http:ClubService,private  u_http:MembreService,private  router: Router) {}
+  constructor(private http: EventService,private  _http:ClubService,private  u_http:MembreService,private  router: Router) {}
   ngOnInit() {
     this.getuserClubs();
     this.idmembre=localStorage.getItem('id_membre') ;
@@ -31,6 +33,7 @@ export class TestaccueilComponent implements OnInit {
     this.role=localStorage.getItem('role');
 
     this.getuser(this.idmembre);
+    this.getevents();
   }
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
@@ -64,5 +67,17 @@ export class TestaccueilComponent implements OnInit {
   profil(e:any){
     this.router.navigate(['/dashboard_club/profile/'+e]);
 
+  }
+  getevents() {
+    this.http.getevents()
+      .subscribe(
+        club => {
+          this.events= club['data'];
+
+          console.log(club);
+        },
+        error => {
+          console.log(error);
+        });
   }
 }

@@ -9,6 +9,9 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { AddTOcalendrierComponent } from '../add-tocalendrier/add-tocalendrier.component';
 import { Subscription } from 'rxjs';
 import { HttpClient, HttpEventType } from '@angular/common/http';
+import { PopupComponent } from '../../../../popup/popup.component';
+import { MembreService } from '../../services/membre.service';
+
 @Component({
   selector: 'app-accueil-club',
   templateUrl: './accueil-club.component.html',
@@ -29,7 +32,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 export class AccueilClubComponent implements OnInit {
   post:any;
   cmtre: any;
-
+  fileName:any;
   posts:any=[];
   cmtrs:any=[];
   sondages:any=[];
@@ -66,13 +69,15 @@ export class AccueilClubComponent implements OnInit {
   date: any;
   clubss: any=[];
 
-  fileName = '';
   post_image : any;
-  constructor(private modalService: NgbModal,private route: ActivatedRoute,private router: Router,private e_http: EventService,private v_http:VoteService,private p_http:PostService,private _http:ClubService,private http: HttpClient) {
+  admin: any;
+  user: any=[];
+  constructor(private u_http:MembreService,private modalService: NgbModal,private route: ActivatedRoute,private router: Router,private e_http: EventService,private v_http:VoteService,private p_http:PostService,private _http:ClubService,private http: HttpClient) {
 
    }
 
   ngOnInit() {
+
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
     this.idclub= this.route.snapshot.paramMap.get('id');
@@ -82,8 +87,13 @@ export class AccueilClubComponent implements OnInit {
     this.getClubEvents();
     this.getsondage();
     this.getcal(this.idclub);
-this.getuserClubs();
+    this.getuserClubs();
+    console.log("hello")
+    this.getadmin();
+    //this.getvotes
+    this.getuser(this.id_membre);
   }
+
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubss= club['data'];
@@ -98,7 +108,28 @@ this.getuserClubs();
       console.log(error);
     });
   }
+  getuser(id_membre:any) {
+    this.u_http.getUser(id_membre)
+      .subscribe(
+        club => {
+          this.user= club['data'];
 
+        },
+        error => {
+          console.log(error);
+        });
+  }
+  getadmin() {
+    this._http.getadmin(this.idclub).subscribe(club => {
+      this.admin= club['isAdmin'];
+
+
+
+    },
+    error => {
+      console.log(error);
+    });
+  }
   toggleEditProfile() {
     this.editProfileIcon = (this.editProfileIcon === 'icofont-close') ? 'icofont-edit' : 'icofont-close';
     this.editProfile = !this.editProfile;
@@ -120,10 +151,6 @@ this.getuserClubs();
       });
 
   }
-
-
-
-
 
   //commantaire
   getcmtre(idpublication:any) {
@@ -160,7 +187,8 @@ this.getuserClubs();
   getsondage(){
     this.v_http.getsondage(this.idclub).subscribe(club => {
       this.sondages= club['data'];
-      //console.log(this.sondages);
+      console.log(this.sondages.id_sondage);
+      localStorage.setItem("id_sondage",club['data']['id_sondage']);
     },
     error => {
       console.log(error);
@@ -191,7 +219,8 @@ this.getuserClubs();
   getvotes(idsondage:any){
     this.v_http.getVotes(idsondage).subscribe(club => {
       this.votes= club['data'];
-     // console.log(club);
+     console.log(this.votes);
+
     },
     error => {
       console.log(error);
@@ -213,9 +242,15 @@ this.getuserClubs();
       if(data['error']!=true){
         //console.log(idsondage)
         //localStorage.setItem("votes",data["votes"])
-        this.message='votre vote a été enregistré avec succès';
+        this.message='vous avez votè';
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = 'votre vote a été enregistré avec succès';
+        modalRef.componentInstance.message = 'Succès';
       }else{
-        alert(data['message'])
+        //alert(data['message'])
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = data['message'];
+        modalRef.componentInstance.message = 'Erreur';
 
       }
     },
@@ -241,7 +276,7 @@ getClubEvents(){
   //	url_image	url_event	id_membre	id_club
 image(e:any){
 this.url_image=e.target.files[0];
-console.log(e.target.files[0])
+
 }
 addevent(){
   const formData = new FormData();
@@ -288,7 +323,7 @@ addevent(){
 
  imagePost(e:any){
   this.post_image=e.target.files[0];
-  console.log(e.target.files[0])
+  this.fileName=e.target.files[0].name;
   }
 //this.idclub,this.post
  addpost(){
@@ -296,14 +331,14 @@ addevent(){
   formData.append('description', this.post);
   formData.append('idclub', this.idclub);
   formData.append('file', this.post_image);
-    console.log(this.post_image)
+
   this.p_http.addpost(formData).subscribe(data => {
     if(data['error']!=true){
       this.post='';
       this.post_image='';
       this.getposts();
-      console.log(data)
 
+      this.fileName=""
        }else{
       alert(data['message'])
     }
@@ -332,12 +367,15 @@ addTOcalendrier(){
   this.e_http.addTOcalendrier(this.idclub,this.temps,this.date,this.descriptionCal).subscribe(data => {
     if(data['error']!=true){
       this.add=!this.add;
-      //this.getcal(this.idclub);
+      this.getcal(this.idclub);
 
       console.log(data)
       //localStorage.setItem("sondages",data["sondages"])
        }else{
-      alert(data['message'])
+      //alert(data['message'])
+      const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = data['message'];
+        modalRef.componentInstance.message = 'Erreur';
     }
   },
     err => {
@@ -350,8 +388,11 @@ addTOcalendrier(){
 deletePOST(idpublication:any){
   this.p_http.deletePost(idpublication).subscribe(club => {
     console.log(club);
-    this.getposts();
 
+    const modalRef = this.modalService.open(PopupComponent);
+    modalRef.componentInstance.name = 'votre publication a été supprimer';
+    modalRef.componentInstance.message = 'Supprimer';
+    this.getposts();
   },
   error => {
     console.log(error);
@@ -361,6 +402,9 @@ deletePOST(idpublication:any){
 deleteSONDAGE(idsondage:any){
   this.v_http.deleteSondage(idsondage).subscribe(club => {
     console.log(club);
+    const modalRef = this.modalService.open(PopupComponent);
+    modalRef.componentInstance.name = 'votre sondage a été supprimer';
+    modalRef.componentInstance.message = 'Supprimer';
     this.getsondage();
 
   },
@@ -371,6 +415,9 @@ deleteSONDAGE(idsondage:any){
 deleteEVENT(idevent:any){
   this.e_http.deleteEvent(idevent).subscribe(club => {
     console.log(club);
+    const modalRef = this.modalService.open(PopupComponent);
+    modalRef.componentInstance.name = 'votre evenements a été supprimer';
+    modalRef.componentInstance.message = 'Supprimer';
     this.getClubEvents();
 
   },
@@ -381,6 +428,9 @@ deleteEVENT(idevent:any){
 deleteCAL(idcalendrier:any){
   this.e_http.deleteTask(idcalendrier).subscribe(club => {
     console.log(club);
+    const modalRef = this.modalService.open(PopupComponent);
+    modalRef.componentInstance.name = 'vous avez supprimer un evenement de calendrier';
+    modalRef.componentInstance.message = 'Supprimer';
     this.getcal(this.idclub);
 
   },
