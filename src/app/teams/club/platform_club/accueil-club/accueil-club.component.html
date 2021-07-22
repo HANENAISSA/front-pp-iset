@@ -205,7 +205,8 @@
                                       <h5 style="color:blue;">{{event.date_fin}} à {{event.heure_fin}} </h5>
                                       <p class="text-muted">{{event.description}}</p>
                                       <p >{{event.url_event}}</p>
-
+                                      <button  *ngIf="admin==false" (click)="participer(event.id_event)" class="btn btn-out btn-primary btn-square">participer</button>
+                                      <button *ngIf="admin==true"  (click)="gotolisteparticipates(event.id_event)" class="btn btn-out btn-primary btn-square">Liste de participes</button>
                                     </div>
                                   </div>
                                 </div>
