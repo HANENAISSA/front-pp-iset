@@ -40,6 +40,7 @@ import { SearchPipe } from './teams/club/platform_club/liste-demandes/search.pip
 import { EventsComponent } from './teams/club/general/events/events.component';
 import { AddTOcalendrierComponent } from './teams/club/platform_club/add-tocalendrier/add-tocalendrier.component';
 import { HeaderComponent } from './teams/club/general/header/header.component';
+import { ListeParticipationComponent } from './teams/club/liste-participation/liste-participation.component';
 
 //administration-components
 //communication-components
@@ -78,6 +79,7 @@ import { HeaderComponent } from './teams/club/general/header/header.component';
     EventsComponent,
     AddTOcalendrierComponent,
     HeaderComponent,
+    ListeParticipationComponent,
 
     //administration-components
     //communication-components

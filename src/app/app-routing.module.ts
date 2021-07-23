@@ -20,6 +20,7 @@ import { SigninComponent } from "./teams/club/general/signin/signin.component";
 import { AccueilClubComponent } from "./teams/club/platform_club/accueil-club/accueil-club.component";
 import { DashboardClubComponent } from "./teams/club/platform_club/dashboard-club/dashboard-club.component";
 import { ListeDemandesComponent } from "./teams/club/platform_club/liste-demandes/liste-demandes.component";
+import { ListeParticipationComponent } from "./teams/club/platform_club/liste-participation/liste-participation.component";
 import { MembresComponent } from "./teams/club/platform_club/membres/membres.component";
 import { ProfileMembreComponent } from "./teams/club/platform_club/profile-membre/profile-membre.component";
 import { TestaccueilComponent } from "./teams/club/platform_club/testaccueil/testaccueil.component";
@@ -143,6 +144,10 @@ const routes: Routes = [
     {
       path: "liste-demandes/:id",
       component: ListeDemandesComponent,
+    },
+    {
+      path: "liste-participants/:id",
+      component: ListeParticipationComponent
     },
     {
       path: "accueil",

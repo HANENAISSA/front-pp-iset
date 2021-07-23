@@ -93,7 +93,27 @@ export class AccueilClubComponent implements OnInit {
     //this.getvotes
     this.getuser(this.id_membre);
   }
-
+participer(id_event:any) { 
+  this.e_http.addparticipation(id_event).subscribe(data => {
+    if(data['error']!=true){
+      const modalRef = this.modalService.open(PopupComponent);
+      modalRef.componentInstance.name = 'votre participation a été envoyé';
+      modalRef.componentInstance.message = 'Succès';
+       }else{
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = data['message'];
+        modalRef.componentInstance.message = 'Erreur';
+    }
+  },
+    err => {
+  //show error toast when the server went wrong
+  console.log(err);
+    }
+  );
+}
+liste(id) { 
+  this.router.navigate(['dashboard_club/liste-participants'+ id]);
+}
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubss= club['data'];
