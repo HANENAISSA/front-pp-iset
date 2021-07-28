@@ -28,7 +28,7 @@ export class ListeParticipationComponent implements OnInit {
     this.idevent=this.route.snapshot.paramMap.get('id');
 
   }
-
+/*
   get() {
     this._http.getparticipation(this.idevent).subscribe(club => {
         this.participants=club['data'];
@@ -66,7 +66,7 @@ export class ListeParticipationComponent implements OnInit {
     );
 
   }
-  
+
   Delete(id_participation:any ){
     //console.log("h")
      this._http.delete(id_participation).subscribe(data => {
@@ -92,5 +92,5 @@ export class ListeParticipationComponent implements OnInit {
       }
     );
 
-  }
+  }*/
 }

@@ -1,130 +1,18 @@
-                                        <!--  Breadcrumb card start -->
-                                        <div class="card borderless-card">
-                                            <div class="card-block " style="background-color: #294a70;">
-                                                <div class="breadcrumb-header">
-                                                    <h5 style="color: #ffffff;">Club et la vie associative</h5>
-                                                   </div>
-                                                <div class="page-header-breadcrumb">
-                                                    <ul class="breadcrumb-title">
-                                                        <li class="breadcrumb-item">
-                                                            <a [routerLink]="['/dashboard_club/accueil']" style="color: #ffffff;">
-                                                                <i class="icofont icofont-home"></i>  /
-                                                            </a>
-  
-                                                        <a [routerLink]="['/dashboard_club/liste-participants']" style="color: #ffffff;">liste des participants</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                          </div>
-                                        <!--  Breadcrumb card end -->
-    <div class="card">
-                                            <div class="card-header">
-                                            <h5>Demandes en attend</h5>
-                                            <div class="card-header-right">    <ul class="list-unstyled card-option">        <li><i class="icofont icofont-simple-left "></i></li>        <li><i class="icofont icofont-maximize full-card"></i></li>        <li><i class="icofont icofont-minus minimize-card"></i></li>        <li><i class="icofont icofont-refresh reload-card"></i></li>        <li><i class="icofont icofont-error close-card"></i></li>    </ul></div>
-                                        </div> 
-                                        
-                                        
-                                        
-                                         <div class="card-block table-border-style">
-  
-  
-                                          <div class="table-responsive">
-  
-  
-   <div class="input-group mb-3">
-                                              <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1"><i class="icofont icofont-search"></i></span>
-                                              </div>
-                                              <input type="text" class="form-control" placeholder="rechercher..." [(ngModel)]="query" id="listSearch">
-                                            </div>
-  
-   
-  
-  
-  
-    <table class="table">
-                                              <thead>
-                                                <tr>
-                                                  <th scope="col">#</th>
-                                                  <th scope="col">Cin</th>
-                                                  <th scope="col">Nom</th>
-                                                  <th scope="col">Prénom</th>
-                                                  <th scope="col">Email</th>
-                                                  <th scope="col">Telephone</th>
-                                                  <th scope="col">Etat</th>
-                                                  <th scope="col"></th>
-
-                                                </tr>
-                                              </thead>
-                                              <tbody >
-                                                <tr *ngFor="let participtant of participtants | searchFilter: query | slice: (page-1) * pageSize : page * pageSize ; let i = index " >
-                                                          <th scope="row">{{ i + 1 }}</th>
-                                                          <td>{{participtant.cin}}</td>
-                                                          <td>{{participtant.nom}}</td>
-                                                          <td>{{participtant.prenom}}</td>
-                                                          <td>{{participtant.sexe}}</td>
-  
-                                                          <td>{{participtant.email}}</td>
-                                                          <td>{{participtant.tel}}</td>
-                                                          <td>{{participtant.statut}}</td>
-                                                          
-                                                  <td>
-                                                    <div ngbDropdown container="body">
-                                                      <button class="btn float-right" ngbDropdownToggle>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" >
-                                                          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                                        </svg>
-                                                      </button>
-                                                      <div ngbDropdownMenu>
-  
-                                                        <button ngbDropdownItem (click)="Accepter(participtant.id_participation)" >
-                                                          <i class="icofont icofont-check" ></i>Confirmer
-                                                        </button>
-  
-                                                        <button ngbDropdownItem (click)="Delete(participtant.id_participation)">
-                                                          <i class="icofont icofont-close-line" ></i>Refuser
-                                                        </button>
-                                                      </div>
-                                                    </div>
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            </table>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-    <div class="d-flex justify-content-center">
-                                              <div class="alert alert-light" role="alert">
-                                                <i class="icofont icofont-info-circle"></i>Il n'y a aucune demande pour le moment.
-                                              </div>
-                                            </div>
-    <div class="d-flex justify-content-between p-2">
-                                              <ngb-pagination [(page)]="page" [pageSize]="pageSize"
-                                                             >
-                                              </ngb-pagination>
-                                              <!-- Items Par Page  -->
-                                              <div>
-                                                Items per Page:
-                                                <select class="custom-select" style="width: auto" name="pageSize" (change)="handlePageSizeChange($event)">
-                                                  <option *ngFor="let size of pageSizes" [ngValue]="size">
-                                                    {{ size }}
-                                                  </option>
-                                                </select>
-                                              </div>
-                                            </div>
-  
-                                          </div>
-                                          </div>
-                                        
-                                        
-                                        </div>
+  <!-- browser Start -->
+  <div class="col-md-6 col-xl-8">
+    <app-card [title]="'Browser Stats'">
+        <i class="icofont icofont-stylish-right text-danger"></i> Confirmé
+        
+      <div class="browser-card p-b-15 ">
+        <p class="d-inline-block m-0 ">nom event</p>
+        <button class="btn bg-c-blue btn-round float-right btn-browser ">Confirmé</button>
+      </div>
+      <i class="icofont icofont-stylish-right text-danger"></i> Non confirmé
+      <div class="browser-card b-t-default p-t-15 p-b-15 ">
+        <p class="d-inline-block m-0 ">nom event</p>
+        <button class="btn bg-c-pink btn-round float-right btn-browser ">Non confirmé</button>
+      </div>
+      
+    </app-card>
+  </div>
+  <!-- browser End -->

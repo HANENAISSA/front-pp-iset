@@ -60,7 +60,7 @@ export class AccueilClubComponent implements OnInit {
   editProfile = true;
   editProfileIcon = 'icofont-ui-add';
   vote: any=[];
-
+  id_event: any;
   message='';
   //CALENDRIER
   tasks: any=[];
@@ -88,11 +88,12 @@ export class AccueilClubComponent implements OnInit {
     this.getsondage();
     this.getcal(this.idclub);
     this.getuserClubs();
-    console.log("hello")
+    //console.log("hello")
     this.getadmin();
     //this.getvotes
     this.getuser(this.id_membre);
   }
+  /*
 participer(id_event:any) { 
   this.e_http.addparticipation(id_event).subscribe(data => {
     if(data['error']!=true){
@@ -113,7 +114,7 @@ participer(id_event:any) {
 }
 liste(id) { 
   this.router.navigate(['dashboard_club/liste-participants'+ id]);
-}
+}*/
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubss= club['data'];
@@ -281,6 +282,40 @@ liste(id) {
     );
   }
 
+//participer
+gotolisteparticipates(id_event:any, nomevent:any ){
+  this.router.navigate(['dashboard_club/liste-participes/'+id_event]);
+  nomevent = localStorage.setItem('nomevent',nomevent);
+  //window.location.href = '/dashboard_club/liste-participes/'+id_event;
+}
+getallparticipes(id_event:any){
+  this.e_http.getallparticipation(id_event).subscribe(club => {
+    this.events= club['data'];
+    console.log(club);
+  },
+  error => {
+    console.log(error);
+  });
+}
+
+participer(id_event:any){
+  this.e_http.participer(id_event).subscribe(data => {
+    if(data['error']!=true){
+      const modalRef = this.modalService.open(PopupComponent);
+      modalRef.componentInstance.name = 'vous avez participé avec succès';
+      modalRef.componentInstance.message = 'Succès';
+       }else{
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = data['message'];
+        modalRef.componentInstance.message = 'Erreur';
+    }
+  },
+    err => {
+  //show error toast when the server went wrong
+  console.log(err);
+    }
+  );
+}
 
 //events
 getClubEvents(){
@@ -360,7 +395,9 @@ addevent(){
 
       this.fileName=""
        }else{
-      alert(data['message'])
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = data['message'];
+        modalRef.componentInstance.message = 'Erreur';
     }
   },
     err => {

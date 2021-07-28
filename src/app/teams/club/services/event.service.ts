@@ -78,23 +78,25 @@ export class EventService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
     );
   }
-  getparticipation(id_event:any){
-    return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/participation/getAllParticipation",
-      {
-        id_event:id_event
-      },
-      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
-    );
-  }
-  addparticipation(id_event:any){
+
+  participer(id_event:any){
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/participation/addParticipation",
       {
         id_event:id_event
       },
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
-    );
+      );
+  }
+
+  getallparticipation(id_event:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/participation/getAllParticipation",
+      {
+        id_event:id_event
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
   }
   confirmer(id_participation:any){
     return this._http.post<any>(
@@ -103,9 +105,9 @@ export class EventService {
         id_participation:id_participation
       },
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
-    );
+      );
   }
-  delete(id_participation:any){
+  deleteparticipant(id_participation:any){
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/participation/deleteParticipation",
       {

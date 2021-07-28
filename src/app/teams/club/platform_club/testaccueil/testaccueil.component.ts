@@ -7,8 +7,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MembreService } from '../../services/membre.service';
 import { Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
-
-
+import { PopupComponent } from '../../../../popup/popup.component';
 
 @Component({
   selector: 'ngbd-modal-component',
@@ -23,7 +22,7 @@ export class TestaccueilComponent implements OnInit {
      nom: string;
      events: any = [];
      role: string;
-  constructor(private http: EventService,private  _http:ClubService,private  u_http:MembreService,private  router: Router) {}
+  constructor(private modalService: NgbModal,private http: EventService,private  _http:ClubService,private  u_http:MembreService,private  router: Router) {}
   ngOnInit() {
     this.getuserClubs();
     this.idmembre=localStorage.getItem('id_membre') ;
@@ -80,4 +79,23 @@ export class TestaccueilComponent implements OnInit {
           console.log(error);
         });
   }
+  participer(id_event:any){
+    this.http.participer(id_event).subscribe(data => {
+      if(data['error']!=true){
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = 'vous avez participé avec succès';
+        modalRef.componentInstance.message = 'Succès';
+         }else{
+          const modalRef = this.modalService.open(PopupComponent);
+          modalRef.componentInstance.name = data['message'];
+          modalRef.componentInstance.message = 'Erreur';
+      }
+    },
+      err => {
+    //show error toast when the server went wrong
+    console.log(err);
+      }
+    );
+  }
+  
 }

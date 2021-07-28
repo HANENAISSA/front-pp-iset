@@ -19,6 +19,7 @@ import { SendRequestComponent } from "./teams/club/general/send-request/send-req
 import { SigninComponent } from "./teams/club/general/signin/signin.component";
 import { AccueilClubComponent } from "./teams/club/platform_club/accueil-club/accueil-club.component";
 import { DashboardClubComponent } from "./teams/club/platform_club/dashboard-club/dashboard-club.component";
+import { ListParticipesComponent } from "./teams/club/platform_club/list-participes/list-participes.component";
 import { ListeDemandesComponent } from "./teams/club/platform_club/liste-demandes/liste-demandes.component";
 import { ListeParticipationComponent } from "./teams/club/platform_club/liste-participation/liste-participation.component";
 import { MembresComponent } from "./teams/club/platform_club/membres/membres.component";
@@ -146,8 +147,12 @@ const routes: Routes = [
       component: ListeDemandesComponent,
     },
     {
-      path: "liste-participants/:id",
-      component: ListeParticipationComponent
+      path: "liste-participes/:id",
+      component: ListParticipesComponent,
+    },
+    {
+      path: "liste-events/:id",
+      component: ListeParticipationComponent,
     },
     {
       path: "accueil",

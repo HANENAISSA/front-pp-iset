@@ -1,50 +1,51 @@
 <div class="row" >
   <!-- clubs Start -->
- <div class="col-md-12 col-xl-8" *ngFor="let club of clubs" (click)="gotoAccueil(club.id_club)" >
-   <div class="card card-blue total-card">
-    <div class="card-block">
-      <div class="text-left">
-        <h4>{{club.nom_club}}</h4>
+ 
 
-      </div>
-      <span class="label bg-c-blue value-badges"><i class="ti-new-window"></i></span>
-    </div>
+  <div class="col-lg-12 col-xl-6" *ngFor="let event of events">
+    <div class="card fb-card" >
+      <div ngbDropdown container="body" *ngIf="admin==true" >
+        <button class="btn float-right" ngbDropdownToggle>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" >
+            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+          </svg>
+        </button>
+        <div ngbDropdownMenu  >
 
-   </div>
-  </div>
-  <!-- profile Start -->
-  <div class="col-md-12 col-xl-4" *ngFor="let u of user">
-    <div class="card card-contact-box ">
-      <div class="card-block ">
-        <div class="card-contain text-center ">
-          <img *ngIf="u.membreimage=='imageurl'" src="assets/images/5.png"
-          style="height: 100px;width: 100px;" alt=" "
-                />
-                <img
-                *ngIf="u.membreimage!='imageurl'"
-                src="http://127.0.0.1:5010/{{u.membreimage}}" style="height: 100px;width: 100px;" alt=" "
-                />
-
-          <h6 class="f-w-600 f-20 p-b-5 m-0 p-t-15 ">{{nom}} {{prenom}}</h6>
-          <a href="javascript:">{{u.email}}</a>
-          <p class="text-muted p-b-25 m-0 p-t-5 ">{{role}}</p>
-
+          <button ngbDropdownItem (click)="deleteEVENT(event.id_event)">
+            <i class="icofont icofont-close-line" ></i>Supprimer
+          </button>
         </div>
       </div>
-      <div class="b-t-default">
-        <div class="row m-0">
-        <div class="col-12 f-btn text-center p-t-15 p-b-15 " >
-          <div *ngFor="let club of clubs" (click)="profil(club.id_club)">
-          </div>
-            <a href="javascript:">
-              <i class="icofont icofont-user text-muted m-r-10 "></i>
-              <p class="text-muted m-0 text-uppercase d-inline-block " >Profile</p>
-            </a>
+      <div class="card-header">
+        <i class="ti-announcement"></i>
+        <div class="d-inline-block">
+          <h5>{{event.titre_event}}</h5>
+          <span *ngIf="event.statut == 0">Gratuit</span>
+          <span *ngIf="event.statut == 1">Payé</span>
+        </div>
+      </div>
+      <div class="card-block text-center">
+        <div class="row">
+
+<div class="col-md-4">
+<div class="full blog_img_popular">
+<img class="img-responsive" src="http://127.0.0.1:5010/{{event.url_image}}" alt="#" />
+<h4>{{event.titre_event}}</h4>
+</div>
+</div>
+          <div class="col-6">
+            <h5 style="color:blue; align-self: left;">{{event.date_debut}} à {{event.heure_debut}}</h5> <br>
+            <h5 style="color:blue;">{{event.date_fin}} à {{event.heure_fin}} </h5>
+            <p class="text-muted">{{event.description}}</p>
+            
+            <button  (click)="participer(event.id_event)" class="btn btn-out btn-primary btn-square">participer</button>
+            
           </div>
         </div>
       </div>
     </div>
+<!--display event-->
   </div>
-  <!-- profile End -->
 
 </div>

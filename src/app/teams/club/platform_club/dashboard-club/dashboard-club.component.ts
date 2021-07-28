@@ -180,6 +180,9 @@ export class DashboardClubComponent implements OnInit {
     this.router.navigate(['/club/signin']);
 
   }
+  gotoAccueilGeneral(){
+    window.location.href = '/dashboard_club/accueil';
+  }
 
   gotoAccueil(idclub:any){
     window.location.href = '/dashboard_club/accueil/'+idclub;
@@ -192,6 +195,9 @@ export class DashboardClubComponent implements OnInit {
   }
   gotoDemandes(idclub:any){
     window.location.href = '/dashboard_club/liste-demandes/'+idclub;
+  }
+  gotoEvents(idclub:any){
+    window.location.href = '/dashboard_club/liste-events/'+idclub;
   }
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {

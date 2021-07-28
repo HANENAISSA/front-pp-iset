@@ -204,9 +204,9 @@
                                       <h5 style="color:blue; align-self: left;">{{event.date_debut}} à {{event.heure_debut}}</h5> <br>
                                       <h5 style="color:blue;">{{event.date_fin}} à {{event.heure_fin}} </h5>
                                       <p class="text-muted">{{event.description}}</p>
-                                      <p >{{event.url_event}}</p>
-                                      <button (click)="Liste(event.id_event)" class="btn btn-out btn-primary btn-square">Liste de participtants</button>
-                                      <button (click)="participer(event.id_event)" class="btn btn-out btn-primary btn-square">participer</button>
+                                      
+                                      <button  *ngIf="admin==false" (click)="participer(event.id_event)" class="btn btn-out btn-primary btn-square">participer</button>
+                                      <button *ngIf="admin==true"  (click)="gotolisteparticipates(event.id_event,event.titre_event)" class="btn btn-out btn-primary btn-square">Liste de participes</button>
                                     </div>
                                   </div>
                                 </div>
@@ -357,26 +357,14 @@
 
 
     <app-card [title]="'Calendrier'"  >
-<i class="icofont icofont-stylish-right text-danger"></i> événements
-    <div *ngIf="add">
-      <div class="browser-card b-t-default p-t-15" style="border-top: none;" *ngFor="let event of events">
-        <p class="d-inline-block m-0 ">{{event.titre_event}}</p>
-        <label class="btn bg-c-yellow btn-round float-right btn-browser ">{{event.date_debut}}</label>
-        <label class="btn bg-c-blue btn-round float-right btn-browser ">{{event.heure_debut}}</label>
-      </div>
-    </div>
-  <i class="icofont icofont-stylish-right text-danger"></i> Autres
-    <div *ngIf="add">
-      <div class="browser-card b-t-default p-t-15" style="margin:10px 0;word-break: break-all;border-top: 0px;" *ngFor="let task of tasks">
 
-        <button *ngIf="admin==true" class="badge badge-inverse-info" (click)="deleteCAL(task.id_calendrier)"><i class="icofont icofont-close-line" ></i></button>
-        &nbsp;
-        <p class="d-inline-block m-0 " style="min-width:70%;">{{task.description}}</p>
-        <label class="btn bg-c-yellow btn-round float-right btn-browser " style="margin-left: 20px;">{{task.date}}</label>
-        <label class="btn bg-c-blue btn-round float-right btn-browser ">{{task.temps}}</label>
+    <div *ngIf="add">
+    
 
-      </div>
+
+      
     </div>
+  
     <!--add to calendrier-->
       <div class="browser-card b-t-default p-t-15" *ngIf="!add">
         <div class="input-group">

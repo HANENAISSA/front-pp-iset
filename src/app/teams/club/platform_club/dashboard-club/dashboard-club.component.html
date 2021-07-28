@@ -283,6 +283,24 @@
               >
                 Mes clubs
               </div>
+              <ul
+              class="pcoded-item pcoded-left-item"
+              [attr.item-border]="itemBorder"
+              [attr.item-border-style]="itemBorderStyle"
+              [attr.subitem-border]="subItemBorder"
+              appAccordionLink
+            >
+              <!--accuiel general-->
+              <li appAccordionLink>
+                <a [routerLink]="['/dashboard_club/accueil']" target="_self" appAccordionToggle>
+                  <span class="pcoded-micon"><i class="ti-home"></i></span>
+                  <span class="pcoded-mtext">Accueil général</span>
+                  <span class="pcoded-mcaret"></span>
+                </a>
+              </li>
+          
+              <!--accuiel general-->
+            </ul>
                 <ul
                   class="pcoded-item pcoded-left-item"
                   [attr.item-border]="itemBorder"
@@ -307,6 +325,7 @@
                       <span class="pcoded-mtext">{{club.nom_club}}</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
+
                    <!--menu clubs-->
                     <ul class="pcoded-submenu">
                       <li appAccordionLink>
@@ -344,6 +363,19 @@
                             <i class="ti-angle-right"></i>
                           </span>
                           <span class="pcoded-mtext">Mon Profile</span>
+
+                        </a>
+                      </li>
+                      <li appAccordionLink>
+                        <a
+                        (click)="gotoEvents(club.id_club)"
+
+                          appAccordionToggle
+                        >
+                          <span class="pcoded-micon">
+                            <i class="ti-angle-right"></i>
+                          </span>
+                          <span class="pcoded-mtext">Mes événements</span>
 
                         </a>
                       </li>
