@@ -25,6 +25,8 @@
     "@angular/router": "^8.2.3",
     "@fortawesome/angular-fontawesome": "^0.8.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fullcalendar/daygrid": "^5.9.0",
+    "@fullcalendar/interaction": "^5.9.0",
     "@ng-bootstrap/ng-bootstrap": "^5.1.0",
     "@nicky-lenaers/ngx-scroll-to": "^3.0.1",
     "angular2-chartjs": "^0.5.1",

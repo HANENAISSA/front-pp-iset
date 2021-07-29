@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { MatRadioModule } from '@angular/material';
 import {MatDialogModule} from '@angular/material/dialog';
+
 //import { ModalModule } from 'ngx-bootstrap/modal';
 //main-components
 import { AppComponent } from './app.component';

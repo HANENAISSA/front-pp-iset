@@ -18,6 +18,7 @@ import { ResetPasswordComponent } from "./teams/club/general/reset-password/rese
 import { SendRequestComponent } from "./teams/club/general/send-request/send-request.component";
 import { SigninComponent } from "./teams/club/general/signin/signin.component";
 import { AccueilClubComponent } from "./teams/club/platform_club/accueil-club/accueil-club.component";
+import { AddTOcalendrierComponent } from "./teams/club/platform_club/add-tocalendrier/add-tocalendrier.component";
 import { DashboardClubComponent } from "./teams/club/platform_club/dashboard-club/dashboard-club.component";
 import { ListParticipesComponent } from "./teams/club/platform_club/list-participes/list-participes.component";
 import { ListeDemandesComponent } from "./teams/club/platform_club/liste-demandes/liste-demandes.component";
@@ -153,6 +154,10 @@ const routes: Routes = [
     {
       path: "liste-events/:id",
       component: ListeParticipationComponent,
+    },
+    {
+      path: "calendrier",
+      component: AddTOcalendrierComponent,
     },
     {
       path: "accueil",

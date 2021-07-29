@@ -1,18 +1,27 @@
   <!-- browser Start -->
-  <div class="col-md-6 col-xl-8">
-    <app-card [title]="'Browser Stats'">
-        <i class="icofont icofont-stylish-right text-danger"></i> Confirmé
-        
-      <div class="browser-card p-b-15 ">
+  <div class="col-md-6 col-xl-8" >
+    <app-card [title]="'Browser Stats'" >
+      <h5>Total: {{nombreofparticipation}}</h5> <br>
+
+
+      <i class="icofont icofont-stylish-right text-danger"></i> Confirmé
+      <div class="browser-card b-t-default p-t-15 p-b-15 "  *ngFor="let participant of participants">
+        <ng-container *ngIf="participant.statut=='confirmé'">
         <p class="d-inline-block m-0 ">nom event</p>
-        <button class="btn bg-c-blue btn-round float-right btn-browser ">Confirmé</button>
+        <button class="btn bg-c-pink btn-round float-right btn-browser ">{{participant.statut}}</button>
+      </ng-container>
       </div>
+  
+    
       <i class="icofont icofont-stylish-right text-danger"></i> Non confirmé
-      <div class="browser-card b-t-default p-t-15 p-b-15 ">
+      <div class="browser-card b-t-default p-t-15 p-b-15 "  *ngFor="let participant of participants">
+        <ng-container *ngIf="participant.statut=='pas confirmé'">
         <p class="d-inline-block m-0 ">nom event</p>
-        <button class="btn bg-c-pink btn-round float-right btn-browser ">Non confirmé</button>
+        <button class="btn bg-c-pink btn-round float-right btn-browser ">{{participant.statut}}</button>
+      </ng-container>
       </div>
-      
+   
+  
     </app-card>
   </div>
   <!-- browser End -->

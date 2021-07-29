@@ -17,7 +17,8 @@ export class ListeParticipationComponent implements OnInit {
   query:any;
   idevent: string;
   participants: any;
-
+  nombreofparticipation: any;
+  add= true;
   constructor(private modalService: NgbModal,private _http:EventService,private route: ActivatedRoute) { }
   handlePageSizeChange(event: any): void {
     this.pageSize = event.target.value;
@@ -26,12 +27,13 @@ export class ListeParticipationComponent implements OnInit {
   }
   ngOnInit() {
     this.idevent=this.route.snapshot.paramMap.get('id');
-
+    this.get();
   }
-/*
+
   get() {
-    this._http.getparticipation(this.idevent).subscribe(club => {
+    this._http.getOneUser().subscribe(club => {
         this.participants=club['data'];
+        this.nombreofparticipation=club['nombreofparticipation'];
         console.log(club);
       },
       error => {
@@ -39,7 +41,7 @@ export class ListeParticipationComponent implements OnInit {
       });
 
   }
-
+/*
   Accepter(id_participation:any ){
     //console.log("h")
      this._http.confirmer(id_participation).subscribe(data => {
