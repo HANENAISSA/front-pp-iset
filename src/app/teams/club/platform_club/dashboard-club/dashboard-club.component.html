@@ -342,6 +342,19 @@
                       </li>
                       <li appAccordionLink>
                         <a
+                        (click)="gotoCalendrier(club.id_club)"
+
+                          appAccordionToggle
+                        >
+                          <span class="pcoded-micon">
+                            <i class="ti-angle-right"></i>
+                          </span>
+                          <span class="pcoded-mtext">Calendrier</span>
+
+                        </a>
+                      </li>
+                      <li appAccordionLink>
+                        <a
                         (click)="gotoMembres(club.id_club)"
 
                           appAccordionToggle

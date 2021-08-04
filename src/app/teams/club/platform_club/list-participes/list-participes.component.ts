@@ -44,9 +44,9 @@ getallparticipes(){
   });
 }
 
-confirmer(id_participation:any){
+confirmer(id_participation:any,event_name:any,email:any){
   //console.log("h")
-   this.e_http.confirmer(id_participation).subscribe(data => {
+   this.e_http.confirmer(id_participation,event_name,email).subscribe(data => {
 
     console.log(data)
     if(data['error']!=true){

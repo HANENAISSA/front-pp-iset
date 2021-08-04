@@ -18,13 +18,15 @@ import { ResetPasswordComponent } from "./teams/club/general/reset-password/rese
 import { SendRequestComponent } from "./teams/club/general/send-request/send-request.component";
 import { SigninComponent } from "./teams/club/general/signin/signin.component";
 import { AccueilClubComponent } from "./teams/club/platform_club/accueil-club/accueil-club.component";
-import { AddTOcalendrierComponent } from "./teams/club/platform_club/add-tocalendrier/add-tocalendrier.component";
+import { CalendrierComponent } from "./teams/club/platform_club/calendrier/calendrier.component";
+
 import { DashboardClubComponent } from "./teams/club/platform_club/dashboard-club/dashboard-club.component";
 import { ListParticipesComponent } from "./teams/club/platform_club/list-participes/list-participes.component";
 import { ListeDemandesComponent } from "./teams/club/platform_club/liste-demandes/liste-demandes.component";
 import { ListeParticipationComponent } from "./teams/club/platform_club/liste-participation/liste-participation.component";
 import { MembresComponent } from "./teams/club/platform_club/membres/membres.component";
 import { ProfileMembreComponent } from "./teams/club/platform_club/profile-membre/profile-membre.component";
+import { ScheduleComponent } from "./teams/club/platform_club/schedule/schedule.component";
 import { TestaccueilComponent } from "./teams/club/platform_club/testaccueil/testaccueil.component";
 //administration-components
 //communication-components
@@ -131,10 +133,14 @@ const routes: Routes = [
       path: "accueil/:id",
       component: AccueilClubComponent,
     },
-    /*{
-     path: "accueil",
-      component: *//*AccueilClubComponent,*/
-    //},
+    {
+      path: "calendrier/:id",
+      component: CalendrierComponent,
+    },
+    {
+      path: "schedule",
+      component: ScheduleComponent,
+    },
     {
       path: "membres/:id",
       component: MembresComponent,
@@ -155,10 +161,7 @@ const routes: Routes = [
       path: "liste-events/:id",
       component: ListeParticipationComponent,
     },
-    {
-      path: "calendrier",
-      component: AddTOcalendrierComponent,
-    },
+
     {
       path: "accueil",
       component: TestaccueilComponent,

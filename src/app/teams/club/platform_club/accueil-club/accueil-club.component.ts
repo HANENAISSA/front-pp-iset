@@ -6,7 +6,7 @@ import {animate, style, transition, trigger} from '@angular/animations';
 import { EventService } from '../../services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { AddTOcalendrierComponent } from '../add-tocalendrier/add-tocalendrier.component';
+
 import { Subscription } from 'rxjs';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { PopupComponent } from '../../../../popup/popup.component';

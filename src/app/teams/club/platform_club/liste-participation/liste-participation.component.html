@@ -1,13 +1,13 @@
   <!-- browser Start -->
   <div class="col-md-6 col-xl-8" >
-    <app-card [title]="'Browser Stats'" >
+    <app-card [title]="'Mes événements'" >
       <h5>Total: {{nombreofparticipation}}</h5> <br>
 
 
       <i class="icofont icofont-stylish-right text-danger"></i> Confirmé
       <div class="browser-card b-t-default p-t-15 p-b-15 "  *ngFor="let participant of participants">
         <ng-container *ngIf="participant.statut=='confirmé'">
-        <p class="d-inline-block m-0 ">nom event</p>
+        <p class="d-inline-block m-0 ">{{participant.titre_event}}</p>
         <button class="btn bg-c-pink btn-round float-right btn-browser ">{{participant.statut}}</button>
       </ng-container>
       </div>
@@ -16,7 +16,7 @@
       <i class="icofont icofont-stylish-right text-danger"></i> Non confirmé
       <div class="browser-card b-t-default p-t-15 p-b-15 "  *ngFor="let participant of participants">
         <ng-container *ngIf="participant.statut=='pas confirmé'">
-        <p class="d-inline-block m-0 ">nom event</p>
+        <p class="d-inline-block m-0 ">{{participant.titre_event}}</p>
         <button class="btn bg-c-pink btn-round float-right btn-browser ">{{participant.statut}}</button>
       </ng-container>
       </div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { AnonymousSubject } from 'rxjs/internal/Subject';
 
 @Injectable({
   providedIn: 'root'
@@ -98,11 +99,13 @@ export class EventService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
-  confirmer(id_participation:any){
+  confirmer(id_participation:any,event_name:any,email:any){
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/participation/updatestatut",
       {
-        id_participation:id_participation
+        id_participation:id_participation,
+        event_name:event_name,
+        email:email
       },
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );

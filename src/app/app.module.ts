@@ -7,8 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { MatRadioModule } from '@angular/material';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+//import { FlatpickrModule } from 'angularx-flatpickr';
 //import { ModalModule } from 'ngx-bootstrap/modal';
+//import { DemoUtilsModule } from '../../node_modules/demo-utils';
 //main-components
 import { AppComponent } from './app.component';
 import { AdminComponent } from './layout/admin/admin.component';
@@ -39,10 +43,12 @@ import { VotesComponent } from './teams/club/platform_club/votes/votes.component
 import { TestaccueilComponent } from './teams/club/platform_club/testaccueil/testaccueil.component';
 import { SearchPipe } from './teams/club/platform_club/liste-demandes/search.pipe';
 import { EventsComponent } from './teams/club/general/events/events.component';
-import { AddTOcalendrierComponent } from './teams/club/platform_club/add-tocalendrier/add-tocalendrier.component';
+
 import { HeaderComponent } from './teams/club/general/header/header.component';
 import { ListParticipesComponent } from './teams/club/platform_club/list-participes/list-participes.component';
 import { ListeParticipationComponent } from './teams/club/platform_club/liste-participation/liste-participation.component';
+import { CalendrierComponent } from './teams/club/platform_club/calendrier/calendrier.component';
+import { ScheduleComponent } from './teams/club/platform_club/schedule/schedule.component';
 
 //administration-components
 //communication-components
@@ -79,10 +85,11 @@ import { ListeParticipationComponent } from './teams/club/platform_club/liste-pa
     TestaccueilComponent,
     SearchPipe,
     EventsComponent,
-    AddTOcalendrierComponent,
+    CalendrierComponent,
     HeaderComponent,
     ListParticipesComponent,
-    ListeParticipationComponent
+    ListeParticipationComponent,
+    ScheduleComponent
 
     //administration-components
     //communication-components
@@ -101,8 +108,15 @@ import { ListeParticipationComponent } from './teams/club/platform_club/liste-pa
     ReactiveFormsModule,
     MatCardModule,
     MatRadioModule,
-    MatDialogModule
-
+    MatDialogModule,
+    NgbModalModule,
+    
+    //FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    //DemoUtilsModule,
   ],
   entryComponents: [PopupComponent],
   schemas: [ NO_ERRORS_SCHEMA , CUSTOM_ELEMENTS_SCHEMA],
