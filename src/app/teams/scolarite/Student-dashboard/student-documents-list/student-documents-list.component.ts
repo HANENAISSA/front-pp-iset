@@ -88,10 +88,10 @@ export class StudentDocumentsListComponent implements OnInit {
         break;
       case 2:
         this.getRefused();
-          break;
+        break;
       case 3:
         this.getEnAttente();
-            break;
+        break;
 
       default:
         break;

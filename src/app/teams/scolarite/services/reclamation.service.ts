@@ -17,7 +17,7 @@ export class ReclamationService {
     return this.httpClient.get<Reclamation[]>(this.baseURL+'/getReclamtionById/getById'+'/'+i,this.httpOptions)
   }
   getReclamations():Observable<Reclamation[]>{
-    return this.httpClient.get<Reclamation[]>(this.baseURL+'/getReclamtionAccepter/getAccpeter',this.httpOptions)
+    return this.httpClient.get<Reclamation[]>(this.baseURL+'/getAllReclamtion/getAllReclamtion',this.httpOptions)
   }
 
   getReclamationsEnAttente():Observable<Reclamation[]>{
