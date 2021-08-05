@@ -184,7 +184,7 @@ export class DashboardClubComponent implements OnInit {
     window.location.href = '/dashboard_club/accueil';
   }
   gotoCalendrier(idclub:any){
-    window.location.href = '/dashboard_club/calendrier/'+idclub;
+    window.location.href = '/dashboard_club/schedule';
   }
   gotoAccueil(idclub:any){
     window.location.href = '/dashboard_club/accueil/'+idclub;
