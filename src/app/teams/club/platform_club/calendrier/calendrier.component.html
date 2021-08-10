@@ -1,43 +1,63 @@
-
-<mwl-demo-utils-calendar-header
-  [(view)]="view"
-  [(viewDate)]="viewDate"
-  (viewDateChange)="fetchEvents()"
-  (viewChange)="fetchEvents()"
->
-</mwl-demo-utils-calendar-header>
-
-<ng-template #loading>
-  <div class="text-center">
-    <i class="fas fa-spin fa-spinner fa-5x"></i> <br />
-    Loading events...
+<div class="header">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+      Précédent
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+      Aujourd'hui
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+      Prochain
+      </div>
+    </div>
   </div>
-</ng-template>
+  <div class="col-md-4 prenevt title"  >
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}</h3>
+  </div>
 
-<div *ngIf="events$ | async; else loading; let events">
+   
+   <button class="btn btn-primary float-right" (click)="addEvent()">
+     Ajouter event
+   </button>
+ 
+ 
+
+</div>
+<div class="bodyCalander">
   <div [ngSwitch]="view">
     <mwl-calendar-month-view
       *ngSwitchCase="'month'"
       [viewDate]="viewDate"
+      [locale]="locale"
       [events]="events"
-      [activeDayIsOpen]="activeDayIsOpen"
-      (dayClicked)="dayClicked($event.day)"
-      (eventClicked)="eventClicked($event.event)"
+      (eventClicked)="eventClicked($event)"
     >
     </mwl-calendar-month-view>
-    <mwl-calendar-week-view
-      *ngSwitchCase="'week'"
-      [viewDate]="viewDate"
-      [events]="events"
-      (eventClicked)="eventClicked($event.event)"
-    >
-    </mwl-calendar-week-view>
-    <mwl-calendar-day-view
-      *ngSwitchCase="'day'"
-      [viewDate]="viewDate"
-      [events]="events"
-      (eventClicked)="eventClicked($event.event)"
-    >
-    </mwl-calendar-day-view>
+  </div>
+  <div *ngIf="popup"  class="cardEventData">
+    <i class="fa fa-close closebtn" (click)=close()></i>
+
+ 
+    <h1 class="titre"> {{popupData.title}}</h1>
+    <h3 class="datededebut">heure de debut: {{popupData.start}}</h3>
+     <p class="desc">{{popupData.description}}</p>
+
   </div>
 </div>

@@ -13,6 +13,9 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 //import { FlatpickrModule } from 'angularx-flatpickr';
 //import { ModalModule } from 'ngx-bootstrap/modal';
 //import { DemoUtilsModule } from '../../node_modules/demo-utils';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
 //main-components
 import { AppComponent } from './app.component';
 import { AdminComponent } from './layout/admin/admin.component';
@@ -49,7 +52,7 @@ import { ListParticipesComponent } from './teams/club/platform_club/list-partici
 import { ListeParticipationComponent } from './teams/club/platform_club/liste-participation/liste-participation.component';
 import { CalendrierComponent } from './teams/club/platform_club/calendrier/calendrier.component';
 import { ScheduleComponent } from './teams/club/platform_club/schedule/schedule.component';
-
+registerLocaleData(localeFr, 'fr');
 //administration-components
 //communication-components
 //scolarite-components

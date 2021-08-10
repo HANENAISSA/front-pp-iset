@@ -72,6 +72,7 @@ export class AccueilClubComponent implements OnInit {
   post_image : any;
   admin: any;
   user: any=[];
+  buttontext: string = "Ajouter Sondage";
   constructor(private u_http:MembreService,private modalService: NgbModal,private route: ActivatedRoute,private router: Router,private e_http: EventService,private v_http:VoteService,private p_http:PostService,private _http:ClubService,private http: HttpClient) {
 
    }
@@ -152,10 +153,12 @@ liste(id) {
     });
   }
   toggleEditProfile() {
-    this.editProfileIcon = (this.editProfileIcon === 'icofont-close') ? 'icofont-edit' : 'icofont-close';
+    this.editProfileIcon = (this.editProfileIcon === 'icofont-close') ? 'icofont-ui-add' : 'icofont-close';
     this.editProfile = !this.editProfile;
   }
   open() {
+    this.buttontext="Annuler";
+    this.editProfileIcon = (this.editProfileIcon === 'icofont-close') ? 'icofont-ui-add' : 'icofont-close';
     this.add=!this.add;
     //const modalRef = this.modalService.open(AddTOcalendrierComponent);
     //modalRef.componentInstance.name = 'Hanen';

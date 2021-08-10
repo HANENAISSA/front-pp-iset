@@ -11,7 +11,8 @@ import { PopupComponent } from '../../../../popup/popup.component';
 
 @Component({
   selector: 'ngbd-modal-component',
-  templateUrl: './testaccueil.component.html'
+  templateUrl: './testaccueil.component.html',
+  styleUrls: ['./testaccueil.component.scss']
 })
 export class TestaccueilComponent implements OnInit {
   clubs: any = [];
