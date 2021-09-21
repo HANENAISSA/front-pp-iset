@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { PopupComponent } from '../../../../popup/popup.component';
 import { MembreService } from '../../services/membre.service';
+import { ActivitesService } from '../../services/activites.service';
 
 @Component({
   selector: 'app-accueil-club',
@@ -73,7 +74,12 @@ export class AccueilClubComponent implements OnInit {
   admin: any;
   user: any=[];
   buttontext: string = "Ajouter Sondage";
-  constructor(private u_http:MembreService,private modalService: NgbModal,private route: ActivatedRoute,private router: Router,private e_http: EventService,private v_http:VoteService,private p_http:PostService,private _http:ClubService,private http: HttpClient) {
+  titre: any;
+  activites: any;
+  titre_act: string | Blob;
+  description_act: string | Blob;
+  image_act: string | Blob;
+  constructor(private a_http:ActivitesService,private u_http:MembreService,private modalService: NgbModal,private route: ActivatedRoute,private router: Router,private e_http: EventService,private v_http:VoteService,private p_http:PostService,private _http:ClubService,private http: HttpClient) {
 
    }
 
@@ -87,12 +93,13 @@ export class AccueilClubComponent implements OnInit {
     this.getposts();
     this.getClubEvents();
     this.getsondage();
-    this.getcal(this.idclub);
+    //this.getcal(this.idclub);
     this.getuserClubs();
     //console.log("hello")
     this.getadmin();
     //this.getvotes
     this.getuser(this.id_membre);
+    this.getact(this.idclub);
   }
   /*
 participer(id_event:any) { 
@@ -356,7 +363,10 @@ addevent(){
     if(data['error']!=true){
       //this.description='';
       console.log(data)
-      window.alert('votre event a été enregistré avec succès');
+     // window.alert('votre event a été enregistré avec succès');
+     const modalRef = this.modalService.open(PopupComponent);
+      modalRef.componentInstance.name = 'votre event a été enregistré avec succès';
+      modalRef.componentInstance.message = 'Succès';
       this.editProfile = !this.editProfile;
       this.getClubEvents();
       this.titre_event="";
@@ -409,10 +419,70 @@ addevent(){
     }
   );
 }
+//activites
+getact(idclub:any){
+  this.a_http.getclubactivites(idclub).subscribe(club => {
+    this.activites= club['data'];
+    console.log(this.activites);
+  },
+  error => {
+    console.log(error);
+  });
+}
+imageact(e:any){
+  this.image_act=e.target.files[0];
+  this.fileName=e.target.files[0].name;
+  }
+addactivites(){
+  const formData = new FormData();
+  formData.append('titre_act', this.titre_act);
+  console.log(this.titre_act)
+  formData.append('description_act', this.description_act);
+  formData.append('idclub', this.idclub);
+  formData.append('file', this.image_act);
+
+  this.a_http.addclubactivites(formData).subscribe(data => {
+    if(data['error']!=true){
+  
+     const modalRef = this.modalService.open(PopupComponent);
+     modalRef.componentInstance.name = 'votre event a été enregistré avec succès';
+     modalRef.componentInstance.message = 'Succès';
+         this.titre_act='';
+      this.image_act='';
+      this.description_act='';
+     this.editProfile = !this.editProfile;
+      this.getact(this.idclub);
+
+      this.fileName=""
+       }else{
+        const modalRef = this.modalService.open(PopupComponent);
+        modalRef.componentInstance.name = data['message'];
+        modalRef.componentInstance.message = 'Erreur';
+    }
+  },
+    err => {
+  //show error toast when the server went wrong
+  console.log(err);
+    }
+  );
+}
+deleteact(id_activites:any){
+  this.a_http.deleteactivites(this.idclub,id_activites).subscribe(club => {
+    console.log(club);
+
+    const modalRef = this.modalService.open(PopupComponent);
+    modalRef.componentInstance.name = 'votre publication a été supprimer';
+    modalRef.componentInstance.message = 'Supprimer';
+    this.getact(this.idclub);
+  },
+  error => {
+    console.log(error);
+  });
+}
 
 
 
-
+/*
 //calendrier
 getcal(idclub:any){
   this.e_http.getcalendrier(idclub).subscribe(club => {
@@ -424,7 +494,7 @@ getcal(idclub:any){
   });
 }
 addTOcalendrier(){
-  this.e_http.addTOcalendrier(this.idclub,this.temps,this.date,this.descriptionCal).subscribe(data => {
+  this.e_http.addTOcalendrier(this.idclub,this.titre,this.temps,this.date,this.descriptionCal).subscribe(data => {
     if(data['error']!=true){
       this.add=!this.add;
       this.getcal(this.idclub);
@@ -443,7 +513,7 @@ addTOcalendrier(){
   console.log(err);
     }
   );
-}
+}*/
 //delete . event . post. calendrier . sondage
 deletePOST(idpublication:any){
   this.p_http.deletePost(idpublication).subscribe(club => {
@@ -484,7 +554,7 @@ deleteEVENT(idevent:any){
   error => {
     console.log(error);
   });
-}
+}/*
 deleteCAL(idcalendrier:any){
   this.e_http.deleteTask(idcalendrier).subscribe(club => {
     console.log(club);
@@ -498,7 +568,7 @@ deleteCAL(idcalendrier:any){
     console.log(error);
   });
 }
-
+*/
 }
 
 

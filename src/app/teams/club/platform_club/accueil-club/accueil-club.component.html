@@ -178,8 +178,8 @@
                                 <img class="img-responsive" src="http://127.0.0.1:5010/{{event.url_image}}" alt="#" />
                                </div>
                                <div class="description">
-                                <h5 >debut d'evenment : {{event.date_debut}} à {{event.heure_debut}}</h5> <br>
-                                <h5 >fin d'evenment : {{event.date_fin}} à {{event.heure_fin}} </h5>
+                                <h5 >Date d'evenment : {{event.date_debut}} -> {{event.date_fin}}</h5> <br>
+                                <h5 >Durée d'evenment : {{event.heure_debut}} -> {{event.heure_fin}} </h5>
                                 <p class="text-muted"  [attr.date-text]="event.description">{{event.description}}</p>
                       
                                </div>
@@ -212,7 +212,7 @@
                                   <tr>
                                     <td>
                                       <div class="input-group">
-                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
+                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
                                         <input type="text" class="form-control" placeholder="Titre " value="" [(ngModel)]="titre_event">
                                       </div>
                                     </td>
@@ -259,7 +259,7 @@
                                   <tr>
                                     <td>
                                       <div class="input-group">
-                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-location-pin"></i></label></span>
+                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
                                         <input type="text" class="form-control" placeholder="Description" value="" [(ngModel)]="description">
                                       </div>
                                     </td>
@@ -325,7 +325,7 @@
               <!-- personal card start -->
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-header-text">événements</h5>
+                  <h5 class="card-header-text">Activités du club</h5>
                   <div >
                   <button *ngIf="admin==true" id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
                     <i class="icofont {{ editProfileIcon }}"></i>
@@ -338,9 +338,28 @@
                       <div class="col-lg-12">
                         <div class="general-info">
                           <div class="row">
-                            <div class="col-lg-12" >
+                            <div class="col-lg-12" *ngFor="let act of activites" >
                               
           <!--display event-->
+            <!-- Statistics card start -->
+  <div class="col-md-6 col-xl-8">
+    <div class="card widget-statstic-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <h3>{{act.titre_act}}</h3>
+          <p class="p-t-10 m-b-0 text-c-yellow">54% From last month</p>
+        </div>
+      </div>
+      <div class="card-block">
+        <i *ngIf="admin==false" class="icofont icofont-horn st-icon bg-c-yellow"></i>
+        <i *ngIf="admin==true"  (click)="deleteact(act.id_activites)"  class="icofont icofont-close-line st-icon bg-c-yellow txt-lite-color"></i>
+        <div class="text-left">
+          <h5 class="d-inline-block">{{act.description_act}}</h5>
+         
+        </div>
+      </div>
+    </div>
+  </div>
                             </div>
                           </div>
                           <!-- end of row -->
@@ -364,8 +383,8 @@
                                   <tr>
                                     <td>
                                       <div class="input-group">
-                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
-                                        <input type="text" class="form-control" placeholder="Titre " value="" [(ngModel)]="titre_event">
+                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
+                                        <input type="text" class="form-control" placeholder="Titre " value="" [(ngModel)]="titre_act">
                                       </div>
                                     </td>
                                   </tr>
@@ -373,7 +392,7 @@
                                     <td>
                                       <div class="input-group">
                                         <span class="input-group-prepend"><label class="input-group-text"><i class="ti-gallery"></i></label></span>
-                                        <input type="file" class="form-control" value="" placeholder="upload image de l'événement" (change)="image($event)">
+                                        <input type="file" class="form-control" value="" placeholder="upload image " (change)="imageact($event)">
                                       </div>
                                     </td>
                                   </tr>
@@ -381,8 +400,8 @@
                                   <tr>
                                     <td>
                                       <div class="input-group">
-                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-location-pin"></i></label></span>
-                                        <input type="text" class="form-control" placeholder="Description" value="" [(ngModel)]="description">
+                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
+                                        <input type="text" class="form-control" placeholder="Description" value="" [(ngModel)]="description_act">
                                       </div>
                                     </td>
                                   </tr>
@@ -395,7 +414,7 @@
                           </div>
                           <!-- end of row -->
                           <div class="text-center">
-                            <button  class="btn btn-primary waves-effect waves-light m-r-20" (click)="addevent()">Publier</button>
+                            <button  class="btn btn-primary waves-effect waves-light m-r-20" (click)="addactivites()">Publier</button>
                             <a href="javascript:;" id="edit-cancel" class="btn btn-default waves-effect" (click)="toggleEditProfile()">Annuler
                               </a>
                           </div>

@@ -47,13 +47,14 @@ export class EventService {
     );
   }
   // /calander/addcalender "id_club"temps"date"description"
-  addTOcalendrier(id_club:any,temps:any,date:any,description:any){
+  addTOcalendrier(id_club:any,titre:any,temps:any,date:any,description:any){
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/calendar/addcalendar",
       {
         id_club:id_club,
         temps:temps,
         date:date,
+        titre :titre,
         description:description
       },
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}

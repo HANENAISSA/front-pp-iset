@@ -1,6 +1,6 @@
 <div class="header">
   <div class="col-md-4">
-    <div class="btn-group">
+    <div class="btn-group flexpre">
       <div
         class="btn btn-primary"
         mwlCalendarPreviousView
@@ -53,11 +53,36 @@
   </div>
   <div *ngIf="popup"  class="cardEventData">
     <i class="fa fa-close closebtn" (click)=close()></i>
-
+    
  
     <h1 class="titre"> {{popupData.title}}</h1>
-    <h3 class="datededebut">heure de debut: {{popupData.start}}</h3>
+    <h3 class="datededebut">Durée: {{popupData.heuredebut}} -> {{popupData.heurefin}}</h3>
      <p class="desc">{{popupData.description}}</p>
-
+     
+  </div>
+  <div *ngIf="add"  class="cardEventData">
+    <i class="fa fa-close closebtn" (click)=closevent()></i>
+    <!--add to calendrier-->
+    <div class="browser-card b-t-default p-t-15" >
+      <div class="input-group">
+        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
+        <input type="date" class="form-control" placeholder="Date " value="" [(ngModel)]="date">
+      </div>
+      <div class="input-group">
+        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
+        <input type="time" class="form-control" placeholder="Heure " value="" [(ngModel)]="temps">
+      </div>
+      <div class="input-group">
+        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
+        <input type="text" class="form-control" placeholder="Titre " value="" [(ngModel)]="titre">
+      </div>
+      <div class="input-group">
+        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
+        <input type="text" class="form-control" placeholder="Description " value="" [(ngModel)]="descriptionCal">
+      </div>
+      <button  class="btn btn-primary waves-effect waves-light m-r-20" (click)="addTOcalendrier()">Sauvegarder</button>
+    </div>
+ 
+    
   </div>
 </div>
