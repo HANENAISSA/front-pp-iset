@@ -39,6 +39,10 @@ export class ReclamationService {
   deleteReclamation(indice: number) {
     return this.httpClient.delete<Reclamation[]>(this.baseURL+'/DeleteReclamation/DeleteReclamation'+'/'+indice,this.httpOptions)
   }
+  // GetAll Reclamation Types
+  getAllReclamTypes(){
+    return this.httpClient.get(this.baseURL+'/getAllReclamTypes/getAllReclamTypes',this.httpOptions)
+  }
 
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {

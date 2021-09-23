@@ -4,7 +4,9 @@
     <div class="row align-items-end">
       <div class="col-lg-8">
         <div class="page-header-title">
-          <span><i class="icofont icofont-exclamation-square bg-c-blue"></i></span>
+          <span
+            ><i class="icofont icofont-exclamation-square bg-c-blue"></i
+          ></span>
           <div class="d-inline">
             <span class="d-block">
               <h4>Contacter l'administration</h4>
@@ -56,68 +58,344 @@
             </button>
           </div>
         </div>
+        <!-- First Name Input  -->
         <div class="form-group">
-          <!-- First Name Input  -->
           <label for="first-name">Nom</label>
-          <input
-            type="text"
-            id="first-name"
-            class="form-control"
-            disabled
-          />
+          <input type="text" id="first-name" class="form-control" disabled />
         </div>
+        <!-- Last Name Input  -->
         <div class="form-group">
-          <!-- Last Name Input  -->
           <label for="last-name">Prénom</label>
-          <input
-            type="text"
-            id="last-name"
-            class="form-control"
-            disabled
-          />
+          <input type="text" id="last-name" class="form-control" disabled />
         </div>
+        <!-- Class Input  -->
         <div class="form-group">
-          <!-- Class Input  -->
-          <label for="class">Classe</label>
-          <input
-            type="text"
-            id="class"
-            class="form-control"
-            disabled
-          />
+          <label for="class">N. CIN(Carte d'identité nationale)</label>
+          <input type="text" id="class" class="form-control" disabled />
         </div>
+        <!-- reclamation UploadFile  -->
         <div class="form-group">
-          <!-- reclamation Type Input  -->
+          <label for="reclamationType">Ajouter un fichier</label>
+          <div class="row margin25">
+            <div class="input-group">
+              <div class="custom-file">
+                <form
+                  action="/api/upload"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01"
+                  />
+                </form>
+                <label class="custom-file-label" for="inputGroupFile01">Choisissez un fichier</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- reclamation Type Input  -->
+        <div class="form-group">
           <label for="reclamationType">Type de Réclamation</label>
-          <input
-            type="text"
+          <select
+            class="form-control"
             id="reclamationType"
-            class="form-control"
-            formControlName="type_Reclamation"
+            formControlName="id_type_Reclamation"
             [ngClass]="{
               'is-invalid':
-                addReclamationForm.get('type_Reclamation').touched &&
-                addReclamationForm.get('type_Reclamation').invalid
+                addReclamationForm.get('id_type_Reclamation').touched &&
+                addReclamationForm.get('id_type_Reclamation').invalid
             }"
+            (click)="showOptions($event.target.value)"
+            (change)="ResetDropdownValues()"
             required
-          />
+          >
+            <option selected disabled value="">Selectionner Un Type</option>
+            <option
+              *ngFor="let item of reclamationTypes"
+              [value]="item.id_type_reclamation"
+            >
+              {{ item.libelle_type_reclamation }}
+            </option>
+          </select>
         </div>
-        <div class="form-group">
-          <!-- Message Input  -->
-          <label for="reclamationContent">Votre Message</label>
-          <textarea
-            class="form-control"
-            id="reclamationContent"
-            rows="3"
-            formControlName="contenu"
-            [ngClass]="{
-              'is-invalid':
-                addReclamationForm.get('contenu').touched &&
-                addReclamationForm.get('contenu').invalid
-            }"
-            required
-          ></textarea>
+        <!-- **************** Start Hidden Div's ***************** -->
+        <div class="form-group" [hidden]="specialiteDiv">
+          <hr />
+          <h5>Changement de specialité</h5>
+          <br />
+          <div class="row">
+            <!-- Ancien -->
+            <div class="col">
+              <label for="oldSpecialite">Ancien</label>
+              <select class="form-control" #oldSpecialty required>
+                <!-- formControlName="Specialite"
+                [ngClass]="{
+                  'is-invalid':
+                    addReclamationForm.get('Specialite').touched &&
+                    addReclamationForm.get('Specialite').invalid
+                }" -->
+                <option selected disabled value="">Selectionner Une Specialité</option>
+                <option *ngFor="let item of specialite" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Une Specialité.
+              </div>
+            </div>
+            <!-- Nouveau -->
+            <div class="col">
+              <label for="newSpecialite">Nouveau</label>
+              <select class="form-control" #newSpecialty required>
+                <!-- formControlName="Specialite"
+                [ngClass]="{
+                  'is-invalid':
+                    addReclamationForm.get('Specialite').touched &&
+                    addReclamationForm.get('Specialite').invalid
+                }" -->
+                <option selected disabled>Selectionner Un Specialité</option>
+                <option *ngFor="let item of specialite" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Une Specialité.
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="form-group" [hidden]="classDiv">
+          <hr />
+          <h5>Changement de classe</h5>
+          <br />
+          <div class="row">
+            <!-- Ancien Class -->
+            <div class="col">
+              <label for="oldClass">Ancien</label>
+              <select class="form-control" #oldClass required>
+                <!-- formControlName="Specialite"
+                [ngClass]="{
+                  'is-invalid':
+                    addReclamationForm.get('Specialite').touched &&
+                    addReclamationForm.get('Specialite').invalid
+                }" -->
+                <option selected disabled>Selectionner Un Classe</option>
+                <option *ngFor="let item of class" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Un Classe.
+              </div>
+            </div>
+            <!-- Nouveau Class -->
+            <div class="col">
+              <label for="newClass">Nouveau</label>
+              <select class="form-control" #newClass required>
+                <!-- formControlName="Specialite"
+                [ngClass]="{
+                  'is-invalid':
+                    addReclamationForm.get('Specialite').touched &&
+                    addReclamationForm.get('Specialite').invalid
+                }" -->
+                <option selected disabled>Selectionner Un Classe</option>
+                <option *ngFor="let item of class" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Un Classe.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [hidden]="sectionDiv">
+          <hr />
+          <h5>Changement de section</h5>
+          <br />
+          <div class="row">
+            <!-- Ancien Section -->
+            <div class="col">
+              <label for="oldSection">Ancien</label>
+              <select class="form-control" #oldSection required>
+                <!-- formControlName="Specialite"
+                [ngClass]="{
+                  'is-invalid':
+                    addReclamationForm.get('Specialite').touched &&
+                    addReclamationForm.get('Specialite').invalid
+                }" -->
+                <option selected disabled>Selectionner Une Section</option>
+                <option *ngFor="let item of section" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Une Section.
+              </div>
+            </div>
+            <!-- Nouveau Section -->
+            <div class="col">
+              <label for="newSection">Nouveau</label>
+              <select class="form-control" #newSection required>
+                <!-- formControlName="Specialite"
+                [ngClass]="{
+                  'is-invalid':
+                    addReclamationForm.get('Specialite').touched &&
+                    addReclamationForm.get('Specialite').invalid
+                }" -->
+                <option selected disabled>Selectionner Une Section</option>
+                <option *ngFor="let item of section" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Une Section.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [hidden]="noteDiv">
+          <hr />
+          <h5>Vérification des notes</h5>
+          <br />
+          <div class="row">
+            <!-- class  -->
+            <div class="col">
+              <label for="classe">Classe</label>
+              <select class="form-control" #class_note required>
+                <option selected disabled>Selectionner Un classe</option>
+                <option *ngFor="let item of class" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Un classe.
+              </div>
+            </div>
+            <!-- semestre -->
+            <div class="col">
+              <label for="semestre">Semestre</label>
+              <select class="form-control" #sem_note required>
+                <option selected disabled>Selectionner Une Semestre</option>
+                <option *ngFor="let item of semestres" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Un Semestre.
+              </div>
+            </div>
+            <!-- matiere -->
+            <div class="col">
+              <label for="matiere">Matiére</label>
+              <select class="form-control" #mat_note required>
+                <option selected disabled>Selectionner Une Matiére</option>
+                <option *ngFor="let item of matieres" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Une Matiére.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [hidden]="examenDiv">
+          <hr />
+          <h5>Refaire d'un examen</h5>
+          <br />
+          <div class="row">
+            <!-- class  -->
+            <div class="col">
+              <label for="classe">Classe</label>
+              <select class="form-control" #class_exam required>
+                <option selected disabled>Selectionner Un classe</option>
+                <option *ngFor="let item of class" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Un classe.
+              </div>
+            </div>
+            <!-- semestre -->
+            <div class="col">
+              <label for="semestre">Semestre</label>
+              <select class="form-control" #sem_exam required>
+                <option selected disabled>Selectionner Une Semestre</option>
+                <option *ngFor="let item of semestres" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Un Semestre.
+              </div>
+            </div>
+            <!-- matiere -->
+            <div class="col">
+              <label for="matiere">Matiére</label>
+              <select class="form-control" id="matiere" #mat_exam required>
+                <option selected disabled>Selectionner Une Matiére</option>
+                <option *ngFor="let item of matieres" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Une Matiére.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [hidden]="inscriptionDiv">
+          <hr />
+          <h5>Inscription pédagogique</h5>
+          <br />
+          <div class="row">
+            <!-- class  -->
+            <div class="col">
+              <label for="classe">Classe</label>
+              <select class="form-control" #class_inscr required>
+                <option selected disabled>Selectionner Un classe</option>
+                <option *ngFor="let item of class" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Un classe.
+              </div>
+            </div>
+            <!-- semestre -->
+            <div class="col">
+              <label for="semestre">Semestre</label>
+              <select class="form-control" #sem_inscr required>
+                <option selected disabled>Selectionner Une Semestre</option>
+                <option *ngFor="let item of semestres" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Un Semestre.
+              </div>
+            </div>
+            <!-- matiere -->
+            <div class="col">
+              <label for="matiere">Matiére</label>
+              <select class="form-control" #mat_inscr required>
+                <option selected disabled>Selectionner Une Matiére</option>
+                <option *ngFor="let item of matieres" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Veuillez sélectionner Une Matiére.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- **************** End Hidden Div's ***************** -->
         <!-- Alert -->
         <div [hidden]="hidden">
           <p>

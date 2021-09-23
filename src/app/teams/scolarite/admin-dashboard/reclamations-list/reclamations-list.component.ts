@@ -27,8 +27,9 @@ export class ReclamationsListComponent implements OnInit {
   page = 1;
   pageSize = 2;
   pageSizes = [2, 4, 6];
-  reclamations = [];
-  reclamationsEnAttente = [];
+  reclamations:any =[];
+  reclamationsEnAttente:any =[];
+  reclamationsAcceptee:any =[];
   public search:any = '';
   actualId:number;
 
@@ -44,16 +45,19 @@ export class ReclamationsListComponent implements OnInit {
   refreshData(id :number){
     switch (id) {
       case 1:
-        this.service.getReclamationsEnAttente().subscribe((data) => {
+        this.service.getReclamations().subscribe((data) => {
           this.reclamationsEnAttente = data;
+          const enAttenteRecs = this.reclamations.filter(item => item.id_statut_reclamation === 2);
+          this.reclamationsEnAttente = enAttenteRecs;
+
         });
         break;
       case 2:
-      this.service.getReclamations().subscribe((data) => {
-        this.reclamations = data;
-        const filtredRecs = this.reclamations.filter(item => item.id_statut_reclamation === 1);
-        this.reclamations = filtredRecs;
-      });
+        this.service.getReclamations().subscribe((data) => {
+          this.reclamationsAcceptee = data;
+          const filtredRecs = this.reclamations.filter(item => item.id_statut_reclamation === 1);
+          this.reclamationsAcceptee = filtredRecs;
+        });
         break;
 
       default:
@@ -96,7 +100,7 @@ export class ReclamationsListComponent implements OnInit {
       classe: reclam.id_classe,
       reclamationContent: reclam.contenu,
       date: reclam.date_reclamation,
-      reclamationType: reclam.type_reclamation,
+      reclamationType: reclam.libelle_type_reclamation,
       status: reclam.libelle_statut_reclamation,
     };
     modalRef.componentInstance.reclamationDetails = data;

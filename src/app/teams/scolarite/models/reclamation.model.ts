@@ -1,7 +1,7 @@
 export class Reclamation {
   constructor(
    private type_reclamation: any,
-   private contenu: any,
+  //  private contenu: any,
    private id_statut_reclamation:any,
    private date_reclamation: any,
    private id_user: any
@@ -13,12 +13,12 @@ public get id_statut_reclamations(): any {
   public set id_statut_reclamations(value: any) {
     this.id_statut_reclamation = value;
   }
-  public get contenus(): any {
-    return this.contenu;
-  }
-  public set contenus(value: any) {
-    this.contenu = value;
-  }
+  // public get contenus(): any {
+  //   return this.contenu;
+  // }
+  // public set contenus(value: any) {
+  //   this.contenu = value;
+  // }
   public get Type_Reclamations(): any {
     return this.type_reclamation;
   }

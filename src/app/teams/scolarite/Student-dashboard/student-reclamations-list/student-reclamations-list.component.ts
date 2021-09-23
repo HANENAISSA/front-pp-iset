@@ -36,30 +36,30 @@ export class StudentReclamationsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.refreshData(3);
+    this.refreshData(2);
   }
 
   refreshData(id :number){
     switch (id) {
       case 1:
         this.service.getReclamations().subscribe((data) => {
-          this.reclamations = data;
-          const accepted = this.reclamations.filter(item => item.id_statut_reclamation === 1);
-          this.accepted = accepted;
+          this.accepted = data;
+          const acceptedRecs = this.accepted.filter(item => item.id_statut_reclamation === 1);
+          this.accepted = acceptedRecs;
         });
         break;
       case 2:
         this.service.getReclamations().subscribe((data) => {
-          this.reclamations = data;
-          const enAttente = this.reclamations.filter(item => item.id_statut_reclamation === 2);
-          this.enAttente = enAttente;
+          this.enAttente = data;
+          const enAttenteRecs = this.enAttente.filter(item => item.id_statut_reclamation === 2);
+          this.enAttente = enAttenteRecs;
         });
         break;
       case 3:
         this.service.getReclamations().subscribe((data) => {
-          this.reclamations = data;
-          const refused = this.reclamations.filter(item => item.id_statut_reclamation === 3);
-          this.refused = refused;
+          this.refused = data;
+          const refusedRecs = this.refused.filter(item => item.id_statut_reclamation === 3);
+          this.refused = refusedRecs;
         });
         break;
 

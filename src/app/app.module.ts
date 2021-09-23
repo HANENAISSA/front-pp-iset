@@ -53,6 +53,7 @@ import { ReclamationDetailComponent } from './teams/scolarite/admin-dashboard/re
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    // ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
   ],
   entryComponents: [PopupComponent],
   schemas: [ NO_ERRORS_SCHEMA ],
