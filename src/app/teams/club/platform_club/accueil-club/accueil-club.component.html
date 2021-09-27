@@ -19,7 +19,7 @@
     <div class="col-lg-12">
         <div class="card widget-card-1">
             <div class="card-block-small">
-              <i style="background-color: #333;" class="icofont icofont-ui-home bg-c-blue card1-icon"></i>
+              <i style="background-color: #FFB64D;" class="icofont icofont-ui-home bg-c-blue card1-icon"></i>
 
                 <h6>{{nom}} {{prenom}}</h6>
                 <div class="form-group row">
@@ -340,16 +340,23 @@
                           <div class="row">
                             <div class="col-lg-12" *ngFor="let act of activites" >
                               
-          <!--display event-->
+          <!--display act-->
             <!-- Statistics card start -->
-  <div class="col-md-6 col-xl-8">
+  <div class="col-md-6 col-xl-12">
     <div class="card widget-statstic-card">
       <div class="card-header">
         <div class="card-header-left">
-          <h3>{{act.titre_act}}</h3>
-          <p class="p-t-10 m-b-0 text-c-yellow">54% From last month</p>
+          <center><h3>{{act.titre_act}}</h3></center>
+          <br>
+          <center>
+          <div class="col-lg-10" *ngIf="act.image_act !='undefined'" >
+            <img class="img-responsive" src="http://127.0.0.1:5010/{{act.image_act}}" alt="#" />
+
+        </div>
+      </center>
         </div>
       </div>
+    
       <div class="card-block">
         <i *ngIf="admin==false" class="icofont icofont-horn st-icon bg-c-yellow"></i>
         <i *ngIf="admin==true"  (click)="deleteact(act.id_activites)"  class="icofont icofont-close-line st-icon bg-c-yellow txt-lite-color"></i>
@@ -540,8 +547,8 @@
   </div>
   <div class="card-block" >
     <div >
-    <i *ngIf="admin==true" style="background-color:#333" (click)="deleteSONDAGE(sondage.id_sondage)"  class="icofont icofont-close-line st-icon bg-c-blue txt-lite-color"></i>
-    <i *ngIf="admin==false" style="background-color:#333"   class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
+    <i *ngIf="admin==true" style="background-color:#FFB64D" (click)="deleteSONDAGE(sondage.id_sondage)"  class="icofont icofont-close-line st-icon bg-c-blue txt-lite-color"></i>
+    <i *ngIf="admin==false" style="background-color:#FFB64D"   class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
   </div>
 
 
