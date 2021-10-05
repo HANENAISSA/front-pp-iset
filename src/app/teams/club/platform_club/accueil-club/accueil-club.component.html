@@ -346,6 +346,7 @@
     <div class="card widget-statstic-card">
       <div class="card-header">
         <div class="card-header-left">
+          <h5 style="color:#4680ff;"> Le {{act.date_act}}</h5>
           <center><h3>{{act.titre_act}}</h3></center>
           <br>
           <center>
@@ -387,6 +388,15 @@
                               <div class="table-responsive">
                                 <table class="table">
                                   <tbody>
+                                    <tr>
+                                      <td>
+                                        <div class="input-group">
+                                          <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
+                                          <input type="date" class="form-control" placeholder="date" value="" [(ngModel)]="date_act">
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  
                                   <tr>
                                     <td>
                                       <div class="input-group">

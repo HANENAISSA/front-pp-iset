@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PopupComponent } from '../../../../popup/popup.component';
-
+//import swal from 'sweetalert';
 @Component({
   selector: 'app-liste-demandes',
   templateUrl: './liste-demandes.component.html',
@@ -21,6 +21,7 @@ export class ListeDemandesComponent implements OnInit {
 
   public searchFilter: any = '';
   equipes: any=[];
+  idclub: string;
   constructor(private modalService: NgbModal,private _http:RequestService,private route: ActivatedRoute)
   {
     //this.isCollapsedMobile = 'no-block';
@@ -41,6 +42,7 @@ handlePageSizeChange(event: any): void {
   }*/
 
   ngOnInit(): void {
+    this.idclub= this.route.snapshot.paramMap.get('id');
     this.getrequests();
 
   }
@@ -56,7 +58,7 @@ handlePageSizeChange(event: any): void {
         });
   }
   getrequests() {
-    this._http.getRequests().subscribe(club => {
+    this._http.getRequests(this.idclub).subscribe(club => {
         this.requests= club['data'];
         console.log(club);
       },
@@ -67,52 +69,61 @@ handlePageSizeChange(event: any): void {
   }
 
   Accepter(id_demande:any, email:any ){
-    //console.log("h")
+
      this._http.acceptRequests(id_demande,email).subscribe(data => {
 
-      console.log(data)
       if(data['error']!=true){
 
         this.getrequests();
-       // window.alert('le demande a été accepté')
-       const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = 'le demande a été accepté';
-        modalRef.componentInstance.message = 'Succès';
+       // swal("Succès!", "le demande a été accepté", "success");
       }else{
-        //alert(data['message'])
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = data['message'];
-        modalRef.componentInstance.message = 'Erreur';
+        //swal("Erreur!", data['message'], "error");
       }
 
     },
       err => {
-    //show error toast when the server went wrong
+   
       }
     );
 
   }
   Delete(iddemande:any, email:any ){
-    this._http.DeleteRequests(iddemande,email).subscribe(data => {
-     console.log(data)
-     if(data['error']!=true){
-      this.getrequests();
-     // window.alert('le demande a été supprimer')
-     const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = 'le demande a été supprimer';
-        modalRef.componentInstance.message = 'Succès';
-     }else{
-      // alert(data['message'])
-      const modalRef = this.modalService.open(PopupComponent);
-      modalRef.componentInstance.name = data['message'];
-      modalRef.componentInstance.message = 'Erreur';
-     }
-
-   },
-     err => {
-   //show error toast when the server went wrong
-     }
-   );
-
+   /* swal({
+      title: "Es-tu sûr?",
+      text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
+      icon: "warning",
+      buttons: {
+        cancel: true,
+        confirm: true,
+      },
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        
+        this._http.DeleteRequests(iddemande,email).subscribe(data => {
+          console.log(data)
+          if(data['error']!=true){
+           this.getrequests();
+     
+          }else{
+            swal("Erreur!", data['message'], "error");
+          }
+     
+        },
+          err => {
+       
+          }
+        );
+        swal("le demande a été supprimer!", {
+          icon: "success",
+        });
+      } else {
+        swal("Votre fichier est en sécurité !");
+      }
+    });
+  
+  
+*/
  }
 }

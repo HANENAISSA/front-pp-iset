@@ -12,7 +12,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { PopupComponent } from '../../../../popup/popup.component';
 import { MembreService } from '../../services/membre.service';
 import { ActivitesService } from '../../services/activites.service';
-
+//import swal from 'sweetalert';
 @Component({
   selector: 'app-accueil-club',
   templateUrl: './accueil-club.component.html',
@@ -57,6 +57,7 @@ export class AccueilClubComponent implements OnInit {
   url_event: any;
   heure_debut: any;
   heure_fin: any;
+  
   add= true;
   editProfile = true;
   editProfileIcon = 'icofont-ui-add';
@@ -79,6 +80,7 @@ export class AccueilClubComponent implements OnInit {
   titre_act: string | Blob;
   description_act: string | Blob;
   image_act: string | Blob;
+  date_act: string | Blob;
   constructor(private a_http:ActivitesService,private u_http:MembreService,private modalService: NgbModal,private route: ActivatedRoute,private router: Router,private e_http: EventService,private v_http:VoteService,private p_http:PostService,private _http:ClubService,private http: HttpClient) {
 
    }
@@ -269,24 +271,16 @@ liste(id) {
   }
   voter(satut:any,idsondage:any){
     this.v_http.addVote(satut,idsondage).subscribe(data => {
-      //console.log(idsondage)
+      
       if(data['error']!=true){
-        //console.log(idsondage)
-        //localStorage.setItem("votes",data["votes"])
-        this.message='vous avez votè';
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = 'votre vote a été enregistré avec succès';
-        modalRef.componentInstance.message = 'Succès';
+       // swal("Vous avez votè!", "votre vote a été enregistré avec succès", "success");
+        
       }else{
-        //alert(data['message'])
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = data['message'];
-        modalRef.componentInstance.message = 'Erreur';
+       // swal("Erreur!", data['message'], "error");
 
       }
     },
       err => {
-    //show error toast when the server went wrong
     console.log(err);
       }
     );
@@ -296,7 +290,7 @@ liste(id) {
 gotolisteparticipates(id_event:any, nomevent:any ){
   this.router.navigate(['dashboard_club/liste-participes/'+id_event]);
   nomevent = localStorage.setItem('nomevent',nomevent);
-  //window.location.href = '/dashboard_club/liste-participes/'+id_event;
+  
 }
 getallparticipes(id_event:any){
   this.e_http.getallparticipation(id_event).subscribe(club => {
@@ -311,17 +305,16 @@ getallparticipes(id_event:any){
 participer(id_event:any){
   this.e_http.participer(id_event).subscribe(data => {
     if(data['error']!=true){
-      const modalRef = this.modalService.open(PopupComponent);
-      modalRef.componentInstance.name = 'vous avez participé avec succès';
-      modalRef.componentInstance.message = 'Succès';
-       }else{
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = data['message'];
-        modalRef.componentInstance.message = 'Erreur';
+     // swal("Succès!", "vous avez participé avec succès", "success");
+      
+    }else{
+      //swal("Erreur!", data['message'], "error");
+
     }
+    
   },
     err => {
-  //show error toast when the server went wrong
+  
   console.log(err);
     }
   );
@@ -337,8 +330,7 @@ getClubEvents(){
     console.log(error);
   });
 }
-//description	date_debut	date_fin	heure_debut	heure_fin	statut
-  //	url_image	url_event	id_membre	id_club
+
 image(e:any){
 this.url_image=e.target.files[0];
 
@@ -361,12 +353,8 @@ addevent(){
   this.e_http.addevent(formData).subscribe(data => {
 
     if(data['error']!=true){
-      //this.description='';
-      console.log(data)
-     // window.alert('votre event a été enregistré avec succès');
-     const modalRef = this.modalService.open(PopupComponent);
-      modalRef.componentInstance.name = 'votre event a été enregistré avec succès';
-      modalRef.componentInstance.message = 'Succès';
+      //swal("Succès!", "votre event a été enregistré avec succès", "success");
+      
       this.editProfile = !this.editProfile;
       this.getClubEvents();
       this.titre_event="";
@@ -379,11 +367,11 @@ addevent(){
       this.url_image="";
       this.url_event="";
        }else{
-      alert(data['message'])
+        //swal("Erreur!", data['message'], "error");
     }
   },
     err => {
-  //show error toast when the server went wrong
+  
    console.log(err);
     }
   );
@@ -393,7 +381,7 @@ addevent(){
   this.post_image=e.target.files[0];
   this.fileName=e.target.files[0].name;
   }
-//this.idclub,this.post
+
  addpost(){
   const formData = new FormData();
   formData.append('description', this.post);
@@ -401,6 +389,7 @@ addevent(){
   formData.append('file', this.post_image);
 
   this.p_http.addpost(formData).subscribe(data => {
+
     if(data['error']!=true){
       this.post='';
       this.post_image='';
@@ -408,9 +397,7 @@ addevent(){
 
       this.fileName=""
        }else{
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = data['message'];
-        modalRef.componentInstance.message = 'Erreur';
+        //swal("Erreur!", data['message'], "error");
     }
   },
     err => {
@@ -429,6 +416,7 @@ getact(idclub:any){
     console.log(error);
   });
 }
+
 imageact(e:any){
   this.image_act=e.target.files[0];
   this.fileName=e.target.files[0].name;
@@ -440,13 +428,13 @@ addactivites(){
   formData.append('description_act', this.description_act);
   formData.append('idclub', this.idclub);
   formData.append('file', this.image_act);
+  formData.append('date_act', this.date_act);
 
   this.a_http.addclubactivites(formData).subscribe(data => {
+
     if(data['error']!=true){
-  
-     const modalRef = this.modalService.open(PopupComponent);
-     modalRef.componentInstance.name = 'votre event a été enregistré avec succès';
-     modalRef.componentInstance.message = 'Succès';
+     // swal("Succès!", "votre activite a été enregistré avec succès", "success");
+
          this.titre_act='';
       this.image_act='';
       this.description_act='';
@@ -455,9 +443,7 @@ addactivites(){
 
       this.fileName=""
        }else{
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = data['message'];
-        modalRef.componentInstance.message = 'Erreur';
+       // swal("Erreur!", data['message'], "error");
     }
   },
     err => {
@@ -466,109 +452,152 @@ addactivites(){
     }
   );
 }
+
+
+// all delete fnc
 deleteact(id_activites:any){
-  this.a_http.deleteactivites(this.idclub,id_activites).subscribe(club => {
-    console.log(club);
-
-    const modalRef = this.modalService.open(PopupComponent);
-    modalRef.componentInstance.name = 'votre publication a été supprimer';
-    modalRef.componentInstance.message = 'Supprimer';
-    this.getact(this.idclub);
-  },
-  error => {
-    console.log(error);
-  });
-}
-
-
-
-/*
-//calendrier
-getcal(idclub:any){
-  this.e_http.getcalendrier(idclub).subscribe(club => {
-    this.tasks= club['data'];
-   // console.log(club);
-  },
-  error => {
-    console.log(error);
-  });
-}
-addTOcalendrier(){
-  this.e_http.addTOcalendrier(this.idclub,this.titre,this.temps,this.date,this.descriptionCal).subscribe(data => {
-    if(data['error']!=true){
-      this.add=!this.add;
-      this.getcal(this.idclub);
-
-      console.log(data)
-      //localStorage.setItem("sondages",data["sondages"])
-       }else{
-      //alert(data['message'])
-      const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = data['message'];
-        modalRef.componentInstance.message = 'Erreur';
+  /*swal({
+    title: "Es-tu sûr?",
+    text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
+    icon: "warning",
+    buttons: {
+      cancel: true,
+      confirm: true,
+    },
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      this.a_http.deleteactivites(this.idclub,id_activites).subscribe(club => {
+        if(club['error']!=true){
+          this.getact(this.idclub);
+    
+         }else{
+           swal("Erreur!", club['message'], "error");
+         }
+        
+      },
+      error => {
+        console.log(error);
+      });
+      swal("Votre activite a été supprimer!", {
+        icon: "success",
+      });
+    } else {
+      swal("Votre fichier est en sécurité !");
     }
-  },
-    err => {
-  //show error toast when the server went wrong
-  console.log(err);
-    }
-  );
-}*/
-//delete . event . post. calendrier . sondage
+  });
+
+ */
+}
+ 
 deletePOST(idpublication:any){
-  this.p_http.deletePost(idpublication).subscribe(club => {
-    console.log(club);
-
-    const modalRef = this.modalService.open(PopupComponent);
-    modalRef.componentInstance.name = 'votre publication a été supprimer';
-    modalRef.componentInstance.message = 'Supprimer';
-    this.getposts();
-  },
-  error => {
-    console.log(error);
+  /*swal({
+    title: "Es-tu sûr?",
+    text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
+    icon: "warning",
+    buttons: {
+      cancel: true,
+      confirm: true,
+    },
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      this.p_http.deletePost(idpublication).subscribe(club => {
+        if(club['error']!=true){
+          this.getposts();
+    
+         }else{
+           swal("Erreur!", club['message'], "error");
+         }
+        
+      },
+      error => {
+        console.log(error);
+      });
+      swal("Votre publication a été supprimer!", {
+        icon: "success",
+      });
+    } else {
+      swal("Votre fichier est en sécurité !");
+    }
   });
+*/
 }
 
 deleteSONDAGE(idsondage:any){
-  this.v_http.deleteSondage(idsondage).subscribe(club => {
-    console.log(club);
-    const modalRef = this.modalService.open(PopupComponent);
-    modalRef.componentInstance.name = 'votre sondage a été supprimer';
-    modalRef.componentInstance.message = 'Supprimer';
-    this.getsondage();
-
-  },
-  error => {
-    console.log(error);
+  /*swal({
+    title: "Es-tu sûr?",
+    text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
+    icon: "warning",
+    buttons: {
+      cancel: true,
+      confirm: true,
+    },
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      this.v_http.deleteSondage(idsondage).subscribe(club => {
+        if(club['error']!=true){
+          this.getsondage();
+    
+         }else{
+           swal("Erreur!", club['message'], "error");
+         }
+        
+    
+      },
+      error => {
+        console.log(error);
+      });
+      swal("Votre sondage a été supprimer!", {
+        icon: "success",
+      });
+    } else {
+      swal("Votre fichier est en sécurité !");
+    }
   });
+  */
 }
 deleteEVENT(idevent:any){
+  /*swal({
+    title: "Es-tu sûr?",
+    text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
+    icon: "warning",
+    buttons: {
+      cancel: true,
+      confirm: true,
+    },
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      
   this.e_http.deleteEvent(idevent).subscribe(club => {
-    console.log(club);
-    const modalRef = this.modalService.open(PopupComponent);
-    modalRef.componentInstance.name = 'votre evenements a été supprimer';
-    modalRef.componentInstance.message = 'Supprimer';
-    this.getClubEvents();
+    if(club['error']!=true){
+      this.getClubEvents();
+
+     }else{
+       swal("Erreur!", club['message'], "error");
+     }
+   
 
   },
   error => {
     console.log(error);
   });
-}/*
-deleteCAL(idcalendrier:any){
-  this.e_http.deleteTask(idcalendrier).subscribe(club => {
-    console.log(club);
-    const modalRef = this.modalService.open(PopupComponent);
-    modalRef.componentInstance.name = 'vous avez supprimer un evenement de calendrier';
-    modalRef.componentInstance.message = 'Supprimer';
-    this.getcal(this.idclub);
-
-  },
-  error => {
-    console.log(error);
+      swal("Votre evenement a été supprimer!", {
+        icon: "success",
+      });
+    } else {
+      swal("Votre fichier est en sécurité !");
+    }
   });
-}
+
 */
+}
 }
 
 

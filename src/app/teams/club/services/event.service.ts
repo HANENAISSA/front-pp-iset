@@ -120,7 +120,7 @@ export class EventService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
     );
   }
-  //getOneUserParti
+ 
   getOneUser(){
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/participation/getOneUserParti",
@@ -128,5 +128,23 @@ export class EventService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
 
+  }
+  
+  getOneEvent(id_event:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/event/getOneEvent",
+      {
+        id_event:id_event
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+  }
+  //updateEvent
+  updateEvent(file:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/event/updateEvent",
+      file ,
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
   }
 }

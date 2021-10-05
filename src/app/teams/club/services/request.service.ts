@@ -20,10 +20,12 @@ sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any,tel: any) {
       }
     );
 }
-  getRequests() {
+  getRequests(id_club:any) {
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/demande_event/getRequests",
-      {},
+      {
+        id_club : id_club
+      },
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
 
     );

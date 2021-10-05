@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PopupComponent } from '../../../../popup/popup.component';
-
+//import swal from 'sweetalert';
 @Component({
   selector: 'app-list-participes',
   templateUrl: './list-participes.component.html',
@@ -48,20 +48,13 @@ confirmer(id_participation:any,event_name:any,email:any){
   //console.log("h")
    this.e_http.confirmer(id_participation,event_name,email).subscribe(data => {
 
-    console.log(data)
     if(data['error']!=true){
 
      
-     // window.alert('le demande a été accepté')
-     const modalRef = this.modalService.open(PopupComponent);
-      modalRef.componentInstance.name = 'le demande a été confirmé';
-      modalRef.componentInstance.message = 'Succès';
+      //swal("Succès!", "le demande a été confirmé", "success");
       this.getallparticipes();
     }else{
-      //alert(data['message'])
-      const modalRef = this.modalService.open(PopupComponent);
-      modalRef.componentInstance.name = data['message'];
-      modalRef.componentInstance.message = 'Erreur';
+      //swal("Erreur!", data['message'], "error");
     }
 
   },
@@ -71,31 +64,46 @@ confirmer(id_participation:any,event_name:any,email:any){
   );
 
 }
-
+/*
 delete(id_participation:any){
-  //console.log("h")
-   this.e_http.deleteparticipant(id_participation).subscribe(data => {
+  swal({
+    title: "Es-tu sûr?",
+    text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
+    icon: "warning",
+    buttons: {
+      cancel: true,
+      confirm: true,
+    },
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      
+      this.e_http.deleteparticipant(id_participation).subscribe(data => {
 
-    console.log(data)
-    if(data['error']!=true){
-
-      this.getallparticipes();
-      const modalRef = this.modalService.open(PopupComponent);
-    modalRef.componentInstance.name = 'votre publication a été supprimer';
-    modalRef.componentInstance.message = 'Supprimer';
-    }else{
-      //alert(data['message'])
-      const modalRef = this.modalService.open(PopupComponent);
-      modalRef.componentInstance.name = data['message'];
-      modalRef.componentInstance.message = 'Erreur';
+        
+        if(data['error']!=true){
+    
+          this.getallparticipes();
+         
+        }else{
+          swal("Erreur!", data['message'], "error");
+        }
+    
+      },
+        err => {
+        }
+      );
+      swal("le demande de participation a été supprimer!", {
+        icon: "success",
+      });
+    } else {
+      swal("Votre fichier est en sécurité !");
     }
+  });
 
-  },
-    err => {
-  //show error toast when the server went wrong
-    }
-  );
+  
 
 }
-
+*/
 }

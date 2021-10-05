@@ -38,11 +38,6 @@ export class TestaccueilComponent implements OnInit {
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubs= club['data'];
-      for (var club of this.clubs) {
-       // console.log(club.id_club);
-        //localStorage.setItem("id_club",club.id_club);
-      }
-
       console.log(club);
     },
     error => {

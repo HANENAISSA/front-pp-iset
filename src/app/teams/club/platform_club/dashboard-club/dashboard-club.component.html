@@ -91,8 +91,12 @@
                   <span>{{nom}} {{prenom}}</span>
                   <i class="ti-angle-down"></i>
                 </a>
-                <ul class="show-notification profile-notification" >
-
+                <ul class="show-notification profile-notification" *ngFor="let club of clubs">
+                  <li>
+                    <a (click)="gotoProfil(club.id_club)">
+                      <i class="ti-layout-sidebar-left"></i> Mon Profile
+                    </a>
+                  </li>
                   <li>
                     <a (click)=logout()>
                       <i class="ti-layout-sidebar-left"></i> Déconnexion
@@ -366,19 +370,7 @@
 
                         </a>
                       </li>
-                      <li appAccordionLink>
-                        <a
-                        (click)="gotoProfil(club.id_club)"
-
-                          appAccordionToggle
-                        >
-                          <span class="pcoded-micon">
-                            <i class="ti-angle-right"></i>
-                          </span>
-                          <span class="pcoded-mtext">Mon Profile</span>
-
-                        </a>
-                      </li>
+                      
                       <li appAccordionLink>
                         <a
                         (click)="gotoEvents(club.id_club)"

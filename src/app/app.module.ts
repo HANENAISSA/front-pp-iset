@@ -51,7 +51,9 @@ import { HeaderComponent } from './teams/club/general/header/header.component';
 import { ListParticipesComponent } from './teams/club/platform_club/list-participes/list-participes.component';
 import { ListeParticipationComponent } from './teams/club/platform_club/liste-participation/liste-participation.component';
 import { CalendrierComponent } from './teams/club/platform_club/calendrier/calendrier.component';
-import { ScheduleComponent } from './teams/club/platform_club/schedule/schedule.component';
+import { ScheduleComponent } from './teams/club/general/schedule/schedule.component';
+import { DetailsEventComponent } from './teams/club/platform_club/details-event/details-event.component';
+import { EditEventComponent } from './teams/club/platform_club/edit-event/edit-event.component';
 registerLocaleData(localeFr, 'fr');
 //administration-components
 //communication-components
@@ -92,7 +94,9 @@ registerLocaleData(localeFr, 'fr');
     HeaderComponent,
     ListParticipesComponent,
     ListeParticipationComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    DetailsEventComponent,
+    EditEventComponent
 
     //administration-components
     //communication-components

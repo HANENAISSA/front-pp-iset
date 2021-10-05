@@ -19,4 +19,7 @@ event(){
 clubs(){
   this.router.navigate(['accueil/clubs']);
 }
+calendrier(){
+  this.router.navigate(['club/calendrier']);
+}
 }

@@ -26,8 +26,10 @@ import { ListeDemandesComponent } from "./teams/club/platform_club/liste-demande
 import { ListeParticipationComponent } from "./teams/club/platform_club/liste-participation/liste-participation.component";
 import { MembresComponent } from "./teams/club/platform_club/membres/membres.component";
 import { ProfileMembreComponent } from "./teams/club/platform_club/profile-membre/profile-membre.component";
-import { ScheduleComponent } from "./teams/club/platform_club/schedule/schedule.component";
+import { ScheduleComponent } from "./teams/club/general/schedule/schedule.component";
 import { TestaccueilComponent } from "./teams/club/platform_club/testaccueil/testaccueil.component";
+import { DetailsEventComponent } from "./teams/club/platform_club/details-event/details-event.component";
+import { EditEventComponent } from "./teams/club/platform_club/edit-event/edit-event.component";
 //administration-components
 //communication-components
 //scolarite-components
@@ -99,12 +101,16 @@ const routes: Routes = [
 
 //club-routes
 { path: "test", component: TestaccueilComponent },
-{ path: "club/events", component: EventsComponent },
+{ path: "club/events", component:ScheduleComponent },
 { path: "club/signin", component: SigninComponent },
 { path: "club/reset_password", component: ResetPasswordComponent },
 { path: "accueil/clubs", component: ClubsComponent },
 //{ path: "accueil/service_en_ligne/clubs/events", component: ListEventsComponent },
 { path: "clubs/envoyer_demande/:id", component: EnvoyerDemandeComponent },
+{
+  path: "club/calendrier",
+  component: ScheduleComponent,
+},
 {
   path: "dashboard_accueil",
   component: DashboardAccueilComponent,
@@ -137,10 +143,7 @@ const routes: Routes = [
       path: "calendrier/:id",
       component: CalendrierComponent,
     },
-    {
-      path: "schedule",
-      component: ScheduleComponent,
-    },
+    
     {
       path: "membres/:id",
       component: MembresComponent,
@@ -165,6 +168,16 @@ const routes: Routes = [
     {
       path: "accueil",
       component: TestaccueilComponent,
+    },
+
+    {
+      path: "details/:id",
+      component: DetailsEventComponent,
+    },
+
+    {
+      path: "edit/:id",
+      component: EditEventComponent,
     }
   ],
 },

@@ -7,6 +7,9 @@
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
+        [refresh]="refresh"
+        id="precedent"
+        
       >
       Précédent
       </div>
@@ -14,6 +17,8 @@
         class="btn btn-outline-secondary"
         mwlCalendarToday
         [(viewDate)]="viewDate"
+        [refresh]="refresh"
+        id ="aujourdhui"
       >
       Aujourd'hui
       </div>
@@ -23,6 +28,8 @@
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
+        [refresh]="refresh"
+        id="prochaine"
       >
       Prochaine
       </div>
@@ -34,7 +41,7 @@
 
    
    <button class="btn btn-primary float-right" (click)="addEvent()">
-     Ajouter évent
+     Ajouter 
    </button>
 
 
@@ -52,13 +59,18 @@
     </mwl-calendar-month-view>
   </div>
   <div *ngIf="popup"  class="cardEventData">
+    
     <i class="fa fa-close closebtn" (click)=close()></i>
     
  
     <h1 class="titre"> {{popupData.title}}</h1>
-    <h3 class="datededebut">Durée: {{popupData.heuredebut}} - {{popupData.heurefin}}</h3>
+    <h3 class="datededebut">date  {{popupData.id_event}}</h3>
+    <button  class="btn btn-primary float-right" (click)=gotodetails(popupData.id_event)> details</button>
+    <button (click)=deleteCAL(popupData.id_calendrier) class="btn btn-primary float-right" >Supprimer</button>
+     <!--
+       <h3 *ngIf="popupData.heuredebut" class="datededebut">Durée: {{popupData.heuredebut}} - {{popupData.heurefin}}</h3>
      <p class="desc">{{popupData.description}}</p>
-     
+     -->
   </div>
   <div *ngIf="add"  class="cardEventData">
     <i class="fa fa-close closebtn" (click)=closevent()></i>
