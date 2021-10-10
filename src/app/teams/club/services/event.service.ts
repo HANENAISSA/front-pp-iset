@@ -140,10 +140,30 @@ export class EventService {
       );
   }
   //updateEvent
-  updateEvent(file:any){
+  /*  updateEvent(file:any,id_event:any){
     return this._http.post<any>(
       "http://127.0.0.1:5010" + "/event/updateEvent",
-      file ,
+      file , 
+        
+      
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+  }
+  */
+  updateEvent(id_event:any,titre_event:any,description:any, date_debut:any,date_fin:any,heure_debut:any,heure_fin:any,statut:any,url_event:any){
+    return this._http.post<any>(
+      "http://127.0.0.1:5010" + "/event/updateEvent",
+      {
+        id_event:id_event,
+        titre_event: titre_event,
+        description:description,
+        date_debut:date_debut,
+        date_fin:date_fin,
+        heure_debut:heure_debut,
+        heure_fin:heure_fin,
+        statut:statut,
+        url_event:url_event
+      },
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }

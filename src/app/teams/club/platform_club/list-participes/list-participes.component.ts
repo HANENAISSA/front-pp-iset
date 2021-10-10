@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PopupComponent } from '../../../../popup/popup.component';
-//import swal from 'sweetalert';
+import swal from 'sweetalert';
 @Component({
   selector: 'app-list-participes',
   templateUrl: './list-participes.component.html',
@@ -51,10 +51,10 @@ confirmer(id_participation:any,event_name:any,email:any){
     if(data['error']!=true){
 
      
-      //swal("Succès!", "le demande a été confirmé", "success");
+      swal("Succès!", "le demande a été confirmé", "success");
       this.getallparticipes();
     }else{
-      //swal("Erreur!", data['message'], "error");
+      swal("Erreur!", data['message'], "error");
     }
 
   },
@@ -64,7 +64,7 @@ confirmer(id_participation:any,event_name:any,email:any){
   );
 
 }
-/*
+
 delete(id_participation:any){
   swal({
     title: "Es-tu sûr?",
@@ -105,5 +105,5 @@ delete(id_participation:any){
   
 
 }
-*/
+
 }

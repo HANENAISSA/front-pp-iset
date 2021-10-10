@@ -171,13 +171,13 @@ const routes: Routes = [
     },
 
     {
-      path: "details/:id",
+      path: "details/:idc/:id",
       component: DetailsEventComponent,
     },
 
     {
-      path: "edit/:id",
-      component: EditEventComponent,
+      path: "details/:id",
+      component: DetailsEventComponent,
     }
   ],
 },

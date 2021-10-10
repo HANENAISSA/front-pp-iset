@@ -64,10 +64,15 @@
     
  
     <h1 class="titre"> {{popupData.title}}</h1>
-    <h3 class="datededebut">date  {{popupData.id_event}}</h3>
-    <button  class="btn btn-primary float-right" (click)=gotodetails(popupData.id_event)> details</button>
-    <button (click)=deleteCAL(popupData.id_calendrier) class="btn btn-primary float-right" >Supprimer</button>
-     <!--
+    <h3 class="datededebut">Date:  {{popupData.date}}</h3>
+    
+    <h3 *ngIf="popupData.id_calendrier" class="datededebut">Heure: {{popupData.temps}}</h3>
+    <p *ngIf="popupData.id_calendrier" class="desc">{{popupData.description}}</p>
+    
+    <button *ngIf="popupData.id_event" class="btn btn-primary float-right" (click)=gotodetails(popupData.id_event)> details</button>
+    
+    <button (click)=deleteCAL(popupData.id_calendrier)  class="btn btn-warning"><i class="ti-trash"></i></button> 
+    <!--
        <h3 *ngIf="popupData.heuredebut" class="datededebut">Durée: {{popupData.heuredebut}} - {{popupData.heurefin}}</h3>
      <p class="desc">{{popupData.description}}</p>
      -->

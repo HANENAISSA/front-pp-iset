@@ -12,7 +12,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { PopupComponent } from '../../../../popup/popup.component';
 import { MembreService } from '../../services/membre.service';
 import { ActivitesService } from '../../services/activites.service';
-//import swal from 'sweetalert';
+import swal from 'sweetalert';
 @Component({
   selector: 'app-accueil-club',
   templateUrl: './accueil-club.component.html',
@@ -90,7 +90,7 @@ export class AccueilClubComponent implements OnInit {
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
     this.idclub= this.route.snapshot.paramMap.get('id');
-    console.log(this.idclub)
+   
     this.id_membre=localStorage.getItem('id_membre');
     this.getposts();
     this.getClubEvents();
@@ -273,10 +273,10 @@ liste(id) {
     this.v_http.addVote(satut,idsondage).subscribe(data => {
       
       if(data['error']!=true){
-       // swal("Vous avez votè!", "votre vote a été enregistré avec succès", "success");
+       swal("Vous avez votè!", "votre vote a été enregistré avec succès", "success");
         
       }else{
-       // swal("Erreur!", data['message'], "error");
+       swal("Erreur!", data['message'], "error");
 
       }
     },
@@ -305,10 +305,10 @@ getallparticipes(id_event:any){
 participer(id_event:any){
   this.e_http.participer(id_event).subscribe(data => {
     if(data['error']!=true){
-     // swal("Succès!", "vous avez participé avec succès", "success");
+     swal("Succès!", "vous avez participé avec succès", "success");
       
     }else{
-      //swal("Erreur!", data['message'], "error");
+    swal("Erreur!", data['message'], "error");
 
     }
     
@@ -353,7 +353,7 @@ addevent(){
   this.e_http.addevent(formData).subscribe(data => {
 
     if(data['error']!=true){
-      //swal("Succès!", "votre event a été enregistré avec succès", "success");
+      swal("Succès!", "votre event a été enregistré avec succès", "success");
       
       this.editProfile = !this.editProfile;
       this.getClubEvents();
@@ -367,7 +367,7 @@ addevent(){
       this.url_image="";
       this.url_event="";
        }else{
-        //swal("Erreur!", data['message'], "error");
+        swal("Erreur!", data['message'], "error");
     }
   },
     err => {
@@ -433,7 +433,7 @@ addactivites(){
   this.a_http.addclubactivites(formData).subscribe(data => {
 
     if(data['error']!=true){
-     // swal("Succès!", "votre activite a été enregistré avec succès", "success");
+      swal("Succès!", "votre activite a été enregistré avec succès", "success");
 
          this.titre_act='';
       this.image_act='';
@@ -443,7 +443,7 @@ addactivites(){
 
       this.fileName=""
        }else{
-       // swal("Erreur!", data['message'], "error");
+        swal("Erreur!", data['message'], "error");
     }
   },
     err => {
@@ -456,7 +456,7 @@ addactivites(){
 
 // all delete fnc
 deleteact(id_activites:any){
-  /*swal({
+  swal({
     title: "Es-tu sûr?",
     text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
     icon: "warning",
@@ -488,11 +488,11 @@ deleteact(id_activites:any){
     }
   });
 
- */
+ 
 }
  
 deletePOST(idpublication:any){
-  /*swal({
+  swal({
     title: "Es-tu sûr?",
     text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
     icon: "warning",
@@ -523,11 +523,11 @@ deletePOST(idpublication:any){
       swal("Votre fichier est en sécurité !");
     }
   });
-*/
+
 }
 
 deleteSONDAGE(idsondage:any){
-  /*swal({
+  swal({
     title: "Es-tu sûr?",
     text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
     icon: "warning",
@@ -559,10 +559,10 @@ deleteSONDAGE(idsondage:any){
       swal("Votre fichier est en sécurité !");
     }
   });
-  */
+  
 }
 deleteEVENT(idevent:any){
-  /*swal({
+  swal({
     title: "Es-tu sûr?",
     text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
     icon: "warning",
@@ -596,7 +596,7 @@ deleteEVENT(idevent:any){
     }
   });
 
-*/
+
 }
 }
 

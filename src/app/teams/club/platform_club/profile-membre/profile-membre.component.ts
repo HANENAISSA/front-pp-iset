@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ClubService } from '../../services/club.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PopupComponent } from '../../../../popup/popup.component';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-profile-membre',
   templateUrl: './profile-membre.component.html',
@@ -86,16 +86,12 @@ tel: any;
       if(data['error']!=true){
 
         console.log(data)
-        //window.alert('votre profile a été modifier avec succès');
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = 'votre profile a été modifier avec succès';
-        modalRef.componentInstance.message = 'Succès';
+        swal("Succès!", "votre profile a été modifier avec succès", "success");
+    
+
         this.editProfile = !this.editProfile;
          }else{
-        //alert(data['message'])
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = data['message'];
-        modalRef.componentInstance.message = 'Erreur';
+          swal("Erreur!", data['message'], "error");
       }
     },
       err => {
@@ -119,7 +115,7 @@ tel: any;
         this.file='';
 
         this.getuser(this.idmembre);
-        console.log(data)
+      
 
          }else{
         alert(data['message'])

@@ -47,7 +47,8 @@ export class ScheduleComponent implements OnInit {
   title:"",
   heuredebut:"",
   heurefin:"",
-  id:''
+  id_event:"",
+  date: "" ,
  };
 
  date: any;
@@ -69,14 +70,47 @@ export class ScheduleComponent implements OnInit {
   CalendarView = CalendarView;
 
   ngOnInit() {
-    this.idclub= this.route.snapshot.paramMap.get('id');
-    this.getClubEvents()
-    this.getcal(this.idclub);
-    this.getadmin();
+    //this.idclub= this.route.snapshot.paramMap.get('id');
+    //this.getClubEvents()
+   // this.getcal(this.idclub);
+   // this.getadmin();
+   this.getevents();
 
   }
-
- 
+  
+  getevents() {
+    this.e_http.getevents()
+      .subscribe(
+        club => {
+      
+          this.events= [...club['data'].map(e=>{
+            
+            return{
+              start:new Date(e.date_debut),
+              end:new Date(e.date_debut),
+              title:e.titre_event,
+              description:e.description,
+              heuredebut:e.heure_debut,
+              heurefin:e.heure_fin,
+              id_event:e.id_event,
+              date:e.date_debut,
+            }
+          })];
+          
+          document.getElementById('prochaine').click();
+    
+          document.getElementById('precedent').click();
+          document.getElementById('aujourdhui').click();
+        },
+        error => {
+          console.log(error);
+        });
+      }
+  gotodetails(id_event:any ){
+    this.router.navigate(['dashboard_club/details/'+id_event]);
+  
+    
+  }
 
   eventClicked(event){
     this.popup=true
@@ -91,6 +125,7 @@ export class ScheduleComponent implements OnInit {
     this.popup=false
 
   }
+  /*
   getClubEvents(){
     this.e_http.getClubEvents(this.idclub).subscribe(club => {
       
@@ -136,27 +171,8 @@ getcal(idclub:any){
       console.log(error);
     });
   }
-
-  addTOcalendrier(){
-    this.e_http.addTOcalendrier(this.idclub,this.titre,this.temps,this.date,this.descriptionCal).subscribe(data => {
-      if(data['error']!=true){
-        this.add=false;
-        window.location.reload();
-        console.log(data)
-        //localStorage.setItem("sondages",data["sondages"])
-         }else{
-        //alert(data['message'])
-        const modalRef = this.modalService.open(PopupComponent);
-          modalRef.componentInstance.name = data['message'];
-          modalRef.componentInstance.message = 'Erreur';
-      }
-    },
-      err => {
-    //show error toast when the server went wrong
-    console.log(err);
-      }
-    );
-  }
+*/
+  
 
   addEvent(){
     this.add=true
@@ -176,21 +192,7 @@ getcal(idclub:any){
       console.log(error);
     });
   }
-  //<i *ngIf="admin==true"  (click)="deleteCAL(popupData.id)"  class="icofont icofont-ui-delete st-icon bg-c-blue txt-lite-color"></i>
-  deleteCAL(idcalendrier:any){
-    this.e_http.deleteTask(idcalendrier).subscribe(club => {
-      console.log(club);
-      const modalRef = this.modalService.open(PopupComponent);
-      modalRef.componentInstance.name = 'vous avez supprimer un evenement de calendrier';
-      modalRef.componentInstance.message = 'Supprimer';
-      this.popup=false
-      this.getcal(this.idclub);
-  
-    },
-    error => {
-      console.log(error);
-    });
-  }
+ 
   setView(view: CalendarView) {
     this.view = view;
   }

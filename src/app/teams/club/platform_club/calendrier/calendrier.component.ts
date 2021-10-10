@@ -14,7 +14,7 @@ import {
   format,
 } from 'date-fns';
 import { Observable } from 'rxjs';
-//import swal from 'sweetalert';
+import swal from 'sweetalert';
 import { PopupComponent } from '../../../../popup/popup.component';
 import { EventService } from '../../services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -48,6 +48,9 @@ export class CalendrierComponent implements OnInit {
   heurefin:"",
   id_calendrier:"",
   id_event:"",
+  date: "" ,
+  date_debut:"",
+  temps:"",
  };
 
  date: any;
@@ -93,12 +96,13 @@ export class CalendrierComponent implements OnInit {
         
         return{
           start:new Date(e.date_debut),
-          end:new Date(e.date_debut),
+          end:new Date(e.date_fin),
           title:e.titre_event,
           description:e.description,
           heuredebut:e.heure_debut,
           heurefin:e.heure_fin,
           id_event:e.id_event,
+          date:e.date_debut,
           //id:e.id_calendrier
         }
       })];
@@ -110,7 +114,7 @@ export class CalendrierComponent implements OnInit {
     });
   }
   gotodetails(id_event:any ){
-    this.router.navigate(['dashboard_club/details/'+id_event]);
+    this.router.navigate(['dashboard_club/details/'+this.idclub+'/'+id_event]);
   
     
   }
@@ -124,7 +128,9 @@ getcal(idclub:any){
           end:new Date(e.date),
           title:e.titre,
           description:e.description,
-          id_calendrier:e.id_calendrier
+          id_calendrier:e.id_calendrier,
+          date:e.date,
+          temps:e.temps,
         }
       })]
       ;
@@ -148,7 +154,7 @@ getcal(idclub:any){
      
         
          }else{
-         // swal("Erreur!", data['message'], "error");
+         swal("Erreur!", data['message'], "error");
       }
     },
       err => {
@@ -178,7 +184,7 @@ getcal(idclub:any){
   }
   
 deleteCAL(idcalendrier:any){
-  /* swal({
+   swal({
     title: "Es-tu sûr?",
     text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
     icon: "warning",
@@ -216,7 +222,7 @@ deleteCAL(idcalendrier:any){
       swal("Votre fichier est en sécurité !");
     }
   });
-*/
+
  
 }
 

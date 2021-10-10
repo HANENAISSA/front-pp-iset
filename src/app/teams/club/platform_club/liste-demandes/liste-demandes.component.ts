@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PopupComponent } from '../../../../popup/popup.component';
-//import swal from 'sweetalert';
+import swal from 'sweetalert';
 @Component({
   selector: 'app-liste-demandes',
   templateUrl: './liste-demandes.component.html',
@@ -75,9 +75,9 @@ handlePageSizeChange(event: any): void {
       if(data['error']!=true){
 
         this.getrequests();
-       // swal("Succès!", "le demande a été accepté", "success");
+        swal("Succès!", "le demande a été accepté", "success");
       }else{
-        //swal("Erreur!", data['message'], "error");
+        swal("Erreur!", data['message'], "error");
       }
 
     },
@@ -88,7 +88,7 @@ handlePageSizeChange(event: any): void {
 
   }
   Delete(iddemande:any, email:any ){
-   /* swal({
+    swal({
       title: "Es-tu sûr?",
       text: "Une fois supprimé, vous ne pourrez plus récupérer ce fichier!",
       icon: "warning",
@@ -124,6 +124,6 @@ handlePageSizeChange(event: any): void {
     });
   
   
-*/
+
  }
 }

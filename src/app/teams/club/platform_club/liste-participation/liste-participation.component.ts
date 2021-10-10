@@ -19,6 +19,7 @@ export class ListeParticipationComponent implements OnInit {
   participants: any;
   nombreofparticipation: any;
   add= true;
+  
   constructor(private modalService: NgbModal,private _http:EventService,private route: ActivatedRoute) { }
   handlePageSizeChange(event: any): void {
     this.pageSize = event.target.value;
