@@ -424,7 +424,7 @@ imageact(e:any){
 addactivites(){
   const formData = new FormData();
   formData.append('titre_act', this.titre_act);
-  console.log(this.titre_act)
+  //console.log(this.titre_act)
   formData.append('description_act', this.description_act);
   formData.append('idclub', this.idclub);
   formData.append('file', this.image_act);
