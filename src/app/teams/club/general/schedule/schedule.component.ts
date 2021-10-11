@@ -70,10 +70,7 @@ export class ScheduleComponent implements OnInit {
   CalendarView = CalendarView;
 
   ngOnInit() {
-    //this.idclub= this.route.snapshot.paramMap.get('id');
-    //this.getClubEvents()
-   // this.getcal(this.idclub);
-   // this.getadmin();
+
    this.getevents();
 
   }
@@ -106,8 +103,9 @@ export class ScheduleComponent implements OnInit {
           console.log(error);
         });
       }
+  
   gotodetails(id_event:any ){
-    this.router.navigate(['dashboard_club/details/'+id_event]);
+    this.router.navigate(['club/calendrier/details/'+id_event]);
   
     
   }

@@ -29,7 +29,8 @@ import { ProfileMembreComponent } from "./teams/club/platform_club/profile-membr
 import { ScheduleComponent } from "./teams/club/general/schedule/schedule.component";
 import { TestaccueilComponent } from "./teams/club/platform_club/testaccueil/testaccueil.component";
 import { DetailsEventComponent } from "./teams/club/platform_club/details-event/details-event.component";
-import { EditEventComponent } from "./teams/club/platform_club/edit-event/edit-event.component";
+import { DetailEventAccueilComponent } from "./teams/club/general/detail-event-accueil/detail-event-accueil.component";
+
 //administration-components
 //communication-components
 //scolarite-components
@@ -105,7 +106,7 @@ const routes: Routes = [
 { path: "club/signin", component: SigninComponent },
 { path: "club/reset_password", component: ResetPasswordComponent },
 { path: "accueil/clubs", component: ClubsComponent },
-//{ path: "accueil/service_en_ligne/clubs/events", component: ListEventsComponent },
+{ path: "club/calendrier/details/:id", component: DetailEventAccueilComponent },
 { path: "clubs/envoyer_demande/:id", component: EnvoyerDemandeComponent },
 {
   path: "club/calendrier",

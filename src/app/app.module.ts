@@ -53,7 +53,8 @@ import { ListeParticipationComponent } from './teams/club/platform_club/liste-pa
 import { CalendrierComponent } from './teams/club/platform_club/calendrier/calendrier.component';
 import { ScheduleComponent } from './teams/club/general/schedule/schedule.component';
 import { DetailsEventComponent } from './teams/club/platform_club/details-event/details-event.component';
-import { EditEventComponent } from './teams/club/platform_club/edit-event/edit-event.component';
+import { DetailEventAccueilComponent } from './teams/club/general/detail-event-accueil/detail-event-accueil.component';
+
 registerLocaleData(localeFr, 'fr');
 //administration-components
 //communication-components
@@ -96,7 +97,8 @@ registerLocaleData(localeFr, 'fr');
     ListeParticipationComponent,
     ScheduleComponent,
     DetailsEventComponent,
-    EditEventComponent
+    DetailEventAccueilComponent,
+
 
     //administration-components
     //communication-components
