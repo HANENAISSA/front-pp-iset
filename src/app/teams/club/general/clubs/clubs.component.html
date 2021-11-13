@@ -3,7 +3,7 @@
 <!-- End header -->
 
 <div class="clubnavbar">
-  <div class="btnContainer"><button (click)="signin()">Sign in</button></div>
+  <div class="btnContainer"><button id="signin" (click)="signin()">Sign in</button></div>
 </div>
 <!-- section -->
 
@@ -24,7 +24,7 @@
                 <div class="header"><h1>{{club.nom_club}}</h1></div>
                 <div class="domain"><h3 >domaine {{club.domaine}}</h3></div>
                 <div class="description"><p>{{club.description}} </p></div>
-                <div class="btninscri"><a class="hvr-radial-out button-theme btninscri" (click)="inscrire(club.id_club)" >Inscrire</a></div>
+                <div class="btninscri"><a class="hvr-radial-out button-theme btninscri" id='inscrire' (click)="inscrire(club.id_club)" >Inscrire</a></div>
               </div>
             </div>
         </div>

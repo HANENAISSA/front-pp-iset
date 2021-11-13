@@ -8,14 +8,9 @@ import { ProfileComponent } from "./pages/user/profile/profile.component";
 
 
 //club-components
-import { AccueilGeneralComponent } from "./teams/club/general/accueil-general/accueil-general.component";
 import { ClubsComponent } from "./teams/club/general/clubs/clubs.component";
-import { DashboardAccueilComponent } from "./teams/club/general/dashboard-accueil/dashboard-accueil.component";
 import { EnvoyerDemandeComponent } from "./teams/club/general/envoyer-demande/envoyer-demande.component";
-import { EventsComponent } from "./teams/club/general/events/events.component";
-import { ListeClubsComponent } from "./teams/club/general/liste-clubs/liste-clubs.component";
 import { ResetPasswordComponent } from "./teams/club/general/reset-password/reset-password.component";
-import { SendRequestComponent } from "./teams/club/general/send-request/send-request.component";
 import { SigninComponent } from "./teams/club/general/signin/signin.component";
 import { AccueilClubComponent } from "./teams/club/platform_club/accueil-club/accueil-club.component";
 import { CalendrierComponent } from "./teams/club/platform_club/calendrier/calendrier.component";
@@ -30,6 +25,7 @@ import { ScheduleComponent } from "./teams/club/general/schedule/schedule.compon
 import { TestaccueilComponent } from "./teams/club/platform_club/testaccueil/testaccueil.component";
 import { DetailsEventComponent } from "./teams/club/platform_club/details-event/details-event.component";
 import { DetailEventAccueilComponent } from "./teams/club/general/detail-event-accueil/detail-event-accueil.component";
+import { SendRequestComponent } from "./teams/club/general/send-request/send-request.component";
 
 //administration-components
 //communication-components
@@ -102,36 +98,13 @@ const routes: Routes = [
 
 //club-routes
 { path: "test", component: TestaccueilComponent },
-{ path: "club/events", component:ScheduleComponent },
+{ path: "club/send", component:SendRequestComponent },
 { path: "club/signin", component: SigninComponent },
 { path: "club/reset_password", component: ResetPasswordComponent },
 { path: "accueil/clubs", component: ClubsComponent },
 { path: "club/calendrier/details/:id", component: DetailEventAccueilComponent },
 { path: "clubs/envoyer_demande/:id", component: EnvoyerDemandeComponent },
-{
-  path: "club/calendrier",
-  component: ScheduleComponent,
-},
-{
-  path: "dashboard_accueil",
-  component: DashboardAccueilComponent,
-  children: [
-    {
-      path: "accueil",
-      component: AccueilGeneralComponent,
-    },
-    {
-      path: "clubs",
-      component: ListeClubsComponent,
-    },
-    {
-      path: "demande/:id",
-      component: SendRequestComponent,
-    },
-
-  ],
-},
-
+{ path: "club/calendrier", component: ScheduleComponent},
 {
   path: "dashboard_club",
   component: DashboardClubComponent,
@@ -144,7 +117,7 @@ const routes: Routes = [
       path: "calendrier/:id",
       component: CalendrierComponent,
     },
-    
+
     {
       path: "membres/:id",
       component: MembresComponent,

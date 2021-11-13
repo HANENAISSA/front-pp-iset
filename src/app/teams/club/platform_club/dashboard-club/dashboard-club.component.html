@@ -39,8 +39,8 @@
             />
           </a>
           <h4 style="color:aliceblue; margin: 5px;">ISET Rades</h4>
-          <a (click)="onMobileMenu()" class="mobile-options">
-            <i class="ti-more"></i>
+          <a  (click)="onMobileMenu()" class="mobile-options">
+            <i  class="ti-more"></i>
           </a>
         </div>
 
@@ -49,8 +49,8 @@
             <ul class="nav-left">
               <li>
                 <div class="sidebar_toggle">
-                  <a href="javascript:;" (click)="toggleOpened()"
-                    ><i class="ti-menu f-18"></i
+                  <a  href="javascript:;" (click)="toggleOpened()"
+                    ><i id="menu" class="ti-menu f-18"></i
                   ></a>
                 </div>
               </li>
@@ -302,7 +302,7 @@
                   <span class="pcoded-mcaret"></span>
                 </a>
               </li>
-          
+
               <!--accuiel general-->
             </ul>
                 <ul
@@ -314,6 +314,7 @@
                   group="dashboard"
                 >
                   <li
+
                     class="pcoded-hasmenu"
                     [attr.dropdown-icon]="dropDownIcon"
                     [attr.subitem-icon]="subItemIcon"
@@ -321,12 +322,12 @@
                     group="dashboard"
                     *ngFor="let club of clubs"
                   >
-                    <a href="javascript:;" appAccordionToggle  >
+                    <a  href="javascript:;" appAccordionToggle  >
                       <span class="pcoded-micon"
                         ><i class="fa fa-users" style="color: #294a70;"></i><b>d</b></span
                       >
 
-                      <span class="pcoded-mtext">{{club.nom_club}}</span>
+                      <span id="club" class="pcoded-mtext">{{club.nom_club}}</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
 
@@ -370,7 +371,7 @@
 
                         </a>
                       </li>
-                      
+
                       <li appAccordionLink>
                         <a
                         (click)="gotoEvents(club.id_club)"
@@ -394,7 +395,7 @@
                           <span class="pcoded-micon">
                             <i class="ti-angle-right"></i>
                           </span>
-                          <span class="pcoded-mtext">liste des demandes</span>
+                          <span id="demande" class="pcoded-mtext">liste des demandes</span>
 
                         </a>
                       </li>
