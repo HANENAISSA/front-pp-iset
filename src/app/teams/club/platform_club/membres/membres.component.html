@@ -18,11 +18,12 @@
                                   <thead>
                                       <tr>
                                           <th>Nom et prenom</th>
+                                          <th>Cin</th>
                                           <th>Equipe</th>
                                       </tr>
                                   </thead>
                                   <tbody *ngFor="let membre of users">
-                                      <tr>
+                                      <tr id="{{membre.cin}}">
                                           <td>
                                               <div class="task-contain">
                                                   <h6 class=" d-inline-block text-center" >
@@ -33,9 +34,13 @@
                                               </div>
                                           </td>
                                           <td>
-                                              <p class="d-inline-block m-r-20">{{membre.equipe}}</p>
+                                              <p class="d-inline-block m-r-20" >{{membre.cin}}</p>
 
                                           </td>
+                                          <td>
+                                            <p class="d-inline-block m-r-20">{{membre.equipe}}</p>
+
+                                        </td>
                                       </tr>
 
                                   </tbody>

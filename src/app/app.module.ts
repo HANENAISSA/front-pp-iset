@@ -1,4 +1,4 @@
- //imports
+ //imports bib
 import { BrowserModule } from '@angular/platform-browser';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,9 +10,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-//import { FlatpickrModule } from 'angularx-flatpickr';
-//import { ModalModule } from 'ngx-bootstrap/modal';
-//import { DemoUtilsModule } from '../../node_modules/demo-utils';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 
@@ -27,10 +24,6 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { PopupComponent } from './popup/popup.component';
 //club-components
-
-import { AccueilGeneralComponent } from './teams/club/general/accueil-general/accueil-general.component';
-import { ListeClubsComponent } from './teams/club/general/liste-clubs/liste-clubs.component';
-import { DashboardAccueilComponent } from './teams/club/general/dashboard-accueil/dashboard-accueil.component';
 import { DashboardClubComponent } from './teams/club/platform_club/dashboard-club/dashboard-club.component';
 import { AccueilClubComponent } from './teams/club/platform_club/accueil-club/accueil-club.component';
 import { MembresComponent } from './teams/club/platform_club/membres/membres.component';
@@ -45,8 +38,6 @@ import { CommentaireComponent } from './teams/club/platform_club/commentaire/com
 import { VotesComponent } from './teams/club/platform_club/votes/votes.component';
 import { TestaccueilComponent } from './teams/club/platform_club/testaccueil/testaccueil.component';
 import { SearchPipe } from './teams/club/platform_club/liste-demandes/search.pipe';
-import { EventsComponent } from './teams/club/general/events/events.component';
-
 import { HeaderComponent } from './teams/club/general/header/header.component';
 import { ListParticipesComponent } from './teams/club/platform_club/list-participes/list-participes.component';
 import { ListeParticipationComponent } from './teams/club/platform_club/liste-participation/liste-participation.component';
@@ -70,12 +61,7 @@ registerLocaleData(localeFr, 'fr');
     HomePageComponent,
     ProfileComponent,
     PopupComponent,
-
-
     //club-components
-    AccueilGeneralComponent,
-    ListeClubsComponent,
-    DashboardAccueilComponent,
     DashboardClubComponent,
     AccueilClubComponent,
     MembresComponent,
@@ -90,7 +76,6 @@ registerLocaleData(localeFr, 'fr');
     VotesComponent,
     TestaccueilComponent,
     SearchPipe,
-    EventsComponent,
     CalendrierComponent,
     HeaderComponent,
     ListParticipesComponent,
@@ -98,8 +83,6 @@ registerLocaleData(localeFr, 'fr');
     ScheduleComponent,
     DetailsEventComponent,
     DetailEventAccueilComponent,
-
-
     //administration-components
     //communication-components
     //scolarite-components
@@ -107,7 +90,6 @@ registerLocaleData(localeFr, 'fr');
 
   ],
   imports: [
-   // ModalModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -119,13 +101,11 @@ registerLocaleData(localeFr, 'fr');
     MatRadioModule,
     MatDialogModule,
     NgbModalModule,
-    
-    //FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-    //DemoUtilsModule,
+
   ],
   entryComponents: [PopupComponent],
   schemas: [ NO_ERRORS_SCHEMA , CUSTOM_ELEMENTS_SCHEMA],

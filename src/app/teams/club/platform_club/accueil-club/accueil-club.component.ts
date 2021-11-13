@@ -6,10 +6,7 @@ import {animate, style, transition, trigger} from '@angular/animations';
 import { EventService } from '../../services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-
-import { Subscription } from 'rxjs';
-import { HttpClient, HttpEventType } from '@angular/common/http';
-import { PopupComponent } from '../../../../popup/popup.component';
+import { HttpClient } from '@angular/common/http';
 import { MembreService } from '../../services/membre.service';
 import { ActivitesService } from '../../services/activites.service';
 import swal from 'sweetalert';
@@ -38,7 +35,6 @@ export class AccueilClubComponent implements OnInit {
   cmtrs:any=[];
   sondages:any=[];
   votes:any=[];
-
   idclub:any;
   title: any;
   nom:any;
@@ -57,7 +53,7 @@ export class AccueilClubComponent implements OnInit {
   url_event: any;
   heure_debut: any;
   heure_fin: any;
-  
+  //
   add= true;
   editProfile = true;
   editProfileIcon = 'icofont-ui-add';
@@ -90,49 +86,19 @@ export class AccueilClubComponent implements OnInit {
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
     this.idclub= this.route.snapshot.paramMap.get('id');
-   
     this.id_membre=localStorage.getItem('id_membre');
     this.getposts();
     this.getClubEvents();
     this.getsondage();
-    //this.getcal(this.idclub);
     this.getuserClubs();
-    //console.log("hello")
     this.getadmin();
-    //this.getvotes
     this.getuser(this.id_membre);
     this.getact(this.idclub);
   }
-  /*
-participer(id_event:any) { 
-  this.e_http.addparticipation(id_event).subscribe(data => {
-    if(data['error']!=true){
-      const modalRef = this.modalService.open(PopupComponent);
-      modalRef.componentInstance.name = 'votre participation a été envoyé';
-      modalRef.componentInstance.message = 'Succès';
-       }else{
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = data['message'];
-        modalRef.componentInstance.message = 'Erreur';
-    }
-  },
-    err => {
-  //show error toast when the server went wrong
-  console.log(err);
-    }
-  );
-}
-liste(id) { 
-  this.router.navigate(['dashboard_club/liste-participants'+ id]);
-}*/
+
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubss= club['data'];
-      for (var club of this.clubss) {
-       // console.log(club.id_club);
-        //localStorage.setItem("id_club",club.id_club);
-      }
-
       console.log(club);
     },
     error => {
@@ -269,12 +235,13 @@ liste(id) {
       console.log(error);
     });
   }
+
   voter(satut:any,idsondage:any){
     this.v_http.addVote(satut,idsondage).subscribe(data => {
-      
+
       if(data['error']!=true){
        swal("Vous avez votè!", "votre vote a été enregistré avec succès", "success");
-        
+
       }else{
        swal("Erreur!", data['message'], "error");
 
@@ -290,7 +257,7 @@ liste(id) {
 gotolisteparticipates(id_event:any, nomevent:any ){
   this.router.navigate(['dashboard_club/liste-participes/'+id_event]);
   nomevent = localStorage.setItem('nomevent',nomevent);
-  
+
 }
 getallparticipes(id_event:any){
   this.e_http.getallparticipation(id_event).subscribe(club => {
@@ -306,15 +273,15 @@ participer(id_event:any){
   this.e_http.participer(id_event).subscribe(data => {
     if(data['error']!=true){
      swal("Succès!", "vous avez participé avec succès", "success");
-      
+
     }else{
     swal("Erreur!", data['message'], "error");
 
     }
-    
+
   },
     err => {
-  
+
   console.log(err);
     }
   );
@@ -354,7 +321,7 @@ addevent(){
 
     if(data['error']!=true){
       swal("Succès!", "votre event a été enregistré avec succès", "success");
-      
+
       this.editProfile = !this.editProfile;
       this.getClubEvents();
       this.titre_event="";
@@ -371,7 +338,7 @@ addevent(){
     }
   },
     err => {
-  
+
    console.log(err);
     }
   );
@@ -424,7 +391,6 @@ imageact(e:any){
 addactivites(){
   const formData = new FormData();
   formData.append('titre_act', this.titre_act);
-  //console.log(this.titre_act)
   formData.append('description_act', this.description_act);
   formData.append('idclub', this.idclub);
   formData.append('file', this.image_act);
@@ -471,11 +437,11 @@ deleteact(id_activites:any){
       this.a_http.deleteactivites(this.idclub,id_activites).subscribe(club => {
         if(club['error']!=true){
           this.getact(this.idclub);
-    
+
          }else{
            swal("Erreur!", club['message'], "error");
          }
-        
+
       },
       error => {
         console.log(error);
@@ -488,9 +454,9 @@ deleteact(id_activites:any){
     }
   });
 
- 
+
 }
- 
+
 deletePOST(idpublication:any){
   swal({
     title: "Es-tu sûr?",
@@ -507,11 +473,11 @@ deletePOST(idpublication:any){
       this.p_http.deletePost(idpublication).subscribe(club => {
         if(club['error']!=true){
           this.getposts();
-    
+
          }else{
            swal("Erreur!", club['message'], "error");
          }
-        
+
       },
       error => {
         console.log(error);
@@ -542,12 +508,12 @@ deleteSONDAGE(idsondage:any){
       this.v_http.deleteSondage(idsondage).subscribe(club => {
         if(club['error']!=true){
           this.getsondage();
-    
+
          }else{
            swal("Erreur!", club['message'], "error");
          }
-        
-    
+
+
       },
       error => {
         console.log(error);
@@ -559,7 +525,7 @@ deleteSONDAGE(idsondage:any){
       swal("Votre fichier est en sécurité !");
     }
   });
-  
+
 }
 deleteEVENT(idevent:any){
   swal({
@@ -574,7 +540,7 @@ deleteEVENT(idevent:any){
   })
   .then((willDelete) => {
     if (willDelete) {
-      
+
   this.e_http.deleteEvent(idevent).subscribe(club => {
     if(club['error']!=true){
       this.getClubEvents();
@@ -582,7 +548,7 @@ deleteEVENT(idevent:any){
      }else{
        swal("Erreur!", club['message'], "error");
      }
-   
+
 
   },
   error => {

@@ -4,13 +4,13 @@
 	<!-- section -->
 
 	<section class="inner_banner">
-    <h3>Envoyer un demande </h3>
+    <h3>Envoyer une demande </h3>
 
 	</section>
 
 	<!-- end section -->
 
-	<!-- section -->
+	<!-- section
     <div class="section layout_padding contact_section" style="background:#f6f6f6;">
         <div class="container">
                <div class="row">
@@ -26,18 +26,18 @@
 						   <fieldset>
 
                  <div class="full field">
-                  <input type="text" class="inputStyle" [(ngModel)]="cin" placeholder="cin" name="cin" />
+                  <input type="text" class="inputStyle" id="cin" [(ngModel)]="cin" placeholder="cin" name="cin" />
                </div>
 
 							   <div class="full field">
-							      <input type="email" class="inputStyle"  [(ngModel)]="email" placeholder="Email Address" name="email" />
+							      <input type="email" class="inputStyle" id="email" [(ngModel)]="email" placeholder="Email Address" name="email" />
 							   </div>
                  <div class="full field">
-                  <input type="number" class="inputStyle"  [(ngModel)]="tel" placeholder="Numero de telephone" name="tel" />
+                  <input type="number" class="inputStyle" id="tel" [(ngModel)]="tel" placeholder="Numero de telephone" name="tel" />
                  </div>
 							   <div class="full field">
 
-							   	<select style="width: 100%;height: 43px;" [value]='1' [(ngModel)]="equipes[0].equipe" (change)="fun($event)">
+							   	<select id="equipe" style="width: 100%;height: 43px;" [value]='1' [(ngModel)]="equipes[0].equipe" (change)="fun($event)">
 									<option value=""  [selected]="true" >Choisir votre equipe..</option>
                   <option  *ngFor="let eq of equipes" value="{{eq.id_equipe}}" >
                     {{eq.equipe}}
@@ -47,11 +47,11 @@
 							    </div>
 							   <div class="full field">
 								   <h5>Pourquoi voulez-vous être membre de ce club?</h5>
-                   <input  type="text" style="background-color: white;border:1px solid black;height: 20px;" [(ngModel)]="motivation" placeholder="motivation" name="motivation" />
+                   <input  type="text" id="motivation" style="background-color: white;border:1px solid black;height: 20px;" [(ngModel)]="motivation" placeholder="motivation" name="motivation" />
 							   </div>
                  <div class="full field"></div>
 							   <div class="full field">
-							      <div class="center"><button (click)=sendRequest() >Envoyer</button></div>
+							      <div class="center"><button (click)=sendRequest() id="envoyer" >Envoyer</button></div>
 							   </div>
 						   </fieldset>
 						</form>
@@ -59,8 +59,63 @@
                  </div>
                </div>
            </div>
-        </div>
+        </div> -->
 	<!-- end section -->
+                                                  <!-- envoyer demande Form  start -->
+                                                  <div class="card">
+
+                                                        <div class="card-block">
+                                                            <h4 class="sub-title">Remplir le formulaire </h4>
+                                                            <form>
+                                                              <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">cin</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="number" [(ngModel)]="cin" name="cin"
+                                                                    class="form-control form-control-round"
+                                                                    placeholder="saisir votre CIN">
+                                                                </div>
+                                                            </div>
+                                                                        <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">email</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="email" id="email" [(ngModel)]="email" name="email"
+                                                                            class="form-control form-control-round"
+                                                                            placeholder="saisir votre email">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Equipe</label>
+                                                                        <div class="col-sm-10">
+                                                                            <select name="equipe"  id="equipe" [(ngModel)]="equipe" (change)="fun($event)"   class="form-control form-control-round">
+                                                                                <option value="" >Choisir votre equipe</option>
+                                                                                <option  *ngFor="let eq of equipes" value="{{eq.id_equipe}}" >{{eq.equipe}}</option>
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-2 col-form-label">Pourquoi voulez-vous être membre de ce club?</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <textarea rows="5" cols="5" id="motivation" name="motivation" class="form-control " [(ngModel)]="motivation"
+                                                                                    placeholder="    Motivation"></textarea>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="full field">
+                                                                              <div class="center">
+                                                                                <button class="btn btn-warning btn-round" id="envoyer" (click)=sendRequest()>Envoyer</button>
+                                                                                </div>
+                                                                           </div>
+
+                                                                        </form>
+
+
+                                                                    </div>
+                                                                </div>
+                                                                <!-- envoyer demande Form  end -->
+
 <!-- Start Footer -->
 <footer class="footer-box">
   <div class="container">
