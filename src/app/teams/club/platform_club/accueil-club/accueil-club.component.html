@@ -131,13 +131,13 @@
 
 
         <!--Activités du club tab-->
-        <ngb-tab title="Activités du club" >
+        <ngb-tab id="Activitesduclub" title="Activités du club" >
           <ng-template ngbTabContent>
             <div [@fadeInOutTranslate] class="m-t-15">
               <!-- activites card -->
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-header-text">Activités du club</h5>
+                  <h5 class="card-header-text" id="Activitesduclub">Activités du club</h5>
                   <div >
                   <button *ngIf="admin==true" id="changetoaddact" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
                     <i class="icofont {{ editProfileIcon }}"></i>

@@ -99,7 +99,6 @@ export class AccueilClubComponent implements OnInit {
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubss= club['data'];
-      console.log(club);
     },
     error => {
       console.log(error);
@@ -377,7 +376,9 @@ addevent(){
 getact(idclub:any){
   this.a_http.getclubactivites(idclub).subscribe(club => {
     this.activites= club['data'];
-    console.log(this.activites);
+    this.activites = Object.entries(this.activites).map((e) => (e[1]));
+   
+   
   },
   error => {
     console.log(error);
