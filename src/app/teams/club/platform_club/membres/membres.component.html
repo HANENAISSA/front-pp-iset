@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-sm-12">
+      <!-- Tab variant tab card start -->
+      <div class="card">
+          <div class="card-header">
+              <h5>Membres</h5>
+              <div class="card-header-right">    <ul class="list-unstyled card-option">        <li><i class="icofont icofont-simple-left "></i></li>        <li><i class="icofont icofont-maximize full-card"></i></li>        <li><i class="icofont icofont-minus minimize-card"></i></li>        <li><i class="icofont icofont-refresh reload-card"></i></li>        <li><i class="icofont icofont-error close-card"></i></li>    </ul></div>
+          </div>
+          <div class="card-block tab-icon">
+              <!-- Row start -->
+              <div class="row">
+                <!-- membres list-->
+                <div class="col-md-12 " >
+                  <div class="sub-title">Liste de membres</div>
+                  <div class="card project-task">
+                          <div class="table-responsive">
+                              <table class="table table-hover">
+                                  <thead>
+                                      <tr>
+                                          <th>Nom et prenom</th>
+                                          <th>Cin</th>
+                                          <th>Equipe</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody *ngFor="let membre of users">
+                                      <tr id="{{membre.cin}}">
+                                          <td>
+                                              <div class="task-contain">
+                                                  <h6 class=" d-inline-block text-center" >
+                                                    <img style="height: 50px; width: 50px;" *ngIf="membre.membreimage=='imageurl'" src="assets/images/5.png">
+                                                    <img style="height: 50px; width: 50px;"  *ngIf="membre.membreimage!='imageurl'" src="http://127.0.0.1:5010/{{membre.membreimage}}">
+                                                  </h6>
+                                                  <p class="d-inline-block m-l-20">{{membre.nom}}</p>
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <p class="d-inline-block m-r-20" >{{membre.cin}}</p>
+
+                                          </td>
+                                          <td>
+                                            <p class="d-inline-block m-r-20">{{membre.equipe}}</p>
+
+                                        </td>
+                                      </tr>
+
+                                  </tbody>
+                              </table>
+
+                      </div>
+                  </div>
+              </div>
+
+              <!-- responsables list-->
+
+
+              </div>
+              <!-- Row end -->
+          </div>
+      </div>
+      <!-- Tab variant tab card start -->
+  </div>
+</div>

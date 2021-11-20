@@ -1,0 +1,343 @@
+
+<div class="row">
+  <div class="col-sm-12 col-xl-8">
+    <div class="md-tabs">
+      <ngb-tabset>
+        <!-- posts tab-->
+
+        <ngb-tab title="Publications">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text">Publications</h5>
+                </div>
+                <div class="card-body">
+                  <!--add post-->
+  <div class="row">
+    <!-- card1 start -->
+    <div class="col-lg-12">
+        <div class="card widget-card-1">
+            <div class="card-block-small">
+              <i style="background-color: #FFB64D;" class="icofont icofont-ui-home bg-c-blue card1-icon"></i>
+
+                <h6>{{nom}} {{prenom}}</h6>
+                <div class="form-group row">
+                   <div class="col-sm-11">
+                      <input type="text" class="form-control" id="post" [(ngModel)]="post"
+                      placeholder="votre post">
+ <!-- upload file start
+<input type="file" value=""  [(ngModel)]="post_image" (change)="imagePost($event)">
+
+<br>
+-->
+<!-- actual upload which is hidden -->
+<input type="file" id="actual-btn"  [(ngModel)]="post_image" (change)="imagePost($event)" #files hidden/>
+
+<!-- our custom upload button -->
+<label class="bglabel" for="actual-btn" id="Choisir">Choisir le fichier</label>
+
+<!-- name of file chosen -->
+<span id="file-chosen" >{{fileName}}</span>
+
+
+<!-- upload file -->
+       </div>
+              </div>
+                <div>
+                    <span class="f-left m-t-10 text-muted">
+                      <button class="btn btn-primary btn-round" id="partager" (click)=addpost()>Partager</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- card1 end -->
+    </div>
+    <!--add post-->
+                <!--display post-->
+
+
+
+            <app-card [title]="'Publication '" [blockClass]="'p-3'" *ngFor="let post of posts " sortBy="post.description">
+            <br>
+                  <ul class="media-list" >
+                    <li class="media">
+                      <div class="media-left" *ngFor="let u of user">
+                        <a href="javascript:;">
+                          <img  *ngIf="u.membreimage=='imageurl'" src="assets/images/5.png" class="media-object img-radius comment-img">
+                          <img  *ngIf="u.membreimage!='imageurl'" class="media-object img-radius comment-img" src="http://127.0.0.1:5010/{{post.membreimage}}" alt="Generic placeholder image">
+                        </a>
+                      </div>
+                      <div class="media-body">
+                        <div ngbDropdown container="body" id="menupost" >
+                          <button class="btn float-right" ngbDropdownToggle>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" >
+                              <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                            </svg>
+                          </button>
+                          <div ngbDropdownMenu >
+                            <button ngbDropdownItem id="deletePOST" (click)="deletePOST(post.id_publication)">
+                              <i class="icofont icofont-close-line" ></i>Supprimer
+                            </button>
+                          </div>
+                        </div>
+                        <h6 class="media-heading">{{post.nom}}{{post.prenom}}<span style="word-spacing: 15px;" class="f-12 text-muted m-l-5">{{post.date}} {{post.heure}}</span></h6>
+                        <p class="m-b-0" sortBy={{post.date}}>{{post.description}}</p>
+
+
+                          <div class="col-lg-10" *ngIf="post.url_image !='undefined'" >
+                              <img class="img-responsive" src="http://127.0.0.1:5010/{{post.url_image}}" alt="#" />
+
+                          </div>
+
+                        <hr>
+
+                        <!-- display commentaires -->
+                        <app-commentaire idpublication={{post.id_publication}}></app-commentaire>
+                      <!-- display commentaires -->
+                      </div>
+                    </li>
+
+                  </ul>
+
+    <!--display post-->
+
+                 <!--add commentaire-->
+
+                  <div class="md-float-material d-flex ">
+                    <div class="md-group-add-on p-relative col-lg-12">
+                      <div class="input-group input-group-button input-group-primary">
+
+                        <input type="text" class="form-control" id="commentaire" style="height:46px"placeholder="ecrire votre commentaire" [(ngModel)]="cmtre">
+                        <span class="input-group-append">
+
+                          <button class="btn btn-out btn-primary btn-square" id="addcmtre" (click)=addcmtre(post.id_publication)><i class="icofont icofont-plus"></i>Publier</button>
+
+                       </span>
+                      </div>
+                    </div>
+                  </div>
+                     <!--add commentaire-->
+
+                </app-card>
+
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <!-- posts tab-->
+
+
+        <!--Activités du club tab-->
+        <ngb-tab id="Activitesduclub" title="Activités du club" >
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <!-- activites card -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text" id="Activitesduclub">Activités du club</h5>
+                  <div >
+                  <button *ngIf="admin==true" id="changetoaddact" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
+                    <i class="icofont {{ editProfileIcon }}"></i>
+                  </button>
+                </div>
+                </div>
+                <div class="card-body">
+                  <!-- afficher activites -->
+                  <div class="view-info" *ngIf="editProfile">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="general-info">
+                          <div class="row">
+                            <div class="col-lg-12" *ngFor="let act of activites" >
+
+          <!--display act-->
+            <!-- Statistics card start -->
+  <div class="col-md-6 col-xl-12">
+    <div class="card widget-statstic-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <h5 style="color:#4680ff;"> Le {{act.date_act}}</h5>
+          <center><h3>{{act.titre_act}}</h3></center>
+          <br>
+          <center>
+          <div class="col-lg-10" *ngIf="act.image_act !='undefined'" >
+            <img class="img-responsive" src="http://127.0.0.1:5010/{{act.image_act}}" alt="#" />
+
+        </div>
+      </center>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <i *ngIf="admin==false" class="icofont icofont-horn st-icon bg-c-yellow"></i>
+        <i *ngIf="admin==true"  (click)="deleteact(act.id_activites)"  class="icofont icofont-close-line st-icon bg-c-yellow txt-lite-color"></i>
+        <div class="text-left">
+          <h5 class="d-inline-block">{{act.description_act}}</h5>
+
+        </div>
+      </div>
+    </div>
+  </div>
+                            </div>
+                          </div>
+                          <!-- end of row -->
+                        </div>
+                        <!-- end of general info -->
+                      </div>
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- ajouter activite -->
+                  <div class="edit-info" *ngIf="!editProfile">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="general-info">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="table-responsive">
+                                <table class="table">
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                        <div class="input-group">
+                                          <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
+                                          <input type="date" class="form-control" id="date_act" placeholder="date" value="" [(ngModel)]="date_act">
+                                        </div>
+                                      </td>
+                                    </tr>
+
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
+                                        <input type="text" class="form-control" placeholder="Titre " id="titre" value="" [(ngModel)]="titre_act">
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-prepend"><label class="input-group-text"><i class="ti-gallery"></i></label></span>
+                                        <input type="file" class="form-control" value="" placeholder="upload image "  id="image_act" (change)="imageact($event)"  multiple>
+                                      </div>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
+                                        <input type="text" class="form-control" placeholder="Description" id="description_act" value="" [(ngModel)]="description_act">
+                                      </div>
+                                    </td>
+                                  </tr>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+
+                          </div>
+                          <!-- button of activites -->
+                          <div class="text-center">
+                            <button  class="btn btn-primary waves-effect waves-light m-r-20" id="addactivites" (click)="addactivites()">Publier</button>
+                            <a href="javascript:;" id="edit-cancel" class="btn btn-default waves-effect" (click)="toggleEditProfile()">Annuler
+                              </a>
+                          </div>
+                        </div>
+                        <!-- end of edit info -->
+                      </div>
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of ajouter activites -->
+                </div>
+                <!-- end of card-body -->
+              </div>
+              <!-- activites card end-->
+                </div>
+                <!-- end of card-body -->
+              <!-- personal card end-->
+          </ng-template>
+        </ngb-tab>
+        <!--Activités du club tab-->
+      </ngb-tabset>
+    </div>
+
+</div>
+  <!-- sondage -->
+<div class="col-md-12 col-xl-4"  >
+    <button  *ngIf="admin==true" id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="open()">
+      {{buttontext}} <i class="icofont {{ editProfileIcon }}"></i>
+    </button>
+    <br><br>
+  <!-- ajouter sondage -->
+  <div *ngIf="!add">
+  <div class="card widget-statstic-card" *ngIf="admin==true">
+    <div class="card-header" >
+      <div class="card-header-left">
+        <h4>Ajouter Sondage</h4>
+        <input type="text" class="form-control" id="titlesondage" [(ngModel)]="title"
+        placeholder="ecrire description"> <br>
+        <button class="btn btn-mat btn-primary " style="background-color:#333" id="addsondage" (click)=addsondage()>Publier</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- ajouter sondage -->
+<br><br>
+<!-- afficher sondage -->
+<div class="card widget-statstic-card" *ngFor="let sondage of sondages">
+  <div class="card-header">
+    <div class="card-header-left">
+      <h4>Sondage</h4>
+      <h6>{{sondage.titre}}</h6>
+      <p class="p-t-10 m-b-0 text-c-blue">{{sondage.date_sondage}} {{sondage.heure_sondage}}</p>
+    </div>
+  </div>
+  <div class="card-block" >
+    <div >
+    <i *ngIf="admin==true" style="background-color:#FFB64D" id="deleteSONDAGE" (click)="deleteSONDAGE(sondage.id_sondage)"  class="icofont icofont-close-line st-icon bg-c-blue txt-lite-color"></i>
+    <i *ngIf="admin==false" style="background-color:#FFB64D" class="icofont icofont-users-social st-icon bg-c-blue txt-lite-color"></i>
+  </div>
+    <div class="text-left">
+      <form #f="ngForm">
+        <div class="radio">
+          <label>
+              <input type="radio"
+                     [ngValue]="true"
+                     id="true"
+                     (change)="voter(true,sondage.id_sondage)"
+                     name="vote" > Oui
+          </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio"
+                     value="false"
+                     id="false"
+                     (change)="voter(false,sondage.id_sondage)"
+                     name="vote"> Non
+          </label>
+           </div>
+</form>
+<p class="text-danger">{{ message }}</p>
+  <!--vote table start -->
+   <app-votes idsondage={{sondage.id_sondage}}></app-votes>
+  <!-- vote table End -->
+    </div>
+  </div>
+</div>
+<!-- display sondage -->
+<!--  sondage -->
+</div>
+</div>
+
+
+

@@ -1,0 +1,159 @@
+<div class="header">
+  <div class="col-md-4">
+    <div class="btn-group flexpre">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+        [refresh]="refresh"
+        id="precedent"
+
+      >
+      Précédent
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+        [refresh]="refresh"
+        id ="aujourdhui"
+      >
+      Aujourd'hui
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+        [refresh]="refresh"
+        id="prochaine"
+      >
+      Prochaine
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 prenevt title"  >
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}</h3>
+  </div>
+  <button class="btn btn-primary float-right" id="addEvent" (click)="addeventpopup()">
+    <i class="ti-calendar"></i>  Ajouter event
+  </button>
+
+   <button class="btn btn-primary float-right" id="addEvent" (click)="addtache()">
+    <i class="ti-calendar"></i>  Ajouter tache
+   </button>
+
+</div>
+<div class="bodyCalander">
+  <div [ngSwitch]="view">
+    <mwl-calendar-month-view
+      *ngSwitchCase="'month'"
+      [viewDate]="viewDate"
+      [locale]="locale"
+      [events]="events"
+      (eventClicked)="eventClicked($event)"
+    >
+    </mwl-calendar-month-view>
+  </div>
+  <!--popup calendrier-->
+  <div *ngIf="popup"  class="cardEventData">
+
+    <i class="fa fa-close closebtn" id="closepop" (click)=close()></i>
+
+
+    <h1 class="titre"> {{popupData.title}}</h1>
+    <h3 class="datededebut">Date:  {{popupData.date}}</h3>
+
+    <h3 *ngIf="popupData.id_calendrier" class="datededebut">Heure: {{popupData.temps}}</h3>
+    <p *ngIf="popupData.id_calendrier" class="desc">{{popupData.description}}</p>
+
+    <button *ngIf="popupData.id_event" class="btn btn-primary float-right" id="gotodetails" (click)=gotodetails(popupData.id_event)> details</button>
+
+    <button id="deleteCAL" (click)=deleteCAL(popupData.id_calendrier)  class="btn btn-warning"><i class="ti-trash"></i></button>
+
+  </div>
+    <!--add task to calendrier-->
+  <div *ngIf="addtask"  class="cardEventData">
+    <i class="fa fa-close closebtn" id="closecal" (click)=closetache()></i>
+    <div class="browser-card b-t-default p-t-15" >
+      <div class="input-group">
+        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
+        <input type="date" class="form-control" placeholder="Date "  id="date" value="" [(ngModel)]="date">
+      </div>
+      <div class="input-group">
+        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
+        <input type="time" class="form-control" placeholder="Heure"  id="heure" value="" [(ngModel)]="temps">
+      </div>
+      <div class="input-group">
+        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
+        <input type="text" class="form-control" placeholder="Titre "  id="titre" value="" [(ngModel)]="titre">
+      </div>
+      <div class="input-group">
+        <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-user"></i></label></span>
+        <input type="text" class="form-control" placeholder="Description "  id="description" value="" [(ngModel)]="descriptionCal">
+      </div>
+      <button  class="btn btn-primary waves-effect waves-light m-r-20"  id="addcal" (click)="addTOcalendrier()">Sauvegarder</button>
+    </div>
+  </div>
+      <!--add event to calendrier-->
+      <div *ngIf="addevent"  class="cardEventData">
+        <i class="fa fa-close closebtn" id="closeevent" (click)=closevent()></i>
+        <div class="browser-card b-t-default p-t-15" >
+          <div class="input-group">
+            <span class="input-group-prepend"><label class="input-group-text"><i class="ti-pencil-alt2"></i></label></span>
+            <input type="text" class="form-control" placeholder="Titre " id="titre_event" value="" [(ngModel)]="titre_event">
+          </div>
+          <div class="input-group">
+            <span class="input-group-prepend"><label class="input-group-text"><i class="ti-gallery"></i></label></span>
+            <input type="file" class="form-control" value=""  id="image_event" placeholder="upload image de l'événement" (change)="image($event)">
+          </div>
+          <div class="form-radio" id="statut" >
+            <div class="group-add-on">
+              <div class="radio radiofill radio-inline">
+                <label>
+                  <input type="radio" name="statut" value="0" [(ngModel)]="statut" checked><i class="helper"></i> Gratuit
+                </label>
+              </div>
+              <div class="radio radiofill radio-inline">
+                <label>
+                  <input type="radio" name="statut" value ="1" [(ngModel)]="statut" ><i class="helper"></i> Payé
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-prepend"><label class="input-group-text"><i class="ti-calendar"></i></label></span>
+            <input id="dropper-default" class="form-control" id="date_debut"  type="date" value="" placeholder="date de debut" [(ngModel)]="date_debut" />
+          </div>
+          <div class="input-group">
+            <span class="input-group-prepend"><label class="input-group-text"><i class="ti-calendar"></i></label></span>
+            <input id="dropper-default" class="form-control"id="date_fin"  type="date" value="" placeholder="date de fin" [(ngModel)]="date_fin" />
+          </div>
+          <div class="input-group">
+            <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
+
+            <input type="text" class="form-control" placeholder="Description" id="descriptionevent" value="" [(ngModel)]="description">
+          </div>
+          <label class="text-primary">Heure fin</label>
+          <div class="input-group">
+            <span class="input-group-prepend"><label class="input-group-text"><i class="ti-alarm-clock"></i></label></span>
+
+            <input id="dropper-default" class="form-control" type="time" value="" id="heure_debut"  placeholder="heure de debut" [(ngModel)]="heure_debut" />
+          </div>
+          <label class="text-primary">Heure de debut</label><br><br>
+          <div class="input-group">
+            <span class="input-group-prepend"><label class="input-group-text"><i class="ti-alarm-clock"></i></label></span>
+
+            <input id="dropper-default" class="form-control" type="time" value="" id="heure_fin"  placeholder="heure de fin" [(ngModel)]="heure_fin" />
+          </div>
+          <div class="input-group">
+            <span class="input-group-prepend"><label class="input-group-text"><i class="ti-link"></i></label></span>
+            <input type="text" class="form-control" value="" id="lien"  placeholder="lien de participer" [(ngModel)]="url_event">
+          </div>
+          <button  class="btn btn-primary waves-effect waves-light m-r-20" id="addevent" (click)="addevents()">Ajouter</button>
+        </div>
+      </div>
+</div>

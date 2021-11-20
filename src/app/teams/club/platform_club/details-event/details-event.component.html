@@ -1,0 +1,141 @@
+   <!-- afficher events -->
+   <div class="col-md-12">
+    <app-card [title]="'Detail'" [cardClass]="'email-sent-card'" [classHeader]="true">
+        <button *ngIf="admin==true" id="changetoeditevent" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
+            <i class="icofont {{ editProfileIcon }}"></i>
+          </button>
+        <div  *ngIf="editProfile">
+       <div class="container"  *ngFor="let ev of event" >
+            <div class="row">
+                <div class="col-md-6 imageContainer">
+                    <div class="full float-right_img">
+                        <img class="img-responsive" src="http://127.0.0.1:5010/{{ev.url_image}}" alt="#" />
+                    </div>
+                </div>
+                <div class="col-md-6 layout_padding_2">
+
+                  <div class="club_data_container">
+                    <div class="header"><h1>{{ev.titre_event}}</h1></div>
+                    <div class="header">
+                        <span *ngIf="ev.statut == 0">Gratuit</span>
+                        <span *ngIf="ev.statut == 1">Payé</span>
+                    </div>
+                    <div class="domain"><h3 >Date: de {{ev.date_debut}} à {{ev.date_fin}}</h3></div>
+                    <div class="domain"><h3 >Temps: de {{ev.heure_debut}} à {{ev.heure_fin}}</h3></div>
+                    <div class="description"><p>{{ev.description}} </p></div>
+
+                    <div  class="btninscri">
+                        <a class="hvr-radial-out button-theme btninscri" (click)="participer(ev.id_event)" > participer</a>
+                    </div>
+                    <div *ngIf="admin==true"   class="btninscri">
+                        <a class="hvr-radial-out button-theme btninscri" (click)="gotolisteparticipates(ev.id_event,ev.titre_event)" >Liste de participes</a>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- afficher event END -->
+            <!-- update event -->
+            <div class="edit-info" *ngIf="!editProfile">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="general-info">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="table-responsive">
+                            <table class="table" *ngFor="let ev of event">
+                              <tbody>
+                              <tr>
+                                <td>
+                                  <div class="input-group">
+                                    <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
+                                    <input type="text" class="form-control" id="event" placeholder={{ev.titre_event}} value="" [(ngModel)]="titre_event">
+                                  </div>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <div class="form-radio" id="statut">
+                                    <div class="group-add-on" >
+                                      <div class="radio radiofill radio-inline">
+                                        <label>
+                                          <input type="radio" name="statut" value="0"  [(ngModel)]="statut" checked><i class="helper"></i> Gratuit
+                                        </label>
+                                      </div>
+                                      <div class="radio radiofill radio-inline">
+                                        <label>
+                                          <input type="radio" name="statut" value ="1" [(ngModel)]="statut" ><i class="helper"></i> Payé
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+
+                                <td>
+                                  <label class="text-primary">Date debut</label>
+                                  <input id="datedebut" class="form-control" type="date" value="" placeholder={{ev.date_debut}} [(ngModel)]="date_debut" />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <label class="text-primary">Date fin</label>
+                                  <input id="datefin" class="form-control" type="date" value="" placeholder={{ev.date_fin}} [(ngModel)]="date_fin" />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="input-group">
+                                    <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
+                                    <input id="description" type="text" class="form-control" placeholder={{ev.description}} value="" [(ngModel)]="description">
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <label class="text-primary">Heure de debut</label>
+                                  <input id="heure_debut" class="form-control" type="time" value="" placeholder={{ev.heure_debut}} [(ngModel)]="heure_debut" />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <label class="text-primary">Heure fin</label>
+                                  <input id="heure_fin" class="form-control" type="time" value="" placeholder={{ev.heure_fin}} [(ngModel)]="heure_fin" />
+                                </td>
+                              </tr>
+                            <tr>
+                              <td>
+                                <div class="input-group">
+                                  <span class="input-group-prepend"><label class="input-group-text"><i class="ti-link"></i></label></span>
+                                  <input id="url" type="text" class="form-control" value="" placeholder={{ev.url_event}} [(ngModel)]="url_event">
+                                </div>
+                              </td>
+                            </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                      </div>
+                      <!-- end of row -->
+                      <div class="text-center">
+                        <button  class="btn btn-primary waves-effect waves-light m-r-20" id="update" (click)="updateEvent()">Sauvegarder</button>
+                        <a href="javascript:;" id="cancel" class="btn btn-default waves-effect" (click)="toggleEditProfile()">Annuler
+                          </a>
+                      </div>
+                    </div>
+                    <!-- end of edit info -->
+                  </div>
+                  <!-- end of col-lg-12 -->
+                </div>
+                <!-- end of row -->
+              </div>
+              <!-- end of edit-info -->
+    </app-card>
+  </div>
+  <!-- update event End -->
+

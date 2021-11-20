@@ -1,0 +1,142 @@
+ <!-- Start header -->
+ <app-header></app-header>
+<!-- End header -->
+
+<br /><br />
+<div class="row text-center ">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+        [refresh]="refresh"
+        id="precedent"
+        
+      >
+      Précédent
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+        [refresh]="refresh"
+        id ="aujourdhui"
+      >
+      Aujourd'hui
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+        [refresh]="refresh"
+        id="prochaine"
+      >
+      Prochaine
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}</h3>
+  </div>
+  <div class="col-md-4">
+   
+  </div>
+</div>
+<br />
+
+<div class="bodyCalander">
+  <div [ngSwitch]="view">
+    <mwl-calendar-month-view
+      *ngSwitchCase="'month'"
+      [viewDate]="viewDate"
+      [locale]="locale"
+      [events]="events"
+      (eventClicked)="eventClicked($event)"
+    >
+    </mwl-calendar-month-view>
+  </div>
+  <div *ngIf="popup"  class="cardEventData">
+    
+    <i class="fa fa-close closebtn" (click)=close()></i>
+    
+ 
+    <h1 class="titre"> {{popupData.title}}</h1>
+    <h3 class="datededebut">Date:  {{popupData.date}}</h3>
+    
+    
+    
+    <button class="btn btn-primary float-right" (click)=gotodetails(popupData.id_event)> details</button>
+    
+   
+  </div>
+  
+</div>
+
+<!-- Start Footer -->
+<footer class="footer-box">
+  <div class="container">
+
+     <div class="row">
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+           <div class="footer_blog">
+              <div class="full margin-bottom_30">
+                 <img src="assets/assets/images/cropped-logo.png" alt="#" />
+               </div>
+               <div class="full white_fonts">
+                  <p>Institut Supérieur Des Etudes Technologiques De Rades
+                      Institut Supérieur Des Etudes Technologiques De Rades</p>
+               </div>
+           </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+             <div class="footer_blog footer_menu white_fonts">
+                      <h3>Liens Rapides</h3>
+                      <ul>
+                        <li><a href="#">> Join Us</a></li>
+                        <li><a href="#">> Maintenance</a></li>
+                        <li><a href="#">> Language Packs</a></li>
+                        <li><a href="#">> LearnPress</a></li>
+                        <li><a href="#">> Release Status</a></li>
+                      </ul>
+                   </div>
+           </div>
+
+           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+
+              </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+           <div class="footer_blog full white_fonts">
+                       <h3>Contact us</h3>
+                       <ul class="full">
+                         <li><img src="assets/assets/images/i5.png"><span>London 145<br>United Kingdom</span></li>
+                         <li><img src="assets/assets/images/i6.png"><span>demo@gmail.com</span></li>
+                         <li><img src="assets/assets/images/i7.png"><span>+12586954775</span></li>
+                       </ul>
+                   </div>
+              </div>
+
+     </div>
+
+  </div>
+</footer>
+<!-- End Footer -->
+<!-------------copy right + js---------------------->
+<div class="footer_bottom">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <p class="crp">© Copyrights 2021 ISET Rades</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+<a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>

@@ -1,0 +1,93 @@
+   <!-- Start header -->
+ <app-header></app-header>
+ <!-- End header -->
+ 
+   <!-- email Sent Start -->
+  
+       <div class="container"  *ngFor="let ev of event" >
+            <div class="row">
+                <div class="col-md-6 imageContainer">
+                    <div class="full float-right_img">
+                        <img class="img-responsive" src="http://127.0.0.1:5010/{{ev.url_image}}" alt="#" />
+                    </div>
+                </div>
+                <div class="col-md-6 layout_padding_2">
+    
+                  <div class="club_data_container">
+                    <div class="header"><h1>{{ev.titre_event}}</h1></div>
+                    <div class="header">
+                        <span *ngIf="ev.statut == 0">Gratuit</span>
+                        <span *ngIf="ev.statut == 1">Payé</span>
+                    </div>
+                    <div class="domain"><h3 >Date: de {{ev.date_debut}} à {{ev.date_fin}}</h3></div>
+                    <div class="domain"><h3 >Temps: de {{ev.heure_debut}} à {{ev.heure_fin}}</h3></div>
+                    <div class="description"><p>{{ev.description}} </p></div>
+             
+                    <div  class="btninscri">
+                        <a class="hvr-radial-out button-theme btninscri" (click)="participer(ev.id_event)" > participer</a>
+                    </div>
+                    <div *ngIf="admin==true"   class="btninscri">
+                        <a class="hvr-radial-out button-theme btninscri" (click)="gotolisteparticipates(ev.id_event,ev.titre_event)" >Liste de participes</a>
+                    </div>
+                  
+                  </div>
+                </div>
+            </div>
+        
+    </div>
+      
+ 
+  <!-- email Sent End -->
+           
+
+<!-- Start Footer -->
+<footer class="footer-box">
+    <div class="container">
+  
+       <div class="row" style="background-color: #0b1c2c;">
+  
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+             <div class="footer_blog">
+                <div class="full margin-bottom_30">
+                   <img src="assets/assets/images/cropped-logo.png" alt="#" />
+                 </div>
+                 <div class="full white_fonts">
+                    <p>Institut Supérieur Des Etudes Technologiques De Rades
+                        Institut Supérieur Des Etudes Technologiques De Rades</p>
+                 </div>
+             </div>
+          </div>
+  
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+               <div class="footer_blog footer_menu white_fonts">
+                        <h3>Liens Rapides</h3>
+                        <ul>
+                          <li><a href="#">> Join Us</a></li>
+                          <li><a href="#">> Maintenance</a></li>
+                          <li><a href="#">> Language Packs</a></li>
+                          <li><a href="#">> LearnPress</a></li>
+                          <li><a href="#">> Release Status</a></li>
+                        </ul>
+                     </div>
+             </div>
+  
+             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+  
+                </div>
+  
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+             <div class="footer_blog full white_fonts">
+                         <h3>Contact us</h3>
+                         <ul class="full">
+                           <li><img src="assets/assets/images/i5.png"><span>London 145<br>United Kingdom</span></li>
+                           <li><img src="assets/assets/images/i6.png"><span>demo@gmail.com</span></li>
+                           <li><img src="assets/assets/images/i7.png"><span>+12586954775</span></li>
+                         </ul>
+                     </div>
+                </div>
+  
+       </div>
+  
+    </div>
+  </footer>
+  <!-- End Footer -->

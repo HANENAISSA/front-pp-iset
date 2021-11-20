@@ -1,0 +1,286 @@
+
+<app-header></app-header>
+
+	<!-- section -->
+
+	<section class="inner_banner">
+    <h3>Envoyer une demande </h3>
+
+	</section>
+
+	<!-- end section -->
+
+	<!-- section
+    <div class="section layout_padding contact_section" style="background:#f6f6f6;">
+        <div class="container">
+               <div class="row">
+                 <div class="col-lg-8 col-md-8 col-sm-12">
+				    <div class="full float-right_img">
+                        <img src="assets/assets/images/sending-mail.gif" style="height: 550px; width: 650px;" alt="#">
+                    </div>
+                 </div>
+				 <div class="col-lg-4 col-md-4 col-sm-12">
+				    <div class="contact_form">
+              <br> <br> <br>
+					    <form >
+						   <fieldset>
+
+                 <div class="full field">
+                  <input type="text" class="inputStyle" id="cin" [(ngModel)]="cin" placeholder="cin" name="cin" />
+               </div>
+
+							   <div class="full field">
+							      <input type="email" class="inputStyle" id="email" [(ngModel)]="email" placeholder="Email Address" name="email" />
+							   </div>
+                 <div class="full field">
+                  <input type="number" class="inputStyle" id="tel" [(ngModel)]="tel" placeholder="Numero de telephone" name="tel" />
+                 </div>
+							   <div class="full field">
+
+							   	<select id="equipe" style="width: 100%;height: 43px;" [value]='1' [(ngModel)]="equipes[0].equipe" (change)="fun($event)">
+									<option value=""  [selected]="true" >Choisir votre equipe..</option>
+                  <option  *ngFor="let eq of equipes" value="{{eq.id_equipe}}" >
+                    {{eq.equipe}}
+                  </option>
+							  	</select>
+
+							    </div>
+							   <div class="full field">
+								   <h5>Pourquoi voulez-vous être membre de ce club?</h5>
+                   <input  type="text" id="motivation" style="background-color: white;border:1px solid black;height: 20px;" [(ngModel)]="motivation" placeholder="motivation" name="motivation" />
+							   </div>
+                 <div class="full field"></div>
+							   <div class="full field">
+							      <div class="center"><button (click)=sendRequest() id="envoyer" >Envoyer</button></div>
+							   </div>
+						   </fieldset>
+						</form>
+					</div>
+                 </div>
+               </div>
+           </div>
+        </div> -->
+	<!-- end section -->
+                                                  <!-- envoyer demande Form  start -->
+                                                  <div class="card cardstyle">
+
+                                                        <div class="card-block">
+                                                            <h4 class="sub-title">Remplir le formulaire </h4>
+                                                            <form>
+                                                              <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">cin</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="number" [(ngModel)]="cin" name="cin"
+                                                                    class="form-control form-control-round"
+                                                                    placeholder="saisir votre CIN">
+                                                                </div>
+                                                            </div>
+                                                                        <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">email</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="email" id="email" [(ngModel)]="email" name="email"
+                                                                            class="form-control form-control-round"
+                                                                            placeholder="saisir votre email">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Equipe</label>
+                                                                        <div class="col-sm-10">
+                                                                            <select name="equipe"  id="equipe" [(ngModel)]="equipe" (change)="fun($event)"   class="form-control form-control-round">
+                                                                                <option value="" >Choisir votre equipe</option>
+                                                                                <option  *ngFor="let eq of equipes" value="{{eq.id_equipe}}" >{{eq.equipe}}</option>
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-2 col-form-label">Pourquoi voulez-vous être membre de ce club?</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <textarea rows="5" cols="5" id="motivation" name="motivation" class="form-control " [(ngModel)]="motivation"
+                                                                                    placeholder="    Motivation"></textarea>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="full field">
+                                                                              <div class="center">
+                                                                                <button class="btnenvoyer btn btn-warning btn-round" id="envoyer" (click)=sendRequest()>Envoyer</button>
+                                                                                </div>
+                                                                           </div>
+
+                                                                        </form>
+
+
+                                                                    </div>
+                                                                </div>
+                                                                <!-- envoyer demande Form  end -->
+
+<!-- Start Footer -->
+<footer class="footer-box">
+  <div class="container">
+
+     <div class="row">
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+           <div class="footer_blog">
+              <div class="full margin-bottom_30">
+                 <img src="assets/assets/images/cropped-logo.png" alt="#" />
+               </div>
+               <div class="full white_fonts">
+                  <p>Institut Supérieur Des Etudes Technologiques De Rades
+                      Institut Supérieur Des Etudes Technologiques De Rades</p>
+               </div>
+           </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+             <div class="footer_blog footer_menu white_fonts">
+                      <h3>Liens Rapides</h3>
+                      <ul>
+                        <li><a href="#">> Join Us</a></li>
+                        <li><a href="#">> Maintenance</a></li>
+                        <li><a href="#">> Language Packs</a></li>
+                        <li><a href="#">> LearnPress</a></li>
+                        <li><a href="#">> Release Status</a></li>
+                      </ul>
+                   </div>
+           </div>
+
+           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+
+              </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+           <div class="footer_blog full white_fonts">
+                       <h3>Contact us</h3>
+                       <ul class="full">
+                         <li><img src="assets/assets/images/i5.png"><span>London 145<br>United Kingdom</span></li>
+                         <li><img src="assets/assets/images/i6.png"><span>demo@gmail.com</span></li>
+                         <li><img src="assets/assets/images/i7.png"><span>+12586954775</span></li>
+                       </ul>
+                   </div>
+              </div>
+
+     </div>
+
+  </div>
+</footer>
+<!-- End Footer -->
+
+    <!-- ALL JS FILES -->
+    <script src="assets/assets/js/jquery.min.js"></script>
+	<script src="assets/assets/js/popper.min.js"></script>
+    <script src="assets/assets/js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="assets/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/assets/js/jquery.pogo-slider.min.js"></script>
+    <script src="assets/assets/js/slider-index.js"></script>
+    <script src="assets/assets/js/smoothscroll.js"></script>
+    <script src="assets/assets/js/form-validator.min.js"></script>
+    <script src="assets/assets/js/contact-form-script.js"></script>
+    <script src="assets/assets/js/isotope.min.js"></script>
+    <script src="assets/assets/js/images-loded.min.js"></script>
+    <script src="assets/assets/js/custom.js"></script>
+	<script>
+	/* counter js */
+
+(function ($) {
+	$.fn.countTo = function (options) {
+		options = options || {};
+
+		return $(this).each(function () {
+			// set options for current element
+			var settings = $.extend({}, $.fn.countTo.defaults, {
+				from:            $(this).data('from'),
+				to:              $(this).data('to'),
+				speed:           $(this).data('speed'),
+				refreshInterval: $(this).data('refresh-interval'),
+				decimals:        $(this).data('decimals')
+			}, options);
+
+			// how many times to update the value, and how much to increment the value on each update
+			var loops = Math.ceil(settings.speed / settings.refreshInterval),
+				increment = (settings.to - settings.from) / loops;
+
+			// references & variables that will change with each update
+			var self = this,
+				$self = $(this),
+				loopCount = 0,
+				value = settings.from,
+				data = $self.data('countTo') || {};
+
+			$self.data('countTo', data);
+
+			// if an existing interval can be found, clear it first
+			if (data.interval) {
+				clearInterval(data.interval);
+			}
+			data.interval = setInterval(updateTimer, settings.refreshInterval);
+
+			// initialize the element with the starting value
+			render(value);
+
+			function updateTimer() {
+				value += increment;
+				loopCount++;
+
+				render(value);
+
+				if (typeof(settings.onUpdate) == 'function') {
+					settings.onUpdate.call(self, value);
+				}
+
+				if (loopCount >= loops) {
+					// remove the interval
+					$self.removeData('countTo');
+					clearInterval(data.interval);
+					value = settings.to;
+
+					if (typeof(settings.onComplete) == 'function') {
+						settings.onComplete.call(self, value);
+					}
+				}
+			}
+
+			function render(value) {
+				var formattedValue = settings.formatter.call(self, value, settings);
+				$self.html(formattedValue);
+			}
+		});
+	};
+
+	$.fn.countTo.defaults = {
+		from: 0,               // the number the element should start at
+		to: 0,                 // the number the element should end at
+		speed: 1000,           // how long it should take to count between the target numbers
+		refreshInterval: 100,  // how often the element should be updated
+		decimals: 0,           // the number of decimal places to show
+		formatter: formatter,  // handler for formatting the value before rendering
+		onUpdate: null,        // callback method for every time the element is updated
+		onComplete: null       // callback method for when the element finishes updating
+	};
+
+	function formatter(value, settings) {
+		return value.toFixed(settings.decimals);
+	}
+}(jQuery));
+
+jQuery(function ($) {
+  // custom formatting example
+  $('.count-number').data('countToOptions', {
+	formatter: function (value, options) {
+	  return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+	}
+  });
+
+  // start all the timers
+  $('.timer').each(count);
+
+  function count(options) {
+	var $this = $(this);
+	options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+	$this.countTo(options);
+  }
+});
+	</script>

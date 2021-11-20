@@ -1,0 +1,32 @@
+.inputStyle{
+  border: 1px solid gray !important;
+  height: auto !important;
+  padding: 7px !important;
+  height: 46px !important;
+  min-height: 46px !important;
+}
+.inner_banner{
+  background-color:  #e0af14 !important;
+  height: 60px !important;
+  min-height: 60px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.top-header{
+  background-color: white !important;
+  position: relative;
+  width: 100% !important;
+  margin:0 !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+}
+.cardstyle{
+  width: 50%;
+  min-width: 700px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.btnenvoyer{
+width: 100%;
+}
